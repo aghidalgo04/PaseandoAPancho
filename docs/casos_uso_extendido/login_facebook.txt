@@ -1,18 +1,24 @@
-Autor: 
+Autor: Alejandro García
 
 <<--- Escenario --->>
 
-Nombre: 
+Nombre: El caso de uso hace referencia a el requisito funcional #16721 de la web Redmine UPM con nombre "Login con Facebook"
 
-Actores: 
+Actores: Participan o bien el Cuidador o bien el Dueño, depende de quién realize la acción. En ambos casos el procedimiento es el mismo. Por simplicidad, se llamará a cualquier de los roles como usuario.
 
-Tipo: 
+Tipo: Primario
 
-Precondiciones: 
+Precondiciones: El usuario debe de haberse dado de alta posteriormente con Facebook
 
 Pasos: 
-    1- 
+    1- El usuario pide hacer el proceso de login con Facebook a la página web
+    2- La página web solicita al usuario los datos correspondientes
+    3- El usuario introduce los datos correspondientes
+    4- La página web comprueba si los datos introducidos son correctos
+    5- El usuario ha completado el login con Facebook y es redirigido a su página de inicio
 
-Postcondiciones: 
+Postcondiciones: El usuario ha inciciado sesión en la página web
 
 Excepciones: 
+2.1- Si el usuario cierra la ventana, el proceso de login con Facebook se cancela.
+3.1- Si los datos introducidos son erróneos se vuelve a solicitar que se introduzcan los mismos
