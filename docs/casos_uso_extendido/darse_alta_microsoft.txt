@@ -4,7 +4,7 @@ Autor: Stefan Oshchypok
 
 Nombre: El caso de uso hace referencia a el requisito funcional #17576 de la web Redmine UPM con nombre "Darse de alta con Microsoft".
 
-Actores: Participan o bien el Cuidador o bien el Dueño, depende de quien realize la acción. En ambos casos el procedimiento es el mismo. Por simplicidad, se llamara
+Actores: Participan o bien el Cuidador o bien el Dueño, depende de quién realize la acción. En ambos casos el procedimiento es el mismo. Por simplicidad, se llamara
     a cualquier de los roles como usuario.
 
 Tipo: Primario
