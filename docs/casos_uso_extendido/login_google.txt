@@ -1,18 +1,28 @@
-Autor: 
+Autor: Álvaro Pintado
 
 <<--- Escenario --->>
 
-Nombre: 
+Nombre: El caso de uso hace referencia a el requisito funcional #17576 de la web Redmine UPM con nombre Darse de alta con Microsoft
 
-Actores: 
+Actores: Participan el Cuidador o el Dueño, dependiendo del papel que el usuario quiera desempeñar
 
-Tipo: 
+Tipo: Primario
 
-Precondiciones: 
+Precondiciones: El usuario necesita tener cuenta de Microsoft
 
 Pasos: 
-    1- 
+    1- El usuario dice a la página web si quiere desempeñar el papel de Cuidador o Dueño
+    2- La página web solicita que haga el login de alguna plataforma (Twitter, Microsoft, Facebook o Google), en este caso Microsoft
+    3- El usuario elige la plataforma en la página web
+    4- La página web solicita los datos de login de dicha plataforma
+    5- El usuario introduce los datos de login
+    6- La página web comprueba si los datos son correctos con dicha plataforma
+    7- Si son correctos, se finaliza el proceso de darse de alta
+    8- Si son incorrectos, la página web solicita al usuario que introduzca de nuevo los datos
 
-Postcondiciones: 
+Postcondiciones: La página web creado la cuenta de dicho usuario
 
 Excepciones: 
+2.1- Si los datos introducidos son erróneos se vuelve a solicitar que se introduzcan los mismos
+3.1- Si se aborta el proceso de darse de alta se cancela el caso de uso
+4.1- Si se produce un error con la conexión a la plataforma se cancela el caso de uso
