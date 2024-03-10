@@ -1,4 +1,18 @@
 Autor: 
 
-Escenario:
+<<--- Escenario --->>
 
+Nombre: 
+
+Actores: 
+
+Tipo: 
+
+Precondiciones: 
+
+Pasos: 
+    1- 
+
+Postcondiciones: 
+
+Excepciones: 

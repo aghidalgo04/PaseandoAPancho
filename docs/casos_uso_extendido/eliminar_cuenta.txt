@@ -1,12 +1,16 @@
 Autor: David López Ruiz
 
-Escenario
+<<--- Escenario --->>
 
-Nombre: El caso de uso hace referencia a el requisito funcional #16230 de la web Redmine UPM con nombre Eliminar Cuenta
+Nombre: El caso de uso hace referencia a el requisito funcional #16230 de la web Redmine UPM con nombre "Eliminar Cuenta"
+
 Actores: Participan o bien el Cuidador o bien el dueño, depende de quien realize la acción. En ambos casos el procedimiento es el mismo, 
 pero por simplicidad se va a suponer que lo realiza el dueño
+
 Tipo: Primario
+
 Precondiciones: El usuario se ha registrado previamente y ha accedido a la gestion del usuario
+
 Pasos:
     1- El usuario solicita a la página web eliminar la cuenta
     2- La página web solicita al usuario que introduzca sus datos para corroborar que es él
