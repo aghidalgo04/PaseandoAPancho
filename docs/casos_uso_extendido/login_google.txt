@@ -20,5 +20,5 @@ Pasos:
 Postcondiciones: El usuario ha inciciado sesión en la página web
 
 Excepciones: 
-2.1- Si el usuario cierra la ventana, el proceso de login con Google se cancela.
-3.1- Si los datos introducidos son erróneos se vuelve a solicitar que se introduzcan los mismos
+    2.1- Si el usuario cierra la ventana, el proceso de login con Google se cancela.
+    3.1- Si los datos introducidos son erróneos se vuelve a solicitar que se introduzcan los mismos
