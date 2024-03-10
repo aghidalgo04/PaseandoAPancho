@@ -25,5 +25,3 @@ Excepciones:
     2.1- Si los datos introducidos son erróneos se vuelve a solicitar que se introduzcan los mismos
         2.1.1- Si los datos introducidos vuelven a ser incorrectos, se cierra la sesión
     3.1- Si se aborta la eliminación se cancela el caso de uso
-
-
