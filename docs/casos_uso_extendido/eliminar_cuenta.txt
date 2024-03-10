@@ -8,7 +8,7 @@ pero por simplicidad se va a suponer que lo realiza el dueño
 Tipo: Primario
 Precondiciones: El usuario se ha registrado previamente y ha accedido a la gestion del usuario
 Pasos:
-    1- El usuario solicita a la página web eliminar el usuario
+    1- El usuario solicita a la página web eliminar la cuenta
     2- La página web solicita al usuario que introduzca sus datos para corroborar que es él
     3- La página web vuelve a solicitar confirmación para eliminar la cuenta
     4- El usuario confirma la eliminación de la cuenta
