@@ -1,18 +1,29 @@
-Autor: 
+Autor: Pedro Ángel Guzmán
 
 <<--- Escenario --->>
 
-Nombre: 
+Nombre: El caso de uso hace referencia a el requisito funcional #17579 de la web Redmine UPM con nombre "Darse de alta con Twitter".
 
-Actores: 
+Actores: Participan o bien el Cuidador o bien el Dueño, depende de quién realize la acción. En ambos casos el procedimiento es el mismo. Por simplicidad, se llamará a cualquier de los roles como usuario.
 
-Tipo: 
-
-Precondiciones: 
+Tipo: Primario
 
 Pasos: 
-    1- 
+    1- El usuario debe elegir el rol con cual prefiere darse de alta.
+    2- Aparece una ventana donde usuario tendrá que eligir la opción de darse de alta con Twitter.
+        2.1 - El usuario tiene la opción de cambiar de rol.
+    3- La página web redirige el usuario a la página de login de Twitter.
+    4- Se redirige a la página del formulario (pertenece a "Cuidando a Pancho") del rol elegido.
+    5- El usuario rellena los campos con los datos correspondientes.
+        5.1- El caso de rol Cuidador, tendrá la opción de aportar documentación adicional de acreditación.
+    6- El usuario pulsa el botón "Crear cuenta".
+    7- El sistema crea la cuenta con los datos rellenados.
+    8- La página web informa al usario que su cuenta fue creada con éxito. 
+    8- La página web redirige al usuario creado a su página de inicio.
 
-Postcondiciones: 
-
-Excepciones: 
+Excepciones:
+    2- El usuario podra cerrar la ventana.
+        2.1- Proceso de creación de cuenta se cancela.
+    4- En caso de que el usuario no tenga cuenta de Twitter o que ya tenga cuenta asociada a su cuenta de Twitter.
+        4.1- Se redirige a la página con ventana de opciones con que red social darse se alta.
+        4.2- El proceso de creación de cuenta se cancela.
