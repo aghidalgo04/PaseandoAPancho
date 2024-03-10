@@ -2,27 +2,23 @@ Autor: Álvaro Pintado
 
 <<--- Escenario --->>
 
-Nombre: El caso de uso hace referencia a el requisito funcional #17576 de la web Redmine UPM con nombre Darse de alta con Microsoft
+Nombre: El caso de uso hace referencia a el requisito funcional #17575 de la web Redmine UPM con nombre "Login con Google"
 
-Actores: Participan el Cuidador o el Dueño, dependiendo del papel que el usuario quiera desempeñar
+Actores: Participan o bien el Cuidador o bien el Dueño, depende de quién realize la acción. En ambos casos el procedimiento es el mismo. Por simplicidad, se llamará a cualquier de los roles como usuario.
 
 Tipo: Primario
 
-Precondiciones: El usuario necesita tener cuenta de Microsoft
+Precondiciones: El usuario debe de haberse dado de alta posteriormente con Google
 
 Pasos: 
-    1- El usuario dice a la página web si quiere desempeñar el papel de Cuidador o Dueño
-    2- La página web solicita que haga el login de alguna plataforma (Twitter, Microsoft, Facebook o Google), en este caso Microsoft
-    3- El usuario elige la plataforma en la página web
-    4- La página web solicita los datos de login de dicha plataforma
-    5- El usuario introduce los datos de login
-    6- La página web comprueba si los datos son correctos con dicha plataforma
-    7- Si son correctos, se finaliza el proceso de darse de alta
-    8- Si son incorrectos, la página web solicita al usuario que introduzca de nuevo los datos
+    1- El usuario pide hacer el proceso de login con Google a la página web
+    2- La página web solicita al usuario los datos correspondientes
+    3- El usuario introduce los datos correspondientes
+    4- La página web comprueba si los datos introducidos son correctos
+    5- El usuario ha completado el login con Google y es redirigido a su página de inicio
 
-Postcondiciones: La página web creado la cuenta de dicho usuario
+Postcondiciones: El usuario ha inciciado sesión en la página web
 
 Excepciones: 
-2.1- Si los datos introducidos son erróneos se vuelve a solicitar que se introduzcan los mismos
-3.1- Si se aborta el proceso de darse de alta se cancela el caso de uso
-4.1- Si se produce un error con la conexión a la plataforma se cancela el caso de uso
+2.1- Si el usuario cierra la ventana, el proceso de login con Google se cancela.
+3.1- Si los datos introducidos son erróneos se vuelve a solicitar que se introduzcan los mismos
