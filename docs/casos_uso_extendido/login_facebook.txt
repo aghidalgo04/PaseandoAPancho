@@ -8,7 +8,7 @@ Actores: Participan o bien el Cuidador o bien el Dueño, depende de quién reali
 
 Tipo: Primario
 
-Precondiciones: El usuario debe de haberse dado de alta posteriormente con Facebook
+Precondiciones: El usuario debe de haberse dado de alta previamente con Facebook
 
 Pasos: 
     1- El usuario pide hacer el proceso de login con Facebook a la página web
