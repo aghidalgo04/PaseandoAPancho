@@ -1,4 +1,4 @@
-package es.upm.etsisi;
+package upm;
 
 public class App {
     public static void main(String[] args) {
