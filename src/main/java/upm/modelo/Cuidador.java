@@ -1,6 +1,5 @@
 package upm.modelo;
-
-import Modelo.Enums.*;
+import upm.modelo.enums.*;
 
 import java.io.File;
 import java.util.HashSet;

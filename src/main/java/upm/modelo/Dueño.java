@@ -1,7 +1,6 @@
 package upm.modelo;
 
-import Modelo.Enums.Idioma;
-import Modelo.Enums.Plataforma;
+import upm.modelo.enums.*;
 
 import java.util.Set;
 import java.util.HashSet;
