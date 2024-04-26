@@ -11,10 +11,11 @@ public class ContratoCuidado {
     private Boolean rescindido;
     private Double coste;
     private Mascota mascota;
+    private Cuidador cuidador;
     private MensajePeticion mensajePeticion;
     private Notificacion notificacion;
 
-    public ContratoCuidado(Long id, LocalDateTime fechaInicioDeCuidado, LocalDateTime fechaFinDeCuidado, LocalDateTime fechaFirma, Double coste, Mascota mascota, MensajePeticion mensajePeticion, Notificacion notificacion) {
+    public ContratoCuidado(Long id, LocalDateTime fechaInicioDeCuidado, LocalDateTime fechaFinDeCuidado, LocalDateTime fechaFirma, Double coste, Mascota mascota, MensajePeticion mensajePeticion, Notificacion notificacion, Cuidador cuidador) {
         this.id = id;
         this.fechaInicioDeCuidado = fechaInicioDeCuidado;
         this.fechaFinDeCuidado = fechaFinDeCuidado;
@@ -22,17 +23,21 @@ public class ContratoCuidado {
         this.coste = coste;
         this.mascota = mascota;
         this.mensajePeticion = mensajePeticion;
-        this.notificacion = notificacion;
+        this.notificacion = new Notificacion(id);
+        this.cuidador = cuidador;
+        this.panchoPuntosCuidado = calcularPanchoPuntosCuidado();
     }
 
-    public ContratoCuidado(Long id, LocalDateTime fechaInicioDeCuidado, LocalDateTime fechaFinDeCuidado, LocalDateTime fechaFirma, Double coste, Mascota mascota, Notificacion notificacion) {
+    public ContratoCuidado(Long id, LocalDateTime fechaInicioDeCuidado, LocalDateTime fechaFinDeCuidado, LocalDateTime fechaFirma, Double coste, Mascota mascota, Notificacion notificacion, Cuidador cuidador) {
         this.id = id;
         this.fechaInicioDeCuidado = fechaInicioDeCuidado;
         this.fechaFinDeCuidado = fechaFinDeCuidado;
         this.fechaFirma = fechaFirma;
         this.coste = coste;
         this.mascota = mascota;
-        this.notificacion = notificacion;
+        this.notificacion = new Notificacion(id);
+        this.cuidador = cuidador;
+        this.panchoPuntosCuidado = calcularPanchoPuntosCuidado();
     }
 
     public Float calcularCoste() {
@@ -48,35 +53,37 @@ public class ContratoCuidado {
     }
 
     public LocalDateTime getFechaInicioDeCuidado() {
-        return fechaInicioDeCuidado;
+        return this.fechaInicioDeCuidado;
     }
 
     public LocalDateTime getFechaFinDeCuidado() {
-        return fechaFinDeCuidado;
+        return this.fechaFinDeCuidado;
     }
 
     public LocalDateTime getFechaFirma() {
-        return fechaFirma;
+        return this.fechaFirma;
     }
 
     public MensajePeticion getMensajePeticion() {
-        return mensajePeticion;
+        return this.mensajePeticion;
     }
 
     public Notificacion getNotificacion() {
-        return notificacion;
+        return this.notificacion;
     }
 
+    public Mascota getMascota() {return this.mascota;}
+
     public Cuidador getCuidador() {
-        return null;
+        return this.cuidador;
     }
 
     public Boolean isRescindido() {
-        return rescindido;
+        return this.rescindido;
     }
 
     public Double getCoste() {
-        return coste;
+        return this.coste;
     }
 
     public void setFechaFinDeCuidado(LocalDateTime fechaFinDeCuidado) {

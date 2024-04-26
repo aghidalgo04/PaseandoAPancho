@@ -53,13 +53,6 @@ public class Dueño extends Usuario {
         cuidadoresFavoritos.add(cuidador);
     }
 
-    public boolean esCuidadorFavorito(Cuidador cuidador) {
-        return cuidadoresFavoritos.contains(cuidador);
-    }
-
-    public void eliminarCuidadorFavorito(Cuidador cuidador) {
-        cuidadoresFavoritos.remove(cuidador);
-    }
 
     @Override
     public Long getId() {

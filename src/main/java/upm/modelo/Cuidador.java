@@ -2,18 +2,16 @@ package upm.modelo;
 import upm.modelo.enums.*;
 
 import java.io.File;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cuidador extends Usuario {
     private File foto;
     private String descripcion;
     private Integer precio;
     private String IBAN;
-    private Map<File> documentacion;
+    private List<File> documentacion;
     private Integer panchoPuntos;
-    private Set<Dueño> dueñosFavoritos;
 
 
     public Cuidador(Long id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN) {
@@ -22,17 +20,15 @@ public class Cuidador extends Usuario {
         this.descripcion = descripcion;
         this.precio = precio;
         this.IBAN = IBAN;
-        this.dueñosFavoritos = new HashSet<>();
     }
 
-    public Cuidador(Long id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN, Map<File> documentacion) {
+    public Cuidador(Long id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN, List<File> documentacion) {
         super(id, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro);
         this.foto = foto;
         this.descripcion = descripcion;
         this.precio = precio;
         this.IBAN = IBAN;
         this.documentacion = documentacion;
-        this.dueñosFavoritos = new HashSet<>();
     }
 
     public void anadirMascotaFavorita(Mascota mascota) {
@@ -57,18 +53,6 @@ public class Cuidador extends Usuario {
 
     public ContratoCuidado buscarContratoCuidado(Long id) {
         return null;
-    }
-
-    public void anadirDueñoFavorito(Dueño dueño) {
-        dueñosFavoritos.add(dueño);
-    }
-
-    public boolean esDueñoFavorito(Dueño dueño) {
-        return dueñosFavoritos.contains(dueño);
-    }
-
-    public void eliminarDueñoFavorito(Dueño dueño) {
-        dueñosFavoritos.remove(dueño);
     }
 
     public File getFoto() {
