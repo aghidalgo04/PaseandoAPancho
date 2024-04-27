@@ -12,11 +12,11 @@ public class Notificacion {
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public LocalDateTime getFechaLectura() {
-        return fechaLectura;
+        return this.fechaLectura;
     }
 
     public void setFechaLectura(LocalDateTime fechaLectura) {

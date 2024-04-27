@@ -12,11 +12,11 @@ public class Foto {
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public File getFoto() {
-        return foto;
+        return this.foto;
     }
 
     public void setFoto(File foto) {

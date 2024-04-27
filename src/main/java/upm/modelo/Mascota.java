@@ -62,11 +62,11 @@ public class Mascota {
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     public void setNombre(String nombre) {
@@ -74,7 +74,7 @@ public class Mascota {
     }
 
     public String getDireccion() {
-        return direccion;
+        return this.direccion;
     }
 
     public void setDireccion(String direccion) {
@@ -82,7 +82,7 @@ public class Mascota {
     }
 
     public String getDescripcion() {
-        return descripcion;
+        return this.descripcion;
     }
 
     public void setDescripcion(String descripcion) {
@@ -90,7 +90,7 @@ public class Mascota {
     }
 
     public String getCodigoRIAC() {
-        return codigoRIAC;
+        return this.codigoRIAC;
     }
 
     public void setCodigoRIAC(String codigoRIAC) {
@@ -98,7 +98,7 @@ public class Mascota {
     }
 
     public String getPolizaSeguro() {
-        return polizaSeguro;
+        return this.polizaSeguro;
     }
 
     public void setPolizaSeguro(String polizaSeguro) {
@@ -106,7 +106,7 @@ public class Mascota {
     }
 
     public Foto getFotoFavorita() {
-        return fotoFavorita;
+        return this.fotoFavorita;
     }
 
     public void setFotoFavorita(Foto fotoFavorita) {

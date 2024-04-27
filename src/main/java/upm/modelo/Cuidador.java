@@ -45,7 +45,7 @@ public class Cuidador extends Usuario {
     }
 
     public File getFoto() {
-        return foto;
+        return this.foto;
     }
 
     public void setFoto(File foto) {
@@ -53,7 +53,7 @@ public class Cuidador extends Usuario {
     }
 
     public String getDescripcion() {
-        return descripcion;
+        return this.descripcion;
     }
 
     public void setDescripcion(String descripcion) {
@@ -61,7 +61,7 @@ public class Cuidador extends Usuario {
     }
 
     public Integer getPrecio() {
-        return precio;
+        return this.precio;
     }
 
     public void setPrecio(Integer precio) {
@@ -69,7 +69,7 @@ public class Cuidador extends Usuario {
     }
 
     public String getIBAN() {
-        return IBAN;
+        return this.IBAN;
     }
 
     public void setIBAN(String IBAN) {
@@ -77,7 +77,7 @@ public class Cuidador extends Usuario {
     }
 
     public List<File> getDocumentacion() {
-        return documentacion;
+        return this.documentacion;
     }
 
     public void setDocumentacion(List<File> documentacion) {
@@ -97,7 +97,7 @@ public class Cuidador extends Usuario {
     }
 
     public void anadirPremio(Premio premio) {
-        this.premios.put(premio.getId, premio);
+        this.premios.put(premio.getId(), premio);
     }
 
     public Premio buscarPremioPorId(Long id) {

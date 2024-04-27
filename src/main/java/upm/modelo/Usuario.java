@@ -28,11 +28,11 @@ public abstract class Usuario {
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     public void setNombre(String nombre) {
@@ -40,7 +40,7 @@ public abstract class Usuario {
     }
 
     public String getApellidos() {
-        return apellidos;
+        return this.apellidos;
     }
 
     public void setApellidos(String apellidos) {
@@ -48,7 +48,7 @@ public abstract class Usuario {
     }
 
     public String getCorreoElectronico() {
-        return correoElectronico;
+        return this.correoElectronico;
     }
 
     public void setCorreoElectronico(String correoElectronico) {
@@ -56,7 +56,7 @@ public abstract class Usuario {
     }
 
     public String getDireccion() {
-        return direccion;
+        return this.direccion;
     }
 
     public void setDireccion(String direccion) {
@@ -64,7 +64,7 @@ public abstract class Usuario {
     }
 
     public Idioma getIdioma() {
-        return idioma;
+        return this.idioma;
     }
 
     public void setIdioma(Idioma idioma) {
@@ -72,7 +72,7 @@ public abstract class Usuario {
     }
 
     public Plataforma getPlataformaRegistro() {
-        return plataformaRegistro;
+        return this.plataformaRegistro;
     }
 
     public void setPlataformaRegistro(Plataforma plataformaRegistro) {

@@ -15,11 +15,11 @@ public class Album {
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public String getTitulo() {
-        return titulo;
+        return this.titulo;
     }
 
     public void setTitulo(String titulo) {
@@ -27,7 +27,7 @@ public class Album {
     }
 
     public List<Foto> getFotos() {
-        return fotos;
+        return this.fotos;
     }
 
     public void anadirFoto(Foto foto) {

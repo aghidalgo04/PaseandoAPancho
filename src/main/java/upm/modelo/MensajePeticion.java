@@ -12,7 +12,7 @@ public class MensajePeticion extends Mensaje {
     }
 
     public Estado getEstado() {
-        return estado;
+        return this.estado;
     }
 
     public void setEstado(Estado estado) {

@@ -14,14 +14,14 @@ public class Mensaje {
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public String getCuerpo() {
-        return cuerpo;
+        return this.cuerpo;
     }
 
     public LocalDateTime getFechaEnvio() {
-        return fechaEnvio;
+        return this.fechaEnvio;
     }
 }

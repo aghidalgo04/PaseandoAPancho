@@ -16,7 +16,7 @@ public class MascotaExotica extends Mascota {
     }
 
     public File getCertificadoLegal() {
-        return certificadoLegal;
+        return this.certificadoLegal;
     }
 
     public void setCertificadoLegal(File certificadoLegal) {
@@ -24,7 +24,7 @@ public class MascotaExotica extends Mascota {
     }
 
     public File getCertificadoSalud() {
-        return certificadoSalud;
+        return this.certificadoSalud;
     }
 
     public void setCertificadoSalud(File certificadoSalud) {
@@ -32,7 +32,7 @@ public class MascotaExotica extends Mascota {
     }
 
     public File getLibreEnfermedadesTransmisibles() {
-        return libreEnfermedadesTransmisibles;
+        return this.libreEnfermedadesTransmisibles;
     }
 
     public void setLibreEnfermedadesTransmisibles(File libreEnfermedadesTransmisibles) {

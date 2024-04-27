@@ -43,15 +43,15 @@ public class ContratoCuidado {
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public LocalDateTime getFechaInicioDeCuidado() {
-        return fechaInicioDeCuidado;
+        return this.fechaInicioDeCuidado;
     }
 
     public LocalDateTime getFechaFinDeCuidado() {
-        return fechaFinDeCuidado;
+        return this.fechaFinDeCuidado;
     }
 
     public void setFechaFinDeCuidado(LocalDateTime fechaFinDeCuidado) {
@@ -59,7 +59,7 @@ public class ContratoCuidado {
     }
 
     public LocalDateTime getFechaFirma() {
-        return fechaFirma;
+        return this.fechaFirma;
     }
 
     public boolean isRescindido() {
@@ -71,19 +71,19 @@ public class ContratoCuidado {
     }
 
     public Double getCoste() {
-        return coste;
+        return this.coste;
     }
 
     public Mascota getMascotaAsociada() {
-        return mascotaAsociada;
+        return this.mascotaAsociada;
     }
 
     public Cuidador getCuidador() {
-        return cuidador;
+        return this.cuidador;
     }
 
     public MensajePeticion getMensajePeticion() {
-        return mensajePeticion;
+        return this.mensajePeticion;
     }
 
     public void setMensajePeticion(MensajePeticion mensajePeticion) {
@@ -91,7 +91,7 @@ public class ContratoCuidado {
     }
 
     public Notificacion getNotificacion() {
-        return notificacion;
+        return this.notificacion;
     }
 
     public Double calcularCoste() {
