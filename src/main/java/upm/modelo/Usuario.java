@@ -1,8 +1,8 @@
 package upm.modelo;
 
 import upm.modelo.enums.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class Usuario {
     private Long id;
@@ -12,8 +12,8 @@ public abstract class Usuario {
     private String direccion;
     private Idioma idioma;
     private Plataforma plataformaRegistro;
-    private Set<Mensaje> recibidos;
-    private Set<Mensaje> enviados;
+    private Map<Long, Mensaje> recibe;
+    private Map<Long, Mensaje> envia;
 
     public Usuario(Long id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro) {
         this.id = id;
@@ -23,39 +23,80 @@ public abstract class Usuario {
         this.direccion = direccion;
         this.idioma = idioma;
         this.plataformaRegistro = plataformaRegistro;
-        this.enviados = new HashSet<>();
-        this.recibidos = new HashSet<>();
+        this.recibe = new HashMap<>();
+        this.envia = new HashMap<>();
     }
 
-    public abstract void anadirMensajeEnviado(Mensaje mensaje);
+    public Long getId() {
+        return id;
+    }
 
-    public abstract Mensaje buscarMensajeEnviadoPorId(Long id);
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public abstract void anadirMensajeRecibido(Mensaje mensaje);
+    public String getNombre() {
+        return nombre;
+    }
 
-    public abstract Mensaje buscarMensajeRecibidoPorId(Long id);
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
+    public String getApellidos() {
+        return apellidos;
+    }
 
-    public abstract Long getId();
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
 
-    public abstract String getNombre();
+    public String getCorreoElectronico() {
+        return correoElectronico;
+    }
 
-    public abstract String getApellidos();
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
 
-    public abstract String getCorreoElectronico();
+    public String getDireccion() {
+        return direccion;
+    }
 
-    public abstract Idioma getIdioma();
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
 
-    public abstract Plataforma getPlataformaRegistro();
+    public Idioma getIdioma() {
+        return idioma;
+    }
 
-    public abstract void setNombre(String nombre);
+    public void setIdioma(Idioma idioma) {
+        this.idioma = idioma;
+    }
 
-    public abstract void setApellidos(String apellidos);
+    public Plataforma getPlataformaRegistro() {
+        return plataformaRegistro;
+    }
 
-    public abstract void setCorreoElectronico(String correo);
+    public void setPlataformaRegistro(Plataforma plataformaRegistro) {
+        this.plataformaRegistro = plataformaRegistro;
+    }
 
-    public abstract void setDireccion(String direccion);
+    public void anadirMensajeEnviado(Long id, Mensaje mensaje) {
+        this.envia.put(id, mensaje);
+    }
 
-    public abstract void setIdioma(Idioma idioma);
+    public Mensaje buscarMensajeEnviadoPorId(Long id) {
+        return this.envia.get(id);
+    }
+
+    public void anadirMensajeRecibido(Long id, Mensaje mensaje) {
+        this.recibe.put(id, mensaje);
+    }
+
+    public Mensaje buscarMensajeRecibidoPorId(Long id) {
+        return this.recibe.get(id);
+    }
 }
 

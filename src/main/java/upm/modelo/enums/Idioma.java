@@ -2,8 +2,8 @@ package upm.modelo.enums;
 
 public enum Idioma {
     Castellano,
-    Ingles,
-    Catalan,
+    Inglés,
+    Catalán,
     Valenciano,
     Euskera,
     Gallego

@@ -1,6 +1,5 @@
 package upm.persitencia.map;
 
-import upm.modelo.Usuario;
 import upm.persitencia.Persistencia;
 
 import java.io.File;

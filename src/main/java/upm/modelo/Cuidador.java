@@ -3,7 +3,9 @@ import upm.modelo.enums.*;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Cuidador extends Usuario {
     private File foto;
@@ -12,6 +14,9 @@ public class Cuidador extends Usuario {
     private String IBAN;
     private List<File> documentacion;
     private Integer panchoPuntos;
+    private Map<Long, Mascota> mascotasFavoritas;
+    private Map<Long, ContratoCuidado> contratos;
+    private Map<Long, Premio> premios;
 
 
     public Cuidador(Long id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN) {
@@ -20,6 +25,10 @@ public class Cuidador extends Usuario {
         this.descripcion = descripcion;
         this.precio = precio;
         this.IBAN = IBAN;
+        this.panchoPuntos = 0;
+        this.mascotasFavoritas = new HashMap<>();
+        this.contratos = new HashMap<>();
+        this.premios = new HashMap<>();
     }
 
     public Cuidador(Long id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN, List<File> documentacion) {
@@ -29,145 +38,78 @@ public class Cuidador extends Usuario {
         this.precio = precio;
         this.IBAN = IBAN;
         this.documentacion = documentacion;
-    }
-
-    public void anadirMascotaFavorita(Mascota mascota) {
-    }
-
-    public Mascota buscarMascotaFavoritaPorId(Long id) {
-        return null;
-    }
-
-    public void eliminarMascotaFavorita(Long id) {
-    }
-
-    public void anadirPremio(Premio premio) {
-    }
-
-    public Premio buscarPremioPorId(Long id) {
-        return null;
-    }
-
-    public void anadirContratoCuidado(ContratoCuidado contratoCuidado) {
-    }
-
-    public ContratoCuidado buscarContratoCuidado(Long id) {
-        return null;
+        this.panchoPuntos = 0;
+        this.mascotasFavoritas = new HashMap<>();
+        this.contratos = new HashMap<>();
+        this.premios = new HashMap<>();
     }
 
     public File getFoto() {
         return foto;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public Integer getPrecio() {
-        return precio;
-    }
-
-    public String getIBAN() {
-        return IBAN;
-    }
-
-    public Map<File> getDocumentacion() {
-        return documentacion;
-    }
-
-    public Integer getPanchoPuntos() {
-        return panchoPuntos;
-    }
-
     public void setFoto(File foto) {
         this.foto = foto;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
     }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
+    public Integer getPrecio() {
+        return precio;
+    }
+
     public void setPrecio(Integer precio) {
         this.precio = precio;
+    }
+
+    public String getIBAN() {
+        return IBAN;
     }
 
     public void setIBAN(String IBAN) {
         this.IBAN = IBAN;
     }
 
-    @Override
-    public void anadirMensajeEnviado(Mensaje mensaje) {
-
+    public List<File> getDocumentacion() {
+        return documentacion;
     }
 
-    @Override
-    public Mensaje buscarMensajeEnviadoPorId(Long id) {
-        return null;
+    public void setDocumentacion(List<File> documentacion) {
+        this.documentacion = documentacion;
     }
 
-    @Override
-    public void anadirMensajeRecibido(Mensaje mensaje) {
-
+    public void anadirMascotaFavorita(Mascota mascota) {
+        this.mascotasFavoritas.put(mascota.getId(), mascota);
     }
 
-    @Override
-    public Mensaje buscarMensajeRecibidoPorId(Long id) {
-        return null;
+    public Mascota buscarMascotaFavoritaPorId(Long id) {
+        return this.mascotasFavoritas.get(id);
     }
 
-    @Override
-    public Long getId() {
-        return null;
+    public void eliminarMascotaFavorita(Long id) {
+        this.mascotasFavoritas.remove(id);
     }
 
-    @Override
-    public String getNombre() {
-        return null;
+    public void anadirPremio(Premio premio) {
+        this.premios.put(premio.getId, premio);
     }
 
-    @Override
-    public String getApellidos() {
-        return null;
+    public Premio buscarPremioPorId(Long id) {
+        return this.premios.get(id);
     }
 
-    @Override
-    public String getCorreoElectronico() {
-        return null;
+    public void anadirContratoCuidado(ContratoCuidado contratoCuidado) {
+        this.contratos.put(contratoCuidado.getId(), contratoCuidado);
     }
 
-    @Override
-    public Idioma getIdioma() {
-        return null;
-    }
-
-    @Override
-    public Plataforma getPlataformaRegistro() {
-        return null;
-    }
-
-    @Override
-    public void setNombre(String nombre) {
-
-    }
-
-    @Override
-    public void setApellidos(String apellidos) {
-
-    }
-
-    @Override
-    public void setCorreoElectronico(String correo) {
-
-    }
-
-    @Override
-    public void setDireccion(String direccion) {
-
-    }
-
-    @Override
-    public void setIdioma(Idioma idioma) {
-
+    public ContratoCuidado buscarContratoCuidado(Long id) {
+        return this.contratos.get(id);
     }
 }
 
