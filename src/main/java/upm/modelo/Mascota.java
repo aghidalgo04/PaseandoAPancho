@@ -1,5 +1,6 @@
 package upm.modelo;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class Mascota {
@@ -9,10 +10,10 @@ public class Mascota {
     private String descripcion;
     private String codigoRIAC;
     private String polizaSeguro;
-    private List albums;
+    private List<Album> albums;
     private Foto fotoFavorita;
 
-    public Mascota(Long id, String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List albums, Foto fotoFavorita) {
+    public Mascota(Long id, String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums, Foto fotoFavorita) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -23,7 +24,7 @@ public class Mascota {
         this.fotoFavorita = fotoFavorita;
     }
 
-    public Mascota(Long id, String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List albums) {
+    public Mascota(Long id, String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -64,48 +65,52 @@ public class Mascota {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getNombre() {
         return nombre;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public String getCodigoRIAC() {
-        return codigoRIAC;
-    }
-
-    public String getPolizaSeguro() {
-        return polizaSeguro;
-    }
-
-    public Foto getFotoFavorita() {
-        return fotoFavorita;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    public String getDireccion() {
+        return direccion;
+    }
+
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
     }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
+    public String getCodigoRIAC() {
+        return codigoRIAC;
+    }
+
     public void setCodigoRIAC(String codigoRIAC) {
         this.codigoRIAC = codigoRIAC;
     }
 
+    public String getPolizaSeguro() {
+        return polizaSeguro;
+    }
+
     public void setPolizaSeguro(String polizaSeguro) {
         this.polizaSeguro = polizaSeguro;
+    }
+
+    public Foto getFotoFavorita() {
+        return fotoFavorita;
     }
 
     public void setFotoFavorita(Foto fotoFavorita) {
@@ -113,12 +118,25 @@ public class Mascota {
     }
 
     public void anadirAlbum(Album album) {
+        this.albums.add(album);
     }
 
     public Album buscarAlbumPorId(Long id) {
+        Iterator<Album> albumIterator = albums.iterator();
+        while (albumIterator.hasNext()) {
+            if (albumIterator.next().getId().equals(id)) {
+                return albumIterator.next();
+            }
+        }
         return null;
     }
 
     public void eliminarAlbum(Long id) {
+        Iterator<Album> albumIterator = albums.iterator();
+        while (albumIterator.hasNext()) {
+            if (albumIterator.next().getId().equals(id)) {
+                albums.remove(albumIterator.next());
+            }
+        }
     }
 }
