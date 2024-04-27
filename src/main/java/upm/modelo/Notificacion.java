@@ -3,8 +3,8 @@ package upm.modelo;
 import java.time.LocalDateTime;
 
 public class Notificacion {
-    private Long id;
-    private LocalDateTime fechaLectura;
+    private final Long id;
+    private final LocalDateTime fechaLectura;
 
     public Notificacion(Long id) {
         this.id = id;

@@ -3,7 +3,7 @@ package upm.modelo;
 import java.time.LocalDateTime;
 
 public class Mensaje {
-    private Long id;
+    private final Long id;
     private String cuerpo;
     private LocalDateTime fechaEnvio;
 

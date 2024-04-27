@@ -3,7 +3,7 @@ package upm.modelo;
 import java.io.File;
 
 public class Foto {
-    private Long id;
+    private final Long id;
     private File foto;
 
     public Foto(Long id, File foto) {
@@ -13,10 +13,6 @@ public class Foto {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public File getFoto() {

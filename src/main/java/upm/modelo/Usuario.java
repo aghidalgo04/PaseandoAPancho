@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Usuario {
-    private Long id;
+    private final Long id;
     private String nombre;
     private String apellidos;
     private String correoElectronico;
@@ -29,10 +29,6 @@ public abstract class Usuario {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNombre() {

@@ -3,49 +3,43 @@ package upm.modelo;
 import java.time.LocalDateTime;
 
 public class ContratoCuidado {
-    private Long id;
+    private final Long id;
     private LocalDateTime fechaInicioDeCuidado;
     private LocalDateTime fechaFinDeCuidado;
     private LocalDateTime fechaFirma;
     private Integer panchoPuntosCuidado;
     private Boolean rescindido;
     private Double coste;
-    private Mascota mascota;
+    private Mascota mascotaAsociada;
     private Cuidador cuidador;
     private MensajePeticion mensajePeticion;
     private Notificacion notificacion;
 
-    public ContratoCuidado(Long id, LocalDateTime fechaInicioDeCuidado, LocalDateTime fechaFinDeCuidado, LocalDateTime fechaFirma, Double coste, Mascota mascota, MensajePeticion mensajePeticion, Notificacion notificacion, Cuidador cuidador) {
+    public ContratoCuidado(Long id, LocalDateTime fechaInicioDeCuidado, LocalDateTime fechaFinDeCuidado, LocalDateTime fechaFirma, Double coste, Mascota mascotaAsociada, Cuidador cuidador, MensajePeticion mensajePeticion, Notificacion notificacion) {
         this.id = id;
         this.fechaInicioDeCuidado = fechaInicioDeCuidado;
         this.fechaFinDeCuidado = fechaFinDeCuidado;
         this.fechaFirma = fechaFirma;
+        this.panchoPuntosCuidado = calcularPanchoPuntosCuidado();
+        this.rescindido = false;
         this.coste = coste;
-        this.mascota = mascota;
+        this.mascotaAsociada = mascotaAsociada;
+        this.cuidador = cuidador;
         this.mensajePeticion = mensajePeticion;
         this.notificacion = new Notificacion(id);
-        this.cuidador = cuidador;
-        this.panchoPuntosCuidado = calcularPanchoPuntosCuidado();
     }
 
-    public ContratoCuidado(Long id, LocalDateTime fechaInicioDeCuidado, LocalDateTime fechaFinDeCuidado, LocalDateTime fechaFirma, Double coste, Mascota mascota, Notificacion notificacion, Cuidador cuidador) {
+    public ContratoCuidado(Long id, LocalDateTime fechaInicioDeCuidado, LocalDateTime fechaFinDeCuidado, LocalDateTime fechaFirma, Double coste, Mascota mascotaAsociada, Cuidador cuidador, Notificacion notificacion) {
         this.id = id;
         this.fechaInicioDeCuidado = fechaInicioDeCuidado;
         this.fechaFinDeCuidado = fechaFinDeCuidado;
         this.fechaFirma = fechaFirma;
-        this.coste = coste;
-        this.mascota = mascota;
-        this.notificacion = new Notificacion(id);
-        this.cuidador = cuidador;
         this.panchoPuntosCuidado = calcularPanchoPuntosCuidado();
-    }
-
-    public Float calcularCoste() {
-        return null;
-    }
-
-    public Integer calcularPanchoPuntosCuidado() {
-        return null;
+        this.rescindido = false;
+        this.coste = coste;
+        this.mascotaAsociada = mascotaAsociada;
+        this.cuidador = cuidador;
+        this.notificacion = new Notificacion(id);
     }
 
     public Long getId() {
@@ -53,49 +47,60 @@ public class ContratoCuidado {
     }
 
     public LocalDateTime getFechaInicioDeCuidado() {
-        return this.fechaInicioDeCuidado;
+        return fechaInicioDeCuidado;
     }
 
     public LocalDateTime getFechaFinDeCuidado() {
-        return this.fechaFinDeCuidado;
-    }
-
-    public LocalDateTime getFechaFirma() {
-        return this.fechaFirma;
-    }
-
-    public MensajePeticion getMensajePeticion() {
-        return this.mensajePeticion;
-    }
-
-    public Notificacion getNotificacion() {
-        return this.notificacion;
-    }
-
-    public Mascota getMascota() {return this.mascota;}
-
-    public Cuidador getCuidador() {
-        return this.cuidador;
-    }
-
-    public Boolean isRescindido() {
-        return this.rescindido;
-    }
-
-    public Double getCoste() {
-        return this.coste;
+        return fechaFinDeCuidado;
     }
 
     public void setFechaFinDeCuidado(LocalDateTime fechaFinDeCuidado) {
         this.fechaFinDeCuidado = fechaFinDeCuidado;
     }
 
-    public void setMensajePeticion(MensajePeticion mensajePeticion) {
-        this.mensajePeticion = mensajePeticion;
+    public LocalDateTime getFechaFirma() {
+        return fechaFirma;
+    }
+
+    public boolean isRescindido() {
+        return this.rescindido;
     }
 
     public void setRescindido(Boolean rescindido) {
         this.rescindido = rescindido;
     }
 
+    public Double getCoste() {
+        return coste;
+    }
+
+    public Mascota getMascotaAsociada() {
+        return mascotaAsociada;
+    }
+
+    public Cuidador getCuidador() {
+        return cuidador;
+    }
+
+    public MensajePeticion getMensajePeticion() {
+        return mensajePeticion;
+    }
+
+    public void setMensajePeticion(MensajePeticion mensajePeticion) {
+        this.mensajePeticion = mensajePeticion;
+    }
+
+    public Notificacion getNotificacion() {
+        return notificacion;
+    }
+
+    public Double calcularCoste() {
+        int dias =  fechaFinDeCuidado.getDayOfMonth() - fechaInicioDeCuidado.getDayOfMonth();
+        int horas = fechaFinDeCuidado.getHour() - fechaInicioDeCuidado.getHour();
+        return (dias * coste) + (horas * coste);
+    }
+
+    public Integer calcularPanchoPuntosCuidado() {
+        return null;
+    }
 }
