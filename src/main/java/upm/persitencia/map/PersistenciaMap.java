@@ -1,5 +1,6 @@
 package upm.persitencia.map;
 
+import upm.modelo.Usuario;
 import upm.persitencia.Persistencia;
 
 import java.io.File;
@@ -13,6 +14,21 @@ public abstract class PersistenciaMap<T> implements Persistencia<T> {
 
     PersistenciaMap() {
         this.map = new TreeMap<>();
+    }
+
+    @Override
+    public void create(T t) {
+
+    }
+
+    @Override
+    public T findById(Long id) {
+        return null;
+    }
+
+    @Override
+    public void update(T t) {
+
     }
 
     abstract List<T> getAll();

@@ -6,6 +6,4 @@ public interface Persistencia<T> {
     T findById(Long id);
 
     void update(T t);
-
-    void delete(Long id);
 }

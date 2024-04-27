@@ -11,25 +11,4 @@ public class PersistenciaContratoCuidadoMap extends PersistenciaMap<ContratoCuid
     List<ContratoCuidado> getAll(){
         return null;
     }
-
-
-    @Override
-    public void create(ContratoCuidado contratoCuidado) {
-
-    }
-
-    @Override
-    public ContratoCuidado findById(Long id) {
-        return null;
-    }
-
-    @Override
-    public void update(ContratoCuidado contratoCuidado) {
-
-    }
-
-    @Override
-    public void delete(Long id) {
-
-    }
 }
