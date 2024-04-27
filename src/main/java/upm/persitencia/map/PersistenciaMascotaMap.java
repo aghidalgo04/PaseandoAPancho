@@ -1,10 +1,10 @@
-package upm.persitencia;
+package upm.persitencia.map;
 
-import upm.modelo.Usuario;
+import upm.persitencia.PersistenciaMascota;
 
 import java.util.List;
 
-public class PersistenciaMascotaMap extends PersistenciaMap<Mascota> implements PersistenciaMascota{
+public class PersistenciaMascotaMap extends PersistenciaMap<Mascota> implements PersistenciaMascota {
 
     @Override
     List<Mascota> getAll(){

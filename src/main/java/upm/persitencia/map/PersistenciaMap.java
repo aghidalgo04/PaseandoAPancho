@@ -1,11 +1,13 @@
-package upm.persitencia;
+package upm.persitencia.map;
+
+import upm.persitencia.Persistencia;
 
 import java.io.File;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public abstract class PersistenciaMap<T> implements Persistencia<T>{
+public abstract class PersistenciaMap<T> implements Persistencia<T> {
     private final Map<Long, T> map;
     private File file;
 
