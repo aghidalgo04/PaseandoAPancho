@@ -13,6 +13,11 @@ public class PersistenciaMascotaMap extends PersistenciaMap<Mascota> implements 
     }
 
     @Override
+    public List<Mascota> findAll() {
+        return this.getAll();
+    }
+
+    @Override
     List<Mascota> getAll(){
         return null;
     }
