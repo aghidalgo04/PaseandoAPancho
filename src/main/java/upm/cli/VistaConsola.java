@@ -17,7 +17,7 @@ public class VistaConsola implements Vista {
         String comando = this.scanner.next().trim().toLowerCase();
         String[] argumentos = leerArgumentos();
         if (argumentos != null) {
-            String[] input = new String[1+argumentos.length];
+            String[] input = new String[1 + argumentos.length];
             input[0] = comando;
             System.arraycopy(argumentos, 0, input, 1, argumentos.length);
             return input;

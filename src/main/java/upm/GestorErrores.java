@@ -18,7 +18,7 @@ public class GestorErrores {
             try {
 
             } catch (Exception e) {
-
+                vista.mostrarError(e.getMessage());
             }
         }
     }
