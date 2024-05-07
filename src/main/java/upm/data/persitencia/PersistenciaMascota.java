@@ -4,6 +4,6 @@ import upm.data.modelo.Mascota;
 
 import java.util.List;
 
-public interface PersistenciaMascota extends Persistencia<Mascota>{
+public interface PersistenciaMascota extends Persistencia<Mascota> {
     List<Mascota> findAll();
 }
