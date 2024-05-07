@@ -1,8 +1,9 @@
-package upm.modelo;
+package upm.data.modelo;
+import upm.data.modelo.enums.Idioma;
+import upm.data.modelo.enums.Plataforma;
 import upm.modelo.enums.*;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

@@ -1,7 +1,7 @@
-package upm.persitencia.map;
+package upm.data.persitencia.map;
 
-import upm.modelo.Usuario;
-import upm.persitencia.PersistenciaUsuario;
+import upm.data.modelo.Usuario;
+import upm.data.persitencia.PersistenciaUsuario;
 
 import java.util.List;
 

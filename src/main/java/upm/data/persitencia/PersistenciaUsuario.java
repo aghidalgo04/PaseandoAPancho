@@ -1,6 +1,6 @@
-package upm.persitencia;
+package upm.data.persitencia;
 
-import upm.modelo.Usuario;
+import upm.data.modelo.Usuario;
 
 public interface PersistenciaUsuario extends Persistencia<Usuario>{
 }

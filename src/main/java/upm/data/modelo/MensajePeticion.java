@@ -1,5 +1,6 @@
-package upm.modelo;
+package upm.data.modelo;
 
+import upm.data.modelo.enums.Estado;
 import upm.modelo.enums.*;
 import java.time.LocalDateTime;
 

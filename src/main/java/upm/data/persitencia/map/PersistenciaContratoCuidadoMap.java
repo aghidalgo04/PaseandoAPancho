@@ -1,7 +1,7 @@
-package upm.persitencia.map;
+package upm.data.persitencia.map;
 
-import upm.modelo.ContratoCuidado;
-import upm.persitencia.PersistenciaContratoCuidado;
+import upm.data.modelo.ContratoCuidado;
+import upm.data.persitencia.PersistenciaContratoCuidado;
 
 import java.util.List;
 

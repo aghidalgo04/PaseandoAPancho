@@ -1,4 +1,4 @@
-package upm.modelo;
+package upm.data.modelo;
 
 import java.util.Iterator;
 import java.util.List;

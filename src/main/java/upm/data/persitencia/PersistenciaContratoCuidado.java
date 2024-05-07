@@ -1,6 +1,6 @@
-package upm.persitencia;
+package upm.data.persitencia;
 
-import upm.modelo.ContratoCuidado;
+import upm.data.modelo.ContratoCuidado;
 
 public interface PersistenciaContratoCuidado extends Persistencia<ContratoCuidado> {
 }

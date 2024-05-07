@@ -1,4 +1,4 @@
-package upm.modelo;
+package upm.data.modelo;
 
 import java.io.File;
 

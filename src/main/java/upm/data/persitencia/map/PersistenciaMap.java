@@ -1,6 +1,6 @@
-package upm.persitencia.map;
+package upm.data.persitencia.map;
 
-import upm.persitencia.Persistencia;
+import upm.data.persitencia.Persistencia;
 
 import java.io.File;
 import java.util.List;

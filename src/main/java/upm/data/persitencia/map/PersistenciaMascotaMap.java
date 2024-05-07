@@ -1,7 +1,7 @@
-package upm.persitencia.map;
+package upm.data.persitencia.map;
 
-import upm.modelo.Mascota;
-import upm.persitencia.PersistenciaMascota;
+import upm.data.modelo.Mascota;
+import upm.data.persitencia.PersistenciaMascota;
 
 import java.util.List;
 

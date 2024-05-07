@@ -1,10 +1,10 @@
 package upm.controlador;
 
-import upm.modelo.Album;
-import upm.modelo.Foto;
-import upm.modelo.Mascota;
-import upm.modelo.MascotaExotica;
-import upm.persitencia.PersistenciaMascota;
+import upm.data.modelo.Album;
+import upm.data.modelo.Foto;
+import upm.data.modelo.Mascota;
+import upm.data.modelo.MascotaExotica;
+import upm.data.persitencia.PersistenciaMascota;
 
 import java.io.File;
 import java.util.List;

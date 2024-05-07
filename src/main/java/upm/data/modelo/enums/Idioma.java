@@ -1,4 +1,4 @@
-package upm.modelo.enums;
+package upm.data.modelo.enums;
 
 public enum Idioma {
     Castellano,
