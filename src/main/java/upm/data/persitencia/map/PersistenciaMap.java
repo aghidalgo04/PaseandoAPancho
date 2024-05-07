@@ -7,16 +7,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public abstract class PersistenciaMap<T> implements Persistencia<T> {
+public class PersistenciaMap<T> implements Persistencia<T> {
     private final Map<Long, T> map;
     private File file;
 
-    PersistenciaMap() {
+    public PersistenciaMap() {
         this.map = new TreeMap<>();
+        this.file = null; // @TODO temp
     }
 
     @Override
-    public void create(T t) {
+    public void create(T entidad) {
 
     }
 
@@ -26,9 +27,16 @@ public abstract class PersistenciaMap<T> implements Persistencia<T> {
     }
 
     @Override
-    public void update(T t) {
+    public void update(T entidad) {
 
     }
 
-    abstract List<T> getAll();
+    @Override
+    public void delete(Long id) {
+
+    }
+
+    public List<T> findAll() {
+        return null;
+    }
 }
