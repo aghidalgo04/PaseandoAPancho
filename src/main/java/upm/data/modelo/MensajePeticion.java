@@ -1,7 +1,7 @@
 package upm.data.modelo;
 
 import upm.data.modelo.enums.Estado;
-import upm.modelo.enums.*;
+
 import java.time.LocalDateTime;
 
 public class MensajePeticion extends Mensaje {

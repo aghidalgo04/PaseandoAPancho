@@ -9,7 +9,7 @@ public class MascotaExotica extends Mascota {
     private File libreEnfermedadesTransmisibles;
 
     public MascotaExotica(Long id, String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums, Foto fotoFavorita, File certificadoLegal, File certificadoSalud, File libreEnfermedadesTransmisibles) {
-        super(id,nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums, fotoFavorita);
+        super(id, nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums, fotoFavorita);
         this.certificadoLegal = certificadoLegal;
         this.certificadoSalud = certificadoSalud;
         this.libreEnfermedadesTransmisibles = libreEnfermedadesTransmisibles;
