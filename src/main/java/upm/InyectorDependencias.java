@@ -5,13 +5,12 @@ import upm.cli.Vista;
 import upm.cli.VistaConsola;
 import upm.controlador.ControladorMascota;
 import upm.controlador.ControladorUsuario;
-import upm.data.modelo.Usuario;
 import upm.data.persitencia.PersistenciaContratoCuidado;
 import upm.data.persitencia.PersistenciaMascota;
 import upm.data.persitencia.PersistenciaUsuario;
 import upm.data.persitencia.map.PersistenciaContratoCuidadoMap;
-import upm.data.persitencia.map.PersistenciaMap;
 import upm.data.persitencia.map.PersistenciaMascotaMap;
+import upm.data.persitencia.map.PersistenciaUsuarioMap;
 
 public class InyectorDependencias {
     private static final InyectorDependencias inyectorDependencias = new InyectorDependencias();
@@ -29,7 +28,7 @@ public class InyectorDependencias {
     private final GestorErrores gestorErrores;
 
     private InyectorDependencias() {
-        this.persistenciaUsuario = new PersistenciaMap<Usuario>();
+        this.persistenciaUsuario = new PersistenciaUsuarioMap();
         this.persistenciaMascota = new PersistenciaMascotaMap();
         this.persistenciaContratoCuidado = new PersistenciaContratoCuidadoMap();
 

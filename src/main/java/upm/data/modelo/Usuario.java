@@ -2,7 +2,7 @@ package upm.data.modelo;
 
 import upm.data.modelo.enums.Idioma;
 import upm.data.modelo.enums.Plataforma;
-import upm.modelo.enums.*;
+
 import java.util.HashMap;
 import java.util.Map;
 

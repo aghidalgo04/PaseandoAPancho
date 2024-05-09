@@ -2,7 +2,7 @@ package upm.data.modelo;
 
 import java.time.LocalDateTime;
 
-public class ProductoMascota extends Premio{
+public class ProductoMascota extends Premio {
     private String nombre;
     private String descripcion;
 

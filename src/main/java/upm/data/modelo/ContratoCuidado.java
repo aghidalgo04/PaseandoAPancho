@@ -95,7 +95,7 @@ public class ContratoCuidado {
     }
 
     public Double calcularCoste() {
-        int dias =  fechaFinDeCuidado.getDayOfMonth() - fechaInicioDeCuidado.getDayOfMonth();
+        int dias = fechaFinDeCuidado.getDayOfMonth() - fechaInicioDeCuidado.getDayOfMonth();
         int horas = fechaFinDeCuidado.getHour() - fechaInicioDeCuidado.getHour();
         return (dias * coste) + (horas * coste);
     }
