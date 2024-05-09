@@ -1,12 +1,11 @@
 package upm.data.modelo;
 
-import java.util.Iterator;
 import java.util.List;
 
 public class Album {
     private final Long id;
-    private List<Foto> fotos;
     private String titulo;
+    private List<Foto> fotos;
 
     public Album(Long id, List<Foto> fotos, String titulo) {
         this.id = id;
@@ -35,14 +34,12 @@ public class Album {
     }
 
     public Foto buscarFotoPorId(Long id) {
-        Iterator<Foto> fotosIterator = this.fotos.iterator();
-        while (fotosIterator.hasNext()) {
-            if (fotosIterator.next().getId().equals(id)) {
-                return fotosIterator.next();
-            }
-        }
-        return null;
+        return this.fotos.stream()
+                .filter(foto -> foto.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
+
 
     public void eliminarFoto(Foto foto) {
         this.fotos.remove(foto);
