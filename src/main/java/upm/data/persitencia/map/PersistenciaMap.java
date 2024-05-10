@@ -8,11 +8,11 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class PersistenciaMap<T> implements Persistencia<T> {
-    private final Map<Long, T> map;
+    private final Map<Long, T> persistencia;
     private File file;
 
     public PersistenciaMap() {
-        this.map = new TreeMap<>();
+        this.persistencia = new TreeMap<>();
         this.file = null; // @TODO temp
     }
 
