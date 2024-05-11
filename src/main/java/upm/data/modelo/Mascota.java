@@ -1,6 +1,5 @@
 package upm.data.modelo;
 
-import java.util.Iterator;
 import java.util.List;
 
 public class Mascota {
@@ -118,21 +117,10 @@ public class Mascota {
     }
 
     public Album buscarAlbumPorId(Long id) {
-        Iterator<Album> albumIterator = albums.iterator();
-        while (albumIterator.hasNext()) {
-            if (albumIterator.next().getId().equals(id)) {
-                return albumIterator.next();
-            }
-        }
-        return null;
+        return this.albums.stream().filter(album -> album.getId().equals(id)).findFirst().orElse(null);
     }
 
     public void eliminarAlbum(Long id) {
-        Iterator<Album> albumIterator = albums.iterator();
-        while (albumIterator.hasNext()) {
-            if (albumIterator.next().getId().equals(id)) {
-                albums.remove(albumIterator.next());
-            }
-        }
+        this.albums.removeIf(album -> album.getId().equals(id));
     }
 }

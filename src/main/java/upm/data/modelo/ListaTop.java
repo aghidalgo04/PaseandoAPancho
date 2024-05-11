@@ -13,10 +13,10 @@ public class ListaTop extends Premio {
     }
 
     public LocalDateTime getFechaInicio() {
-        return fechaInicio;
+        return this.fechaInicio;
     }
 
     public LocalDateTime getFechaCaducidad() {
-        return fechaCaducidad;
+        return this.fechaCaducidad;
     }
 }
