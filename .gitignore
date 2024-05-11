@@ -67,6 +67,7 @@ $RECYCLE.BIN/
 *.ipr
 
 target
+out
 
 ###########
 # Eclipse #
