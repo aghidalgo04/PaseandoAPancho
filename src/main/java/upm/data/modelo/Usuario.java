@@ -3,8 +3,8 @@ package upm.data.modelo;
 import upm.data.modelo.enums.Idioma;
 import upm.data.modelo.enums.Plataforma;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public abstract class Usuario {
     private final Long id;
@@ -25,8 +25,8 @@ public abstract class Usuario {
         this.direccion = direccion;
         this.idioma = idioma;
         this.plataformaRegistro = plataformaRegistro;
-        this.recibe = new HashMap<>();
-        this.envia = new HashMap<>();
+        this.recibe = new TreeMap<>();
+        this.envia = new TreeMap<>();
     }
 
     public Long getId() {
