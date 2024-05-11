@@ -14,52 +14,32 @@ public class Mascota {
     private List<Album> albums;
     private Foto fotoFavorita;
 
-    public Mascota(Long id, String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums, Foto fotoFavorita) {
-        this.id = id;
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.descripcion = descripcion;
-        setCodigoRIAC(codigoRIAC);
-        this.polizaSeguro = polizaSeguro;
-        this.albums = albums;
-        this.fotoFavorita = fotoFavorita;
-    }
-
-    public Mascota(Long id, String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums) {
-        this.id = id;
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.descripcion = descripcion;
-        setCodigoRIAC(codigoRIAC);
-        this.polizaSeguro = polizaSeguro;
-        this.albums = albums;
-    }
-
-    public Mascota(Long id, String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, Foto fotoFavorita) {
-        this.id = id;
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.descripcion = descripcion;
-        setCodigoRIAC(codigoRIAC);
-        this.polizaSeguro = polizaSeguro;
-        this.fotoFavorita = fotoFavorita;
-    }
-
-    public Mascota(Long id, String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro) {
-        this.id = id;
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.descripcion = descripcion;
-        this.codigoRIAC = codigoRIAC;
-        this.polizaSeguro = polizaSeguro;
-    }
-
     public Mascota(Long id, String nombre, String direccion, String descripcion, String codigoRIAC) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.descripcion = descripcion;
-        this.codigoRIAC = codigoRIAC;
+        this.setCodigoRIAC(codigoRIAC);
+    }
+
+    public Mascota(Long id, String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro) {
+        this(id, nombre, direccion, descripcion, codigoRIAC);
+        this.polizaSeguro = polizaSeguro;
+    }
+
+    public Mascota(Long id, String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, Foto fotoFavorita) {
+        this(id, nombre, direccion, descripcion, codigoRIAC, polizaSeguro);
+        this.fotoFavorita = fotoFavorita;
+    }
+
+    public Mascota(Long id, String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums) {
+        this(id, nombre, direccion, descripcion, codigoRIAC, polizaSeguro);
+        this.albums = albums;
+    }
+
+    public Mascota(Long id, String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums, Foto fotoFavorita) {
+        this(id, nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums);
+        this.fotoFavorita = fotoFavorita;
     }
 
     public Long getId() {
