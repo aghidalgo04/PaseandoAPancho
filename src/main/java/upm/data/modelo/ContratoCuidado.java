@@ -7,7 +7,7 @@ public class ContratoCuidado {
     private LocalDateTime fechaInicioDeCuidado;
     private LocalDateTime fechaFinDeCuidado;
     private LocalDateTime fechaFirma;
-    private Integer panchoPuntosCuidado;
+    private final Integer panchoPuntosCuidado;
     private Boolean rescindido;
     private Double coste;
     private Mascota mascotaAsociada;

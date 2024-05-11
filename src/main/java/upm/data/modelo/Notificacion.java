@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Notificacion {
     private final Long id;
-    private final LocalDateTime fechaLectura;
+    private LocalDateTime fechaLectura;
 
     public Notificacion(Long id) {
         this.id = id;
@@ -20,6 +20,7 @@ public class Notificacion {
     }
 
     public void setFechaLectura(LocalDateTime fechaLectura) {
+        this.fechaLectura = fechaLectura;
     }
 }
 

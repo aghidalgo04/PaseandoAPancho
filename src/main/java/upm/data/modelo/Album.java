@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Album {
     private final Long id;
-    private String titulo;
     private List<Foto> fotos;
+    private String titulo;
 
     public Album(Long id, List<Foto> fotos, String titulo) {
         this.id = id;
@@ -34,12 +34,8 @@ public class Album {
     }
 
     public Foto buscarFotoPorId(Long id) {
-        return this.fotos.stream()
-                .filter(foto -> foto.getId().equals(id))
-                .findFirst()
-                .orElse(null);
+        return this.fotos.stream().filter(foto -> foto.getId().equals(id)).findFirst().orElse(null);
     }
-
 
     public void eliminarFoto(Foto foto) {
         this.fotos.remove(foto);
