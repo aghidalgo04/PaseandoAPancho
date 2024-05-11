@@ -1,5 +1,7 @@
 package upm.data.modelo;
 
+import servidor.ExternalRIAC;
+
 import java.util.List;
 
 public class Mascota {
@@ -17,7 +19,7 @@ public class Mascota {
         this.nombre = nombre;
         this.direccion = direccion;
         this.descripcion = descripcion;
-        this.codigoRIAC = codigoRIAC;
+        setCodigoRIAC(codigoRIAC);
         this.polizaSeguro = polizaSeguro;
         this.albums = albums;
         this.fotoFavorita = fotoFavorita;
@@ -28,7 +30,7 @@ public class Mascota {
         this.nombre = nombre;
         this.direccion = direccion;
         this.descripcion = descripcion;
-        this.codigoRIAC = codigoRIAC;
+        setCodigoRIAC(codigoRIAC);
         this.polizaSeguro = polizaSeguro;
         this.albums = albums;
     }
@@ -38,7 +40,7 @@ public class Mascota {
         this.nombre = nombre;
         this.direccion = direccion;
         this.descripcion = descripcion;
-        this.codigoRIAC = codigoRIAC;
+        setCodigoRIAC(codigoRIAC);
         this.polizaSeguro = polizaSeguro;
         this.fotoFavorita = fotoFavorita;
     }
@@ -93,6 +95,9 @@ public class Mascota {
     }
 
     public void setCodigoRIAC(String codigoRIAC) {
+        if (!ExternalRIAC.RIAC(codigoRIAC)) {
+            throw new RuntimeException("Codigo RIAC no valido");    // @TODO habra que cambiar por excepciones personales
+        }
         this.codigoRIAC = codigoRIAC;
     }
 
