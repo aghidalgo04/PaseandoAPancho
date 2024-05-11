@@ -27,20 +27,17 @@ public class ControladorUsuario {
 
     public void regsitrarUsuarioComoDueno(String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro) {
         this.IDS++;
-        Usuario usuario = new Dueno(this.IDS, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro);
-        this.persistenciaUsuario.create(usuario);
+        this.persistenciaUsuario.createDueno(new Dueno(this.IDS, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro));
     }
 
     public void regsitrarUsuarioComoCuidador(String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN) {
         this.IDS++;
-        Usuario usuario = new Cuidador(this.IDS, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro, foto, descripcion, precio, IBAN);
-        this.persistenciaUsuario.create(usuario);
+        this.persistenciaUsuario.createCuidador(new Cuidador(this.IDS, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro, foto, descripcion, precio, IBAN));
     }
 
     public void regsitrarUsuarioComoCuidadorConDocs(String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN, List<File> documentacion) {
         this.IDS++;
-        Usuario usuario = new Cuidador(this.IDS, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro, foto, descripcion, precio, IBAN, documentacion);
-        this.persistenciaUsuario.create(usuario);
+        this.persistenciaUsuario.createCuidador(new Cuidador(this.IDS, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro, foto, descripcion, precio, IBAN, documentacion));
     }
 
     public void login(Plataforma plataforma) {
@@ -48,8 +45,7 @@ public class ControladorUsuario {
     }
 
     public void anadirMascota(Long idDueno, Long idMascota) {
-        Dueno dueno = (Dueno) this.persistenciaUsuario.findById(idDueno);
-        dueno.anadirMascota(this.persistenciaMascota.findById(idMascota));
+        this.persistenciaUsuario.findDueno(idDueno).anadirMascota(this.persistenciaMascota.findById(idMascota));
     }
 
     public void contratarCuidador(Long idMascota, Long idCuidador) {
