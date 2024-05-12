@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Dueno extends Usuario {
-    private final Map<Long, Cuidador> cuidadoresFavoritos;
+    private final Map<String, Cuidador> cuidadoresFavoritos;
     private final Map<Long, Mascota> mascotas;
 
-    public Dueno(Long id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro) {
+    public Dueno(String id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro) {
         super(id, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro);
         this.cuidadoresFavoritos = new HashMap<>();
         this.mascotas = new HashMap<>();
