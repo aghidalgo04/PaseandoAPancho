@@ -33,12 +33,12 @@ public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
     }
 
     @Override
-    public Dueno findDueno(Long id) {
+    public Dueno findDueno(String id) {
         return null;
     }
 
     @Override
-    public Cuidador findCuidador(Long id) {
+    public Cuidador findCuidador(String id) {
         return null;
     }
 
