@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public abstract class Usuario {
-    private final Long id;
+    private final String id;
     private String nombre;
     private String apellidos;
     private String correoElectronico;
@@ -17,7 +17,7 @@ public abstract class Usuario {
     private Map<Long, Mensaje> recibe;
     private Map<Long, Mensaje> envia;
 
-    public Usuario(Long id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro) {
+    public Usuario(String id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -29,7 +29,7 @@ public abstract class Usuario {
         this.envia = new TreeMap<>();
     }
 
-    public Long getId() {
+    public String getId() {
         return this.id;
     }
 
