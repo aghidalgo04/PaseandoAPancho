@@ -4,6 +4,7 @@ import upm.data.modelo.enums.Idioma;
 import upm.data.modelo.enums.Plataforma;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,9 +16,9 @@ public class Cuidador extends Usuario {
     private String IBAN;
     private List<File> documentacion;
     private Integer panchoPuntos;
-    private Map<Long, Mascota> mascotasFavoritas;
-    private Map<Long, ContratoCuidado> contratos;
-    private Map<Long, Premio> premios;
+    private List<Mascota> mascotasFavoritas;
+    private List<ContratoCuidado> contratos;
+    private List<Premio> premios;
 
 
     public Cuidador(String id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN) {
@@ -27,9 +28,9 @@ public class Cuidador extends Usuario {
         this.precio = precio;
         this.IBAN = IBAN;
         this.panchoPuntos = 0;
-        this.mascotasFavoritas = new HashMap<>();
-        this.contratos = new HashMap<>();
-        this.premios = new HashMap<>();
+        this.mascotasFavoritas = new ArrayList<>();
+        this.contratos = new ArrayList<>();
+        this.premios = new ArrayList<>();
     }
 
     public Cuidador(String id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN, List<File> documentacion) {
@@ -78,31 +79,29 @@ public class Cuidador extends Usuario {
     }
 
     public void anadirMascotaFavorita(Mascota mascota) {
-        this.mascotasFavoritas.put(mascota.getId(), mascota);
+        this.mascotasFavoritas.add(mascota);
     }
 
-    public Mascota buscarMascotaFavoritaPorId(Long id) {
-        return this.mascotasFavoritas.get(id);
-    }
+    public Mascota buscarMascotaFavoritaPorId(Long id) { return null; }
 
-    public void eliminarMascotaFavorita(Long id) {
-        this.mascotasFavoritas.remove(id);
+    public void eliminarMascotaFavorita(Mascota mascotaFavorita) {
+        this.mascotasFavoritas.remove(mascotaFavorita);
     }
 
     public void anadirPremio(Premio premio) {
-        this.premios.put(premio.getId(), premio);
+        this.premios.add(premio);
     }
 
     public Premio buscarPremioPorId(Long id) {
-        return this.premios.get(id);
+        return null;
     }
 
     public void anadirContratoCuidado(ContratoCuidado contratoCuidado) {
-        this.contratos.put(contratoCuidado.getId(), contratoCuidado);
+        this.contratos.add(contratoCuidado);
     }
 
     public ContratoCuidado buscarContratoCuidado(Long id) {
-        return this.contratos.get(id);
+        return null;
     }
 }
 
