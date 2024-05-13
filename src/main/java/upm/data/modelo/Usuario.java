@@ -3,6 +3,8 @@ package upm.data.modelo;
 import upm.data.modelo.enums.Idioma;
 import upm.data.modelo.enums.Plataforma;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -14,8 +16,8 @@ public abstract class Usuario {
     private String direccion;
     private Idioma idioma;
     private Plataforma plataformaRegistro;
-    private Map<Long, Mensaje> recibe;
-    private Map<Long, Mensaje> envia;
+    private List<Mensaje> recibe;
+    private List<Mensaje> envia;
 
     public Usuario(String id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro) {
         this.id = id;
@@ -25,8 +27,8 @@ public abstract class Usuario {
         this.direccion = direccion;
         this.idioma = idioma;
         this.plataformaRegistro = plataformaRegistro;
-        this.recibe = new TreeMap<>();
-        this.envia = new TreeMap<>();
+        this.recibe = new ArrayList<>();
+        this.envia = new ArrayList<>();
     }
 
     public String getId() {
@@ -82,19 +84,19 @@ public abstract class Usuario {
     }
 
     public void anadirMensajeEnviado(Long id, Mensaje mensaje) {
-        this.envia.put(id, mensaje);
+        this.envia.add(mensaje);
     }
 
     public Mensaje buscarMensajeEnviadoPorId(Long id) {
-        return this.envia.get(id);
+        return null;
     }
 
     public void anadirMensajeRecibido(Long id, Mensaje mensaje) {
-        this.recibe.put(id, mensaje);
+        this.recibe.add(mensaje);
     }
 
     public Mensaje buscarMensajeRecibidoPorId(Long id) {
-        return this.recibe.get(id);
+        return null;
     }
 }
 

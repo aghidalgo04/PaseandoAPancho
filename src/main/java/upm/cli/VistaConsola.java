@@ -3,7 +3,7 @@ package upm.cli;
 import java.util.List;
 import java.util.Scanner;
 
-public class VistaConsola implements Vista {
+public class     VistaConsola implements Vista {
     private static final String DELIMITER_COLON_OR_RETURN = "[:,\\r\\n]";
 
     private final Scanner scanner;
