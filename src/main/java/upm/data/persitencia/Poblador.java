@@ -10,15 +10,10 @@ import java.time.LocalDateTime;
 
 public class Poblador {
     public final PersistenciaUsuario persistenciaUsuario;
-    public final PersistenciaMascota persistenciaMascota;
-    public final PersistenciaContratoCuidado persistenciaContratoCuidado;
 
-    public Poblador(PersistenciaUsuario persistenciaUsuario, PersistenciaMascota persistenciaMascota, PersistenciaContratoCuidado persistenciaContratoCuidado) {
+    public Poblador(PersistenciaUsuario persistenciaUsuario) {
         this.persistenciaUsuario = persistenciaUsuario;
-        this.persistenciaMascota = persistenciaMascota;
-        this.persistenciaContratoCuidado = persistenciaContratoCuidado;
     }
-
     public void seed() {
         Cuidador[] cuidadores = {
                 new Cuidador("1", "Pedro Ángel", "Guzmán", "pedro.guzman@upm.es", "Calle Principal, 123", Idioma.Castellano, Plataforma.Google, new File("foto.jpg"), "Guapo y Vicioso", 50, "ES1234"),
@@ -38,19 +33,9 @@ public class Poblador {
         for (Dueno dueno : duenos) {
             this.persistenciaUsuario.createDueno(dueno);
         }
-
-
-
-    public RepositorioUsuario getRepositorioUsuario() {
-        return this.repositorioUsuario;
     }
 
-    public RepositorioActividad getRepositorioActividad() {
-        return this.repositorioActividad;
+    public PersistenciaUsuario getPersistenciaUsuario() {
+        return this.persistenciaUsuario;
     }
-
-    public RepositorioPlan getRepositorioPlan() {
-        return this.repositorioPlan;
-    }
-}
 }
