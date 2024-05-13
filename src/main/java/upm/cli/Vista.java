@@ -14,7 +14,7 @@ public interface Vista {
 
     void mostrarError(String error);
 
-    void mostrarUsuario(Long id, String nombre, String apellidos, String correoElectronico);
+    void mostrarUsuario(String id, String nombre, String apellidos, String correoElectronico);
 
     void mostrarMascota(Long id, String nombre, String direccion, String descripcion);
 }
