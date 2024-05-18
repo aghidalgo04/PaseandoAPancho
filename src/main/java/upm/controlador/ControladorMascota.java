@@ -25,6 +25,7 @@ public class ControladorMascota {
             throw new RuntimeException("Codigo RIAC no valido");    // @TODO habra que cambiar por excepciones personales
         }
         Mascota mascota = new Mascota(this.IDS, nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums, fotoFavorita);
+        persistenciaMascota.create(mascota);
     }
 
     public void crearMascotaExotica(String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums, Foto fotoFavorita, File certificadoLegal, File certificadoSalud, File libreEnfermedadesTransmisibles) {
