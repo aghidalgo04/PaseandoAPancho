@@ -1,8 +1,6 @@
 package upm.controlador;
 
-import jdk.vm.ci.meta.Local;
 import servidor.ExternalRRSS;
-import upm.cli.comandos.Session;
 import upm.data.modelo.*;
 import upm.data.modelo.enums.Idioma;
 import upm.data.modelo.enums.Plataforma;

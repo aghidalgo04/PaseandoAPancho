@@ -9,7 +9,7 @@ public class ListarMascotas implements Comando {
     private static final String AYUDA_PARAMETROS = "()";
     private static final String AYUDA_COMENTARIO = "Muestras todas las mascotas disponibles";
 
-    private ControladorMascota controladorMascota;
+    private final ControladorMascota controladorMascota;
 
     public ListarMascotas(ControladorMascota controladorMascota) {
         this.controladorMascota = controladorMascota;

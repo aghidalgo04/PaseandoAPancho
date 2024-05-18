@@ -13,15 +13,16 @@ public class ContratarCuidador implements Comando {
     private static final String AYUDA_PARAMETROS = "(idMascota, idDueno, idCuidador, fechaInicioCuidado, fechaFinCuidado)";
     private static final String AYUDA_COMENTARIO = "Creas un dueno";
 
+    private static final byte NUMERO_PARAMETROS = 5;
+
     private ControladorUsuario controladorUsuario;
-    private final short tamano = 5;
 
     public ContratarCuidador(ControladorUsuario controladorUsuario) {
         this.controladorUsuario = controladorUsuario;
     }
     @Override
     public void ejecutar(String[] parametros, Vista vista) {
-        if (parametros.length != tamano) {
+        if (parametros.length != NUMERO_PARAMETROS) {
             throw new RuntimeException("Numero de parametros incorrectos"); // @TODO cambiar por exception personal
         }
         LocalDateTime fechaInicio, fechaFinal;

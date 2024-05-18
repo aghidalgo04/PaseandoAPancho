@@ -9,15 +9,16 @@ public class CrearMascotaExotica implements Comando {
     private static final String AYUDA_PARAMETROS = "(nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums, fotoFavorita, certificadoLegal, certificadoSalud, libreEnfermedadesTransmisibles)";
     private static final String AYUDA_COMENTARIO = "Creas un dueno";
 
-    private ControladorMascota controladorMascota;
-    private final short tamano = 10;
+    private static final byte NUMERO_PARAMETROS = 10;
+
+    private final ControladorMascota controladorMascota;
 
     public CrearMascotaExotica(ControladorMascota controladorMascota) {
         this.controladorMascota = controladorMascota;
     }
     @Override
     public void ejecutar(String[] parametros, Vista vista) {
-        if(parametros.length != this.tamano){
+        if(parametros.length != NUMERO_PARAMETROS){
             throw new RuntimeException("Numero de parametros incorrectos"); // @TODO cambiar por exception personal
         }
         controladorMascota.crearMascotaExotica(parametros[0], parametros[1], parametros[2], parametros[4], parametros[5], null, null, null, null, null); // @TODO completar para que funcione con los distintos archivos
