@@ -1,9 +1,8 @@
 package upm.cli;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
+// @TODO clase no acabada
 public class VistaConsola implements Vista {
     private static final String DELIMITER_COLON_OR_RETURN = "[:,\\r\\n]";
     public static final String RESETEAR = "\u001B[0m";
@@ -32,7 +31,6 @@ public class VistaConsola implements Vista {
     public static final String ARROW = "\u27A4";
     public static final String ARROW2 = "\u279E";
     public static final String RETURN = "\r";
-
 
     private final Scanner scanner;
 
@@ -71,15 +69,13 @@ public class VistaConsola implements Vista {
     }
 
     @Override
-    public void mostrarComando(String comando) {
-        System.out.println(VistaConsola.MORADO + "  " + VistaConsola.CHECK + " " + comando + VistaConsola.RESETEAR);
+    public void mostarMensaje(String mensaje) {
+
     }
 
     @Override
-    public void mostrarComandosDisponibles(List<String[]> comandos) {
-        for(String[] comando : comandos){
-            mostrarComando(Arrays.toString(comando)); //? @TODO
-        }
+    public void mostrarComando(String valor, String parametros, String comentario) {
+        System.out.println(VistaConsola.MORADO + "  " + VistaConsola.CHECK + " " + VistaConsola.RESETEAR);
     }
 
     @Override

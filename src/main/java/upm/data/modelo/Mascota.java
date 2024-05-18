@@ -1,7 +1,5 @@
 package upm.data.modelo;
 
-import servidor.ExternalRIAC;
-
 import java.util.List;
 
 public class Mascota {
@@ -19,7 +17,7 @@ public class Mascota {
         this.nombre = nombre;
         this.direccion = direccion;
         this.descripcion = descripcion;
-        this.setCodigoRIAC(codigoRIAC);
+        this.codigoRIAC = codigoRIAC;
     }
 
     public Mascota(Long id, String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro) {
