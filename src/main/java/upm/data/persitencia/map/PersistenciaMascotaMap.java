@@ -19,4 +19,14 @@ public class PersistenciaMascotaMap extends PersistenciaMap<Mascota> implements 
         }
         return optional;
     }
+    @Override
+    public Optional<Mascota> findByPolizaSeguro(String polizaSeguro){
+        Optional<Mascota> optional = Optional.empty();
+        for(Mascota mascota : this.findAll()){
+            if(mascota.getCodigoRIAC().equals(polizaSeguro)){
+                optional = Optional.of(mascota);
+            }
+        }
+        return optional;
+    }
 }

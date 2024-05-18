@@ -23,20 +23,28 @@ public class ControladorMascota {
         if (!ExternalRIAC.RIAC(codigoRIAC)) {
             throw new RuntimeException("Codigo RIAC no valido");    // @TODO habra que cambiar por excepciones personales
         }
-        if(persistenciaMascota.findByCodigoRIAC(codigoRIAC).isPresent()){
+        if(persistenciaMascota.findByCodigoRIAC(codigoRIAC).isPresent()) {
             throw new RuntimeException("Codigo RIAC ya existe");    // @TODO habra que cambiar por excepciones personales
-        }else{
+        } else if (persistenciaMascota.findByPolizaSeguro(polizaSeguro).isPresent()) {
+            throw new RuntimeException("Poliza Seguro ya existe");    // @TODO habra que cambiar por excepciones personales
+        } else{
             persistenciaMascota.create(new Mascota(this.IDS, nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums, fotoFavorita));
             this.IDS++;
         }
     }
 
     public void crearMascotaExotica(String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums, Foto fotoFavorita, File certificadoLegal, File certificadoSalud, File libreEnfermedadesTransmisibles) {
-        this.IDS++;
         if (!ExternalRIAC.RIAC(codigoRIAC)) {
             throw new RuntimeException("Codigo RIAC no valido");    // @TODO habra que cambiar por excepciones personales
         }
-        Mascota mascota = new MascotaExotica(this.IDS, nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums, fotoFavorita, certificadoLegal, certificadoSalud, libreEnfermedadesTransmisibles);
+        if(persistenciaMascota.findByCodigoRIAC(codigoRIAC).isPresent()) {
+            throw new RuntimeException("Codigo RIAC ya existe");    // @TODO habra que cambiar por excepciones personales
+        } else if (persistenciaMascota.findByPolizaSeguro(polizaSeguro).isPresent()) {
+            throw new RuntimeException("Poliza Seguro ya existe");    // @TODO habra que cambiar por excepciones personales
+        } else{
+            persistenciaMascota.create(new MascotaExotica(this.IDS, nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums, fotoFavorita, certificadoLegal, certificadoSalud, libreEnfermedadesTransmisibles));
+            this.IDS++;
+        }
     }
 
     public List<Mascota> listarMascotas() {
