@@ -20,7 +20,7 @@ public class Cuidador extends Usuario {
     private Map<Long, Premio> premios;
 
 
-    public Cuidador(Long id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN) {
+    public Cuidador(String id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN) {
         super(id, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro);
         this.foto = foto;
         this.descripcion = descripcion;
@@ -32,17 +32,9 @@ public class Cuidador extends Usuario {
         this.premios = new HashMap<>();
     }
 
-    public Cuidador(Long id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN, List<File> documentacion) {
-        super(id, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro);
-        this.foto = foto;
-        this.descripcion = descripcion;
-        this.precio = precio;
-        this.IBAN = IBAN;
+    public Cuidador(String id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN, List<File> documentacion) {
+        this(id, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro, foto, descripcion, precio, IBAN);
         this.documentacion = documentacion;
-        this.panchoPuntos = 0;
-        this.mascotasFavoritas = new HashMap<>();
-        this.contratos = new HashMap<>();
-        this.premios = new HashMap<>();
     }
 
     public File getFoto() {
