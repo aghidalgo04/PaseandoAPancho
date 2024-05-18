@@ -21,7 +21,7 @@ public class CrearMascotaExotica implements Comando {
         if(parametros.length != NUMERO_PARAMETROS){
             throw new RuntimeException("Numero de parametros incorrectos"); // @TODO cambiar por exception personal
         }
-        controladorMascota.crearMascotaExotica(parametros[0], parametros[1], parametros[2], parametros[4], parametros[5], null, null, null, null, null); // @TODO completar para que funcione con los distintos archivos
+        this.controladorMascota.crearMascotaExotica(parametros[0], parametros[1], parametros[2], parametros[4], parametros[5], null, null, null, null, null); // @TODO completar para que funcione con los distintos archivos
     }
 
     @Override

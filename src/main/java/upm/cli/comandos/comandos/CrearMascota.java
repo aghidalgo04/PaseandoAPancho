@@ -2,8 +2,8 @@ package upm.cli.comandos.comandos;
 
 import upm.cli.Vista;
 import upm.cli.comandos.Comando;
-import upm.controlador.Session;
 import upm.controlador.ControladorMascota;
+import upm.controlador.Session;
 
 public class CrearMascota implements Comando {
     private static final String VALOR = "crear-mascota";
@@ -22,10 +22,10 @@ public class CrearMascota implements Comando {
 
     @Override
     public void ejecutar(String[] parametros, Vista vista) {
-        if(parametros.length != NUMERO_PARAMETROS){
+        if (parametros.length != NUMERO_PARAMETROS) {
             throw new RuntimeException("Numero de parametros incorrectos"); // @TODO cambiar por exception personal
         }
-        this.controladorMascota.crearMascota(parametros[0],parametros[1],parametros[2],parametros[3],parametros[4],null,null); // @TODO completar para que funcione con los distintos archivos
+        this.controladorMascota.crearMascota(parametros[0], parametros[1], parametros[2], parametros[3], parametros[4], null, null); // @TODO completar para que funcione con los distintos archivos
     }
 
     @Override

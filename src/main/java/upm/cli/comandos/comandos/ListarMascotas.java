@@ -3,10 +3,13 @@ package upm.cli.comandos.comandos;
 import upm.cli.Vista;
 import upm.cli.comandos.Comando;
 import upm.controlador.ControladorMascota;
+import upm.data.modelo.Mascota;
+
+import java.util.List;
 
 public class ListarMascotas implements Comando {
     private static final String VALOR = "listar-mascotas";
-    private static final String AYUDA_PARAMETROS = "()";
+    private static final String AYUDA_PARAMETROS = "";
     private static final String AYUDA_COMENTARIO = "Muestras todas las mascotas disponibles";
 
     private final ControladorMascota controladorMascota;
@@ -17,7 +20,10 @@ public class ListarMascotas implements Comando {
 
     @Override
     public void ejecutar(String[] parametros, Vista vista) {
-        this.controladorMascota.listarMascotas();
+        List<Mascota> mascotas = this.controladorMascota.listarMascotas();
+        for (Mascota mascota : mascotas) {
+            vista.mostrarMascota(mascota.getId(), mascota.getNombre(), mascota.getDireccion(), mascota.getDescripcion());
+        }
     }
 
     @Override
