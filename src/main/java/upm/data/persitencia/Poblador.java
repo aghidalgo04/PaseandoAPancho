@@ -6,7 +6,6 @@ import upm.data.modelo.enums.Idioma;
 import upm.data.modelo.enums.Plataforma;
 
 import java.io.File;
-import java.time.LocalDateTime;
 
 public class Poblador {
     public final PersistenciaUsuario persistenciaUsuario;
@@ -14,6 +13,7 @@ public class Poblador {
     public Poblador(PersistenciaUsuario persistenciaUsuario) {
         this.persistenciaUsuario = persistenciaUsuario;
     }
+
     public void seed() {
         Cuidador[] cuidadores = {
                 new Cuidador("1", "Pedro Ángel", "Guzmán", "pedro.guzman@upm.es", "Calle Principal, 123", Idioma.Castellano, Plataforma.Google, new File("foto.jpg"), "Guapo y Vicioso", 50, "ES1234"),
@@ -26,7 +26,7 @@ public class Poblador {
 
         Dueno[] duenos = {
                 new Dueno("4", "Pedro Ángel", "Guzmán", "pedro.guzman@upm.es", "Calle Principal, 123", Idioma.Castellano, Plataforma.Google),
-                new Dueno("5", "Stefan", "Ochipok", "stefan.ochipok@upm.es","Calle principal 2", Idioma.Ingles, Plataforma.Microsoft),
+                new Dueno("5", "Stefan", "Ochipok", "stefan.ochipok@upm.es", "Calle principal 2", Idioma.Ingles, Plataforma.Microsoft),
                 new Dueno("6", "Cabeza", "de Vallecas", "cabezavallecas@upm.es", "Calle Principal, 456", Idioma.Catalan, Plataforma.Twitter)
         };
 

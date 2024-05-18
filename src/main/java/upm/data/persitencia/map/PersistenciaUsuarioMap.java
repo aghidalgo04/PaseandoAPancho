@@ -2,18 +2,17 @@ package upm.data.persitencia.map;
 
 import upm.data.modelo.Cuidador;
 import upm.data.modelo.Dueno;
-import upm.data.modelo.Usuario;
 import upm.data.persitencia.PersistenciaUsuario;
 
 import javax.swing.text.html.parser.Entity;
 import java.io.File;
-import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.TreeMap;
 
 public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
-    private final Map<Long, Dueno> persistenciaDueno;
-    private final Map<Long, Cuidador> persistenciaCuidador;
+    private final Map<String, Dueno> persistenciaDueno;
+    private final Map<String, Cuidador> persistenciaCuidador;
     private File file;
 
     public PersistenciaUsuarioMap() {
@@ -33,12 +32,12 @@ public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
     }
 
     @Override
-    public Dueno findDueno(String id) {
+    public Optional<Dueno> findDueno(String id) {
         return null;
     }
 
     @Override
-    public Cuidador findCuidador(String id) {
+    public Optional<Cuidador> findCuidador(String id) {
         return null;
     }
 
