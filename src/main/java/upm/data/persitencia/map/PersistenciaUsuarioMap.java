@@ -2,9 +2,9 @@ package upm.data.persitencia.map;
 
 import upm.data.modelo.Cuidador;
 import upm.data.modelo.Dueno;
+import upm.data.modelo.Usuario;
 import upm.data.persitencia.PersistenciaUsuario;
 
-import javax.swing.text.html.parser.Entity;
 import java.io.File;
 import java.util.Map;
 import java.util.Optional;
@@ -52,7 +52,7 @@ public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
     }
 
     @Override
-    public void delete(Entity entity) {
+    public void delete(Usuario usuario) {
 
     }
 }
