@@ -15,10 +15,10 @@ public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
     private final Map<String, Cuidador> persistenciaCuidador;
     private File file;
 
-    public PersistenciaUsuarioMap() {
+    public PersistenciaUsuarioMap(String fileName) {
         this.persistenciaDueno = new TreeMap<>();
         this.persistenciaCuidador = new TreeMap<>();
-        this.file = null; // @TODO temp
+        this.file = new File("persistenciaFile/" + fileName);
     }
 
     @Override

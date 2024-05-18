@@ -9,6 +9,10 @@ import java.util.Map;
 import java.util.Optional;
 
 public class PersistenciaMascotaMap extends PersistenciaMap<Mascota> implements PersistenciaMascota {
+    public PersistenciaMascotaMap(String fileName) {
+        super(fileName);
+    }
+
     @Override
     public Optional<Mascota> findByCodigoRIAC(String codigoRIAC){
         Optional<Mascota> optional = Optional.empty();
