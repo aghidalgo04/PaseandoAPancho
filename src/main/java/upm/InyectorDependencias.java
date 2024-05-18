@@ -3,6 +3,7 @@ package upm;
 import upm.cli.CommandLineInterface;
 import upm.cli.Vista;
 import upm.cli.VistaConsola;
+import upm.cli.comandos.Session;
 import upm.controlador.ControladorMascota;
 import upm.controlador.ControladorUsuario;
 import upm.data.persitencia.PersistenciaContratoCuidado;
@@ -19,6 +20,8 @@ public class InyectorDependencias {
     private final PersistenciaMascota persistenciaMascota;
     private final PersistenciaContratoCuidado persistenciaContratoCuidado;
 
+    private final Session session;
+
     private final ControladorUsuario controladorUsuario;
     private final ControladorMascota controladorMascota;
 
@@ -28,11 +31,13 @@ public class InyectorDependencias {
     private final GestorErrores gestorErrores;
 
     private InyectorDependencias() {
-        this.persistenciaUsuario = new PersistenciaUsuarioMap("usuarios");
-        this.persistenciaMascota = new PersistenciaMascotaMap("mascotas");
+        this.persistenciaUsuario = new PersistenciaUsuarioMap();
+        this.persistenciaMascota = new PersistenciaMascotaMap();
         this.persistenciaContratoCuidado = new PersistenciaContratoCuidadoMap("contratoCuidados");
 
-        this.controladorUsuario = new ControladorUsuario(this.persistenciaUsuario, this.persistenciaMascota, this.persistenciaContratoCuidado);
+        this.session = new Session();
+
+        this.controladorUsuario = new ControladorUsuario(this.persistenciaUsuario, this.persistenciaMascota, this.persistenciaContratoCuidado, this.session);
         this.controladorMascota = new ControladorMascota(this.persistenciaMascota);
 
         this.vista = new VistaConsola();
@@ -75,6 +80,10 @@ public class InyectorDependencias {
 
     public Vista getVista() {
         return this.vista;
+    }
+
+    public Session getSession() {
+        return session;
     }
 
     public GestorErrores getGestorErrores() {
