@@ -5,8 +5,13 @@ import upm.cli.comandos.Comando;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class CommandLineInterface {
+    private static final String EXIT_NAME = "exit";
+    private static final String EXIT_HELP = ": termina la ejecución.";
+    private static final String HELP_NAME = "help";
+    private static final String HELP_HELP = ": muestra la ayuda.";
     private final Vista vista;
     private Map<String, Comando> comandos;
 
@@ -19,21 +24,30 @@ public class CommandLineInterface {
         this.comandos.put(comando.valor(), comando);
     }
 
+    public void help() {
+        this.vista.mostrarComando(EXIT_NAME + EXIT_HELP);
+        this.vista.mostrarComando(HELP_NAME + HELP_HELP);
+        for (Comando comando : this.comandos.values()) {
+            this.vista.mostrarComando(comando.valor() + comando.ayudaParametros() + comando.ayudaComentario());
+        }
+    }
+
     public boolean runComandos() {
+        Scanner scanner = new Scanner(System.in).useDelimiter("[:,\\r\\n]");
         boolean exit = false;
         while (!exit) {
-            exit = this.runComando();
+            exit = this.runComando(scanner);
         }
         return true;
     }
 
-    private boolean runComando() {
+    private boolean runComando(Scanner scanner) {
         boolean exit = false;
         String[] input = vista.leerComando();
 
-        if (VALOR_HELP.equals(input[0])) {
-            this.ayuda();
-        } else if (VALOR_EXIT.equals(input[0])) {
+        if (HELP_NAME.equals(input[0])) {
+            this.help();
+        } else if (EXIT_NAME.equals(input[0])) {
             exit = true;
         } else {
             if (this.comandos.containsKey(input[0])) {
