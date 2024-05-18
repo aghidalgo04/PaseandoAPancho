@@ -3,6 +3,7 @@ package upm.controlador;
 import servidor.ExternalRRSS;
 import upm.data.modelo.Cuidador;
 import upm.data.modelo.Dueno;
+import upm.data.modelo.Mascota;
 import upm.data.modelo.enums.Idioma;
 import upm.data.modelo.enums.Plataforma;
 import upm.data.persitencia.PersistenciaContratoCuidado;
@@ -11,6 +12,7 @@ import upm.data.persitencia.PersistenciaUsuario;
 
 import java.io.File;
 import java.util.List;
+import java.util.Optional;
 
 public class ControladorUsuario {
     private PersistenciaUsuario persistenciaUsuario;
@@ -41,13 +43,30 @@ public class ControladorUsuario {
         this.persistenciaUsuario.createCuidador(cuidador);
     }
 
-    public void login(Plataforma plataforma) {
+    public void login() {
         String idUsuario = ExternalRRSS.LoginRRSS();
-        // this.persistenciaUsuario.findDueno(idUsuario)
+        Optional<Cuidador> cuidador = this.persistenciaUsuario.findCuidador(idUsuario);
+        if (!cuidador.isPresent()) {
+            Optional<Dueno> dueno = this.persistenciaUsuario.findDueno(idUsuario);
+            if (!dueno.isPresent()) {
+                throw new RuntimeException("Usuario no existe"); // @TODO cambiar por exception personal
+            } else {
+                // guardar usuario a seccion
+            }
+        } else {
+            //  guardar usuario a seccion
+        }
+
     }
 
-    public void anadirMascota(String idDueno, Long idMascota) {
-        this.persistenciaUsuario.findDueno(idDueno).anadirMascota(this.persistenciaMascota.findById(idMascota));
+    public void anadirMascota(Long idMascota) {
+        // Comporbar esta loguedo Dueno y cocojer objeto
+        Optional<Mascota> mascota = this.persistenciaMascota.findById(idMascota);
+        if (!mascota.isPresent()) {
+            throw new RuntimeException("Mascota no existe"); // @TODO cambiar por exception personal
+        }
+        dueno.get().anadirMascota(mascota.get());
+        this.persistenciaUsuario.updateDueno(dueno.get());
     }
 
     public void contratarCuidador(Long idMascota, Long idCuidador) {
