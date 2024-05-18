@@ -3,40 +3,42 @@ package upm.data.modelo;
 import upm.data.modelo.enums.Idioma;
 import upm.data.modelo.enums.Plataforma;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Dueno extends Usuario {
-    private final Map<String, Cuidador> cuidadoresFavoritos;
-    private final Map<Long, Mascota> mascotas;
+    private final List<Cuidador> cuidadoresFavoritos;
+    private final List<Mascota> mascotas;
 
     public Dueno(String id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro) {
         super(id, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro);
-        this.cuidadoresFavoritos = new HashMap<>();
-        this.mascotas = new HashMap<>();
+        this.cuidadoresFavoritos = new ArrayList<>();
+        this.mascotas = new ArrayList<>();
     }
 
     public void anadirMascota(Mascota mascota) {
-        this.mascotas.put(mascota.getId(), mascota);
+        this.mascotas.add(mascota);
     }
 
     public Mascota buscarMascota(Long id) {
-        return this.mascotas.get(id);
+        return null;
     }
 
-    public void eliminarMascota(Long id) {
-        this.mascotas.remove(id);
+    public void eliminarMascota(Mascota mascota) {
+        this.mascotas.remove(mascota);
     }
 
     public void anadirCuidadorFavorito(Cuidador cuidador) {
-        this.cuidadoresFavoritos.put(cuidador.getId(), cuidador);
+        this.cuidadoresFavoritos.add(cuidador);
     }
 
     public Cuidador buscarCuidadorFavorito(Long id) {
-        return this.cuidadoresFavoritos.get(id);
+        return null;
     }
 
-    public void eliminarCuidadorFavorito(Long id) {
-        this.cuidadoresFavoritos.remove(id);
+    public void eliminarCuidadorFavorito(Cuidador cuidadorFavorito) {
+        this.cuidadoresFavoritos.remove(cuidadorFavorito);
     }
 }
