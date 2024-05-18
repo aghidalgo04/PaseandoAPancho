@@ -1,6 +1,7 @@
 package upm.controlador;
 
 import servidor.ExternalRRSS;
+import upm.cli.comandos.Session;
 import upm.data.modelo.Cuidador;
 import upm.data.modelo.Dueno;
 import upm.data.modelo.Mascota;
@@ -18,8 +19,9 @@ public class ControladorUsuario {
     private PersistenciaUsuario persistenciaUsuario;
     private PersistenciaMascota persistenciaMascota;
     private PersistenciaContratoCuidado persistenciaContratoCuidado;
+    private Session session;
 
-    public ControladorUsuario(PersistenciaUsuario persistenciaUsuario, PersistenciaMascota persistenciaMascota, PersistenciaContratoCuidado persistenciaContratoCuidado) {
+    public ControladorUsuario(PersistenciaUsuario persistenciaUsuario, PersistenciaMascota persistenciaMascota, PersistenciaContratoCuidado persistenciaContratoCuidado, Session session) {
         this.persistenciaUsuario = persistenciaUsuario;
         this.persistenciaMascota = persistenciaMascota;
         this.persistenciaContratoCuidado = persistenciaContratoCuidado;
@@ -65,11 +67,28 @@ public class ControladorUsuario {
         if (!mascota.isPresent()) {
             throw new RuntimeException("Mascota no existe"); // @TODO cambiar por exception personal
         }
-        dueno.get().anadirMascota(mascota.get());
-        this.persistenciaUsuario.updateDueno(dueno.get());
+        Optional<Dueno> duenio = this.persistenciaUsuario.findDueno(session.getUsuario().getId());
+        if(!duenio.isPresent()){
+            throw new RuntimeException("Dueno no existe");
+        }
+        duenio.get().anadirMascota(mascota.get());
+        this.persistenciaUsuario.updateDueno(duenio.get());
     }
 
     public void contratarCuidador(Long idMascota, Long idCuidador) {
         System.out.println("Contratar: " + idCuidador); // @TODO temp
+    }
+
+    public void regsitrarUsuarioComoCuidador(String parametro, String parametro1, String parametro2, String parametro3, Object o, Object o1, Object o2, String parametro4, int i, String parametro5) {
+        // @TODO hacer metodo
+    }
+
+    public void regsitrarUsuarioComoCuidadorConDocs(String parametro, String parametro1, String parametro2, String parametro3, Object o, Object o1, Object o2, String parametro4, int i, String parametro5, Object o3) {
+        // @TODO hacer metodo
+    }
+
+
+    public void regsitrarUsuarioComoDueno(String parametro, String parametro1, String parametro2, String parametro3, Object o, Object o1) {
+        // @TODO hacer metodo
     }
 }

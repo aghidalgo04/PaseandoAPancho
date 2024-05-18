@@ -19,7 +19,7 @@ public class Login implements Comando {
 
     @Override
     public void ejecutar(String[] parametros, Vista vista) {
-        controladorUsuario.login(null);
+        controladorUsuario.login();
     }
 
     @Override
