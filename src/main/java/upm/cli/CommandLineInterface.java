@@ -11,8 +11,9 @@ public class CommandLineInterface {
     private static final String EXIT_HELP = "termina la ejecución.";
     private static final String HELP_NAME = "ayuda";
     private static final String HELP_HELP = "muestra la ayuda.";
+
     private final Vista vista;
-    private Map<String, Comando> comandos;
+    private final Map<String, Comando> comandos;
 
     public CommandLineInterface(Vista vista) {
         this.vista = vista;
@@ -23,11 +24,11 @@ public class CommandLineInterface {
         this.comandos.put(comando.valor(), comando);
     }
 
-    public void help() {
-        this.vista.mostrarComando(EXIT_NAME + EXIT_HELP);
-        this.vista.mostrarComando(HELP_NAME + HELP_HELP);
+    public void ayuda() {
+        this.vista.mostrarComando(EXIT_NAME, "", EXIT_HELP);
+        this.vista.mostrarComando(HELP_NAME, "", HELP_HELP);
         for (Comando comando : this.comandos.values()) {
-            this.vista.mostrarComando(comando.valor() + comando.ayudaParametros() + comando.ayudaComentario());
+            this.vista.mostrarComando(comando.valor(), comando.ayudaParametros(), comando.ayudaComentario());
         }
     }
 
@@ -44,7 +45,7 @@ public class CommandLineInterface {
         String[] input = this.vista.leerComando();
 
         if (HELP_NAME.equals(input[0])) {
-            this.help();
+            this.ayuda();
         } else if (EXIT_NAME.equals(input[0])) {
             exit = true;
         } else {
