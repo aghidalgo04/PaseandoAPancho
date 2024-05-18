@@ -1,7 +1,5 @@
 package upm.cli;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class VistaConsola implements Vista {
@@ -71,15 +69,13 @@ public class VistaConsola implements Vista {
     }
 
     @Override
-    public void mostrarComando(String comando) {
-        System.out.println(VistaConsola.MORADO + "  " + VistaConsola.CHECK + " " + comando + VistaConsola.RESETEAR);
+    public void mostarMensaje(String mensaje) {
+
     }
 
     @Override
-    public void mostrarComandosDisponibles(List<String[]> comandos) {
-        for(String[] comando : comandos){
-            mostrarComando(Arrays.toString(comando)); //? @TODO
-        }
+    public void mostrarComando(String valor, String parametros, String comentario) {
+        System.out.println(VistaConsola.MORADO + "  " + VistaConsola.CHECK + " " + comando + VistaConsola.RESETEAR);
     }
 
     @Override
