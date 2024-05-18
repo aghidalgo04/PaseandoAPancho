@@ -1,8 +1,8 @@
 package upm.controlador;
 
+import servidor.ExternalRRSS;
 import upm.data.modelo.Cuidador;
 import upm.data.modelo.Dueno;
-import upm.data.modelo.Usuario;
 import upm.data.modelo.enums.Idioma;
 import upm.data.modelo.enums.Plataforma;
 import upm.data.persitencia.PersistenciaContratoCuidado;
@@ -19,29 +19,33 @@ public class ControladorUsuario {
     private PersistenciaContratoCuidado persistenciaContratoCuidado;
 
     public ControladorUsuario(PersistenciaUsuario persistenciaUsuario, PersistenciaMascota persistenciaMascota, PersistenciaContratoCuidado persistenciaContratoCuidado) {
-        this.IDS = 0l;
+        this.IDS = 0L;
         this.persistenciaUsuario = persistenciaUsuario;
         this.persistenciaMascota = persistenciaMascota;
         this.persistenciaContratoCuidado = persistenciaContratoCuidado;
     }
 
     public void regsitrarUsuarioComoDueno(String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro) {
-        this.IDS++;
-        this.persistenciaUsuario.createDueno(new Dueno(this.IDS, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro));
+        String idUsuario = ExternalRRSS.LoginRRSS();
+        Dueno dueno = new Dueno(++this.IDS, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro);
+        this.persistenciaUsuario.createDueno(dueno);
     }
 
     public void regsitrarUsuarioComoCuidador(String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN) {
-        this.IDS++;
-        this.persistenciaUsuario.createCuidador(new Cuidador(this.IDS, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro, foto, descripcion, precio, IBAN));
+        String idUsuario = ExternalRRSS.LoginRRSS();
+        Cuidador cuidador = new Cuidador(++this.IDS, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro, foto, descripcion, precio, IBAN);
+        this.persistenciaUsuario.createCuidador(cuidador);
     }
 
     public void regsitrarUsuarioComoCuidadorConDocs(String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN, List<File> documentacion) {
-        this.IDS++;
-        this.persistenciaUsuario.createCuidador(new Cuidador(this.IDS, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro, foto, descripcion, precio, IBAN, documentacion));
+        String idUsuario = ExternalRRSS.LoginRRSS();
+        Cuidador cuidador = new Cuidador(++this.IDS, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro, foto, descripcion, precio, IBAN, documentacion);
+        this.persistenciaUsuario.createCuidador(cuidador);
     }
 
     public void login(Plataforma plataforma) {
-        System.out.println("Login: " + plataforma);
+        String idUsuario = ExternalRRSS.LoginRRSS();
+        // this.persistenciaUsuario.findDueno(idUsuario)
     }
 
     public void anadirMascota(Long idDueno, Long idMascota) {
@@ -49,6 +53,6 @@ public class ControladorUsuario {
     }
 
     public void contratarCuidador(Long idMascota, Long idCuidador) {
-        System.out.println("Contratar: " + idCuidador);
+        System.out.println("Contratar: " + idCuidador); // @TODO temp
     }
 }
