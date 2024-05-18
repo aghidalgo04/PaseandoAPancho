@@ -3,7 +3,7 @@ package upm;
 import upm.cli.CommandLineInterface;
 import upm.cli.Vista;
 import upm.cli.VistaConsola;
-import upm.cli.comandos.Session;
+import upm.controlador.Session;
 import upm.controlador.ControladorMascota;
 import upm.controlador.ControladorUsuario;
 import upm.data.persitencia.PersistenciaContratoCuidado;
@@ -83,7 +83,7 @@ public class InyectorDependencias {
     }
 
     public Session getSession() {
-        return session;
+        return this.session;
     }
 
     public GestorErrores getGestorErrores() {

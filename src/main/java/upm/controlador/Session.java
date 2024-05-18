@@ -1,19 +1,19 @@
-package upm.cli.comandos;
+package upm.controlador;
 
 import upm.data.modelo.Usuario;
 
 public class Session {
-    private Usuario usuario = null;
+    private Usuario usuario;
 
     public Session() {
         this.usuario = null;
     }
 
     public Usuario getUsuario() {
-        return usuario;
+        return this.usuario;
     }
 
     public void setUsuarioLogueado(Usuario usuarioLogueado) {
-        this.usuario = usuario;
+        this.usuario = usuarioLogueado;
     }
 }
