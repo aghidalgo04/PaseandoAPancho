@@ -35,6 +35,7 @@ abstract public class PersistenciaMap<T> implements Persistencia<T> {
         persistencia.remove(id);
     }
 
+    @Override
     public List<T> findAll() {
         return new ArrayList<>(persistencia.values());
     }
