@@ -5,18 +5,16 @@ import upm.cli.comandos.Comando;
 import upm.cli.comandos.Session;
 import upm.controlador.ControladorMascota;
 
-import javax.swing.text.html.parser.Entity;
-import java.util.List;
-
-public class crearMascota implements Comando {
+public class CrearMascota implements Comando {
     private static final String VALOR = "crear-mascota";
     private static final String AYUDA_PARAMETROS = "(nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums, fotoFavorita)";
     private static final String AYUDA_COMENTARIO = "Creas una mascota";
+
     private final ControladorMascota controladorMascota;
     private Session session;
     private final short tamano = 7;
 
-    public crearMascota(ControladorMascota controladorMascota, Session session) {
+    public CrearMascota(ControladorMascota controladorMascota, Session session) {
         this.controladorMascota = controladorMascota;
         this.session = session;
     }

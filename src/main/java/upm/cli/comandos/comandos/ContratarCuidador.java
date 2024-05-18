@@ -1,23 +1,22 @@
 package upm.cli.comandos.comandos;
 
-import jdk.vm.ci.meta.Local;
 import upm.cli.Vista;
 import upm.cli.comandos.Comando;
 import upm.controlador.ControladorUsuario;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class contratarCuidador implements Comando {
+public class ContratarCuidador implements Comando {
     private static final String VALOR = "crear-dueno";
     private static final String AYUDA_PARAMETROS = "(idMascota, idDueno, idCuidador, fechaInicioCuidado, fechaFinCuidado)";
     private static final String AYUDA_COMENTARIO = "Creas un dueno";
+
     private ControladorUsuario controladorUsuario;
     private final short tamano = 5;
 
-    public contratarCuidador(ControladorUsuario controladorUsuario) {
+    public ContratarCuidador(ControladorUsuario controladorUsuario) {
         this.controladorUsuario = controladorUsuario;
     }
     @Override

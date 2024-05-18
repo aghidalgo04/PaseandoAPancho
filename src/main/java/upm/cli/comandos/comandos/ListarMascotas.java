@@ -2,18 +2,16 @@ package upm.cli.comandos.comandos;
 
 import upm.cli.Vista;
 import upm.cli.comandos.Comando;
-import upm.cli.comandos.Session;
 import upm.controlador.ControladorMascota;
-import upm.controlador.ControladorUsuario;
-import upm.data.modelo.Mascota;
 
-public class listarMascotas implements Comando {
+public class ListarMascotas implements Comando {
     private static final String VALOR = "listar-mascotas";
     private static final String AYUDA_PARAMETROS = "()";
     private static final String AYUDA_COMENTARIO = "Muestras todas las mascotas disponibles";
+
     private ControladorMascota controladorMascota;
 
-    public listarMascotas(ControladorMascota controladorMascota) {
+    public ListarMascotas(ControladorMascota controladorMascota) {
         this.controladorMascota = controladorMascota;
     }
 

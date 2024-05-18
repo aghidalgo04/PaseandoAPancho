@@ -4,15 +4,16 @@ import upm.cli.Vista;
 import upm.cli.comandos.Comando;
 import upm.controlador.ControladorUsuario;
 
-public class crearCuidador implements Comando {
+public class CrearCuidador implements Comando {
     private static final String VALOR = "crear-dueno";
     private static final String AYUDA_PARAMETROS = "(nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro, foto, descripcion, precio, IBAN, documentacion)";
     private static final String AYUDA_COMENTARIO = "Creas un cuidador";
+
     private ControladorUsuario controladorUsuario;
     private final short tamano = 10;
     private final short tamano1 = 11;
 
-    public crearCuidador(ControladorUsuario controladorUsuario) {
+    public CrearCuidador(ControladorUsuario controladorUsuario) {
         this.controladorUsuario = controladorUsuario;
     }
     @Override

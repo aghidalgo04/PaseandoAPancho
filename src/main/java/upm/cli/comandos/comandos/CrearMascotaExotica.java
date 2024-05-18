@@ -4,14 +4,15 @@ import upm.cli.Vista;
 import upm.cli.comandos.Comando;
 import upm.controlador.ControladorMascota;
 
-public class crearMascotaExotica implements Comando {
+public class CrearMascotaExotica implements Comando {
     private static final String VALOR = "crear-dueno";
     private static final String AYUDA_PARAMETROS = "(nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums, fotoFavorita, certificadoLegal, certificadoSalud, libreEnfermedadesTransmisibles)";
     private static final String AYUDA_COMENTARIO = "Creas un dueno";
+
     private ControladorMascota controladorMascota;
     private final short tamano = 10;
 
-    public crearMascotaExotica(ControladorMascota controladorMascota) {
+    public CrearMascotaExotica(ControladorMascota controladorMascota) {
         this.controladorMascota = controladorMascota;
     }
     @Override

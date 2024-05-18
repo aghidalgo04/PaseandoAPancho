@@ -4,14 +4,15 @@ import upm.cli.Vista;
 import upm.cli.comandos.Comando;
 import upm.controlador.ControladorUsuario;
 
-public class crearDueno implements Comando {
+public class CrearDueno implements Comando {
     private static final String VALOR = "crear-dueno";
     private static final String AYUDA_PARAMETROS = "(nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro)";
     private static final String AYUDA_COMENTARIO = "Creas un dueno";
+
     private ControladorUsuario controladorUsuario;
     private final short tamano = 6;
 
-    public crearDueno(ControladorUsuario controladorUsuario) {
+    public CrearDueno(ControladorUsuario controladorUsuario) {
         this.controladorUsuario = controladorUsuario;
     }
     @Override
