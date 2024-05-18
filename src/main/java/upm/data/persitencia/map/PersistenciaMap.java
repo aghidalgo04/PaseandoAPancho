@@ -1,5 +1,6 @@
 package upm.data.persitencia.map;
 
+import upm.data.modelo.Mascota;
 import upm.data.persitencia.Persistencia;
 
 import java.io.File;
@@ -24,7 +25,7 @@ public class PersistenciaMap<T> implements Persistencia<T> {
 
     @Override
     public Optional<T> findById(Long id) {
-        return null;
+        return Optional.of(this.persistencia.get(id));
     }
 
     @Override
