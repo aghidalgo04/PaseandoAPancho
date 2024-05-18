@@ -16,9 +16,9 @@ public class GestorErrores {
         boolean exit = false;
         while (!exit) {
             try {
-
+                exit = this.commandLineInterface.runComandos();
             } catch (Exception e) {
-
+                vista.mostrarError(e.getMessage());
             }
         }
     }

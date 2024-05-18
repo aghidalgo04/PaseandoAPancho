@@ -12,9 +12,9 @@ public class PersistenciaMap<T> implements Persistencia<T> {
     private final Map<Long, T> persistencia;
     private File file;
 
-    public PersistenciaMap() {
+    public PersistenciaMap(String fileName) {
         this.persistencia = new TreeMap<>();
-        this.file = null; // @TODO temp
+        this.file = new File("persistenciaFile/" + fileName);
     }
 
     @Override
