@@ -75,9 +75,6 @@ public class Mascota {
     }
 
     public void setCodigoRIAC(String codigoRIAC) {
-        if (!ExternalRIAC.RIAC(codigoRIAC)) {
-            throw new RuntimeException("Codigo RIAC no valido");    // @TODO habra que cambiar por excepciones personales
-        }
         this.codigoRIAC = codigoRIAC;
     }
 
