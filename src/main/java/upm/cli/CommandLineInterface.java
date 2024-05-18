@@ -5,13 +5,12 @@ import upm.cli.comandos.Comando;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class CommandLineInterface {
     private static final String EXIT_NAME = "exit";
-    private static final String EXIT_HELP = ": termina la ejecución.";
-    private static final String HELP_NAME = "help";
-    private static final String HELP_HELP = ": muestra la ayuda.";
+    private static final String EXIT_HELP = "termina la ejecución.";
+    private static final String HELP_NAME = "ayuda";
+    private static final String HELP_HELP = "muestra la ayuda.";
     private final Vista vista;
     private Map<String, Comando> comandos;
 
@@ -33,17 +32,16 @@ public class CommandLineInterface {
     }
 
     public boolean runComandos() {
-        Scanner scanner = new Scanner(System.in).useDelimiter("[:,\\r\\n]");
         boolean exit = false;
         while (!exit) {
-            exit = this.runComando(scanner);
+            exit = this.runComando();
         }
         return true;
     }
 
-    private boolean runComando(Scanner scanner) {
+    private boolean runComando() {
         boolean exit = false;
-        String[] input = vista.leerComando();
+        String[] input = this.vista.leerComando();
 
         if (HELP_NAME.equals(input[0])) {
             this.help();
