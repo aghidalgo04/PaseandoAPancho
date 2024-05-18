@@ -15,7 +15,7 @@ public class ControladorMascota {
     private PersistenciaMascota persistenciaMascota;
 
     public ControladorMascota(PersistenciaMascota persistenciaMascota) {
-        this.IDS = 0l;
+        this.IDS = 0L;
         this.persistenciaMascota = persistenciaMascota;
     }
 
