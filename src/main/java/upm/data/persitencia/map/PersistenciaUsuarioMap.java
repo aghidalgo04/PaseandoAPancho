@@ -23,36 +23,42 @@ public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
 
     @Override
     public void createDueno(Dueno dueno) {
-
+        persistenciaDueno.put(dueno.getId(), dueno);
     }
 
     @Override
     public void createCuidador(Cuidador cuidador) {
-
+        persistenciaCuidador.put(cuidador.getId(), cuidador);
     }
 
     @Override
     public Optional<Dueno> findDueno(String id) {
-        return null;
+        return Optional.of(this.persistenciaDueno.get(id));
     }
 
     @Override
     public Optional<Cuidador> findCuidador(String id) {
-        return null;
+        return Optional.of(this.persistenciaCuidador.get(id));
     }
 
     @Override
     public void updateDueno(Dueno dueno) {
-
+        this.persistenciaDueno.replace(dueno.getId(), dueno);
     }
 
     @Override
     public void updateCuidador(Cuidador cuidador) {
-
+        this.persistenciaCuidador.replace(cuidador.getId(), cuidador);
     }
 
     @Override
     public void delete(Usuario usuario) {
-
+        if (this.persistenciaDueno.containsKey(usuario.getId())) {
+            this.persistenciaDueno.remove(usuario.getId());
+        } else if (this.persistenciaCuidador.containsKey(usuario.getId())) {
+            this.persistenciaCuidador.remove(usuario.getId());
+        } else {
+            throw new IllegalArgumentException("No se ha podido borrar al usuario ya que no ha sido encontrado");
+        }
     }
 }
