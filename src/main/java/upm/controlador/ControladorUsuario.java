@@ -27,18 +27,18 @@ public class ControladorUsuario {
 
     public void regsitrarDueno(String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro) {
         String idUsuario = ExternalRRSS.LoginRRSS();
+        if (this.persistenciaUsuario.findDueno(idUsuario).isPresent() || this.persistenciaUsuario.findCuidador(idUsuario).isPresent()) {
+            throw new RuntimeException("Usuario existe"); // @TODO cambiar por exception personal
+        }
         Dueno dueno = new Dueno(idUsuario, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro);
         this.persistenciaUsuario.createDueno(dueno);
     }
 
-    public void regsitrarCuidador(String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN) {
+    public void regsitrarCuidador(String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN, List<File> documentacion) {
         String idUsuario = ExternalRRSS.LoginRRSS();
-        Cuidador cuidador = new Cuidador(idUsuario, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro, foto, descripcion, precio, IBAN);
-        this.persistenciaUsuario.createCuidador(cuidador);
-    }
-
-    public void regsitrarCuidadorConDocs(String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN, List<File> documentacion) {
-        String idUsuario = ExternalRRSS.LoginRRSS();
+        if (this.persistenciaUsuario.findDueno(idUsuario).isPresent() || this.persistenciaUsuario.findCuidador(idUsuario).isPresent()) {
+            throw new RuntimeException("Usuario existe"); // @TODO cambiar por exception personal
+        }
         Cuidador cuidador = new Cuidador(idUsuario, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro, foto, descripcion, precio, IBAN, documentacion);
         this.persistenciaUsuario.createCuidador(cuidador);
     }
