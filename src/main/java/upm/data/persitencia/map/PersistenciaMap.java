@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.TreeMap;
 
-public class PersistenciaMap<T> implements Persistencia<T> {
+abstract public class PersistenciaMap<T> implements Persistencia<T> {
     private final Map<Long, T> persistencia;
     private File file;
 
@@ -30,7 +30,7 @@ public class PersistenciaMap<T> implements Persistencia<T> {
 
     @Override
     public void update(T entidad) {
-
+        persistencia.put(this.getId(entidad),entidad);
     }
 
     @Override
@@ -41,4 +41,6 @@ public class PersistenciaMap<T> implements Persistencia<T> {
     public List<T> findAll() {
         return null;
     }
+
+    abstract protected Long getId(T entidad);
 }

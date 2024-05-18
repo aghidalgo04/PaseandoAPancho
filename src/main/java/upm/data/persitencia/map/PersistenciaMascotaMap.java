@@ -29,4 +29,9 @@ public class PersistenciaMascotaMap extends PersistenciaMap<Mascota> implements 
         }
         return optional;
     }
+
+    @Override
+    protected Long getId(Mascota mascota) {
+        return mascota.getId();
+    }
 }
