@@ -5,15 +5,16 @@ import upm.data.persitencia.Persistencia;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.TreeMap;
 
 public class PersistenciaMap<T> implements Persistencia<T> {
     private final Map<Long, T> persistencia;
     private File file;
 
-    public PersistenciaMap() {
+    public PersistenciaMap(String fileName) {
         this.persistencia = new TreeMap<>();
-        this.file = null; // @TODO temp
+        this.file = new File("persistenciaFile/" + fileName);
     }
 
     @Override
@@ -22,7 +23,7 @@ public class PersistenciaMap<T> implements Persistencia<T> {
     }
 
     @Override
-    public T findById(Long id) {
+    public Optional<T> findById(Long id) {
         return null;
     }
 

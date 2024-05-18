@@ -22,21 +22,21 @@ public class InyectorDependencias {
     private final ControladorUsuario controladorUsuario;
     private final ControladorMascota controladorMascota;
 
-    private final CommandLineInterface commandLineInterface;
     private final Vista vista;
+    private final CommandLineInterface commandLineInterface;
 
     private final GestorErrores gestorErrores;
 
     private InyectorDependencias() {
-        this.persistenciaUsuario = new PersistenciaUsuarioMap();
-        this.persistenciaMascota = new PersistenciaMascotaMap();
-        this.persistenciaContratoCuidado = new PersistenciaContratoCuidadoMap();
+        this.persistenciaUsuario = new PersistenciaUsuarioMap("usuarios");
+        this.persistenciaMascota = new PersistenciaMascotaMap("mascotas");
+        this.persistenciaContratoCuidado = new PersistenciaContratoCuidadoMap("contratoCuidados");
 
         this.controladorUsuario = new ControladorUsuario(this.persistenciaUsuario, this.persistenciaMascota, this.persistenciaContratoCuidado);
         this.controladorMascota = new ControladorMascota(this.persistenciaMascota);
 
-        this.commandLineInterface = new CommandLineInterface();
         this.vista = new VistaConsola();
+        this.commandLineInterface = new CommandLineInterface(this.vista);
 
         this.gestorErrores = new GestorErrores(this.commandLineInterface, this.vista);
     }

@@ -2,8 +2,9 @@ package upm.data.persitencia;
 
 import upm.data.modelo.Mascota;
 
-import java.util.List;
+import java.util.Optional;
 
 public interface PersistenciaMascota extends Persistencia<Mascota> {
-    List<Mascota> findAll();
+    Optional<Mascota> findByCodigoRIAC(String codigoRIAC);
+    Optional<Mascota> findByPolizaSeguro(String polizaSeguro);
 }
