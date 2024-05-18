@@ -6,7 +6,7 @@ import upm.controlador.ControladorUsuario;
 
 public class crearCuidador implements Comando {
     private static final String VALOR = "crear-dueno";
-    private static final String AYUDA_PARAMETROS = "parámetros";
+    private static final String AYUDA_PARAMETROS = "(nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro, foto, descripcion, precio, IBAN, documentacion)";
     private static final String AYUDA_COMENTARIO = "Creas un cuidador";
     private ControladorUsuario controladorUsuario;
     private final short tamano = 10;
@@ -18,11 +18,11 @@ public class crearCuidador implements Comando {
     @Override
     public void ejecutar(String[] parametros, Vista vista) {
         if (parametros.length != tamano && parametros.length != tamano1) {
-            throw new RuntimeException("Numero de parametros incorrectos");
+            throw new RuntimeException("Numero de parametros incorrectos"); // @TODO cambiar por exception personal
         } if (parametros.length == tamano) {
-            controladorUsuario.regsitrarUsuarioComoCuidador(parametros[0], parametros[1], parametros[2], parametros[3], null, null, null, parametros[4], 0, parametros[5]);
+            controladorUsuario.regsitrarUsuarioComoCuidador(parametros[0], parametros[1], parametros[2], parametros[3], null, null, null, parametros[4], 0, parametros[5]); // @TODO completar para que funcione con los distintos archivos
         } else if (parametros.length == tamano1) {
-            controladorUsuario.regsitrarUsuarioComoCuidadorConDocs(parametros[0], parametros[1], parametros[2], parametros[3], null, null, null, parametros[4], 0, parametros[5], null);
+            controladorUsuario.regsitrarUsuarioComoCuidadorConDocs(parametros[0], parametros[1], parametros[2], parametros[3], null, null, null, parametros[4], 0, parametros[5], null); // @TODO completar para que funcione con los distintos archivos
         }
     }
 

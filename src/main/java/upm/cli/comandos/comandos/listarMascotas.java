@@ -9,7 +9,7 @@ import upm.data.modelo.Mascota;
 
 public class listarMascotas implements Comando {
     private static final String VALOR = "listar-mascotas";
-    private static final String AYUDA_PARAMETROS = "parámetros";
+    private static final String AYUDA_PARAMETROS = "()";
     private static final String AYUDA_COMENTARIO = "Muestras todas las mascotas disponibles";
     private ControladorMascota controladorMascota;
 

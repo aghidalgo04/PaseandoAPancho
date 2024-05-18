@@ -10,7 +10,7 @@ import java.util.List;
 
 public class crearMascota implements Comando {
     private static final String VALOR = "crear-mascota";
-    private static final String AYUDA_PARAMETROS = "parámetros";
+    private static final String AYUDA_PARAMETROS = "(nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums, fotoFavorita)";
     private static final String AYUDA_COMENTARIO = "Creas una mascota";
     private final ControladorMascota controladorMascota;
     private Session session;
@@ -24,9 +24,9 @@ public class crearMascota implements Comando {
     @Override
     public void ejecutar(String[] parametros, Vista vista) {
         if(parametros.length != this.tamano){
-            throw new RuntimeException("Numero de parametros incorrectos");
+            throw new RuntimeException("Numero de parametros incorrectos"); // @TODO cambiar por exception personal
         }
-        controladorMascota.crearMascota(parametros[0],parametros[1],parametros[2],parametros[3],parametros[4],null,null);
+        this.controladorMascota.crearMascota(parametros[0],parametros[1],parametros[2],parametros[3],parametros[4],null,null); // @TODO completar para que funcione con los distintos archivos
     }
 
     @Override

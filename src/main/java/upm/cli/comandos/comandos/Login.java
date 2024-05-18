@@ -2,19 +2,16 @@ package upm.cli.comandos.comandos;
 
 import upm.cli.Vista;
 import upm.cli.comandos.Comando;
-import upm.cli.comandos.Session;
 import upm.controlador.ControladorUsuario;
 
 public class Login implements Comando {
     private static final String VALOR = "login";
-    private static final String AYUDA_PARAMETROS = "parámetros";
+    private static final String AYUDA_PARAMETROS = "parámetros"; // @Todo Completar con los parámetros que necesita para iniciar sesión con la plataforma que elija
     private static final String AYUDA_COMENTARIO = "Inicia sesión con la plataforma que eliges";
     private ControladorUsuario controladorUsuario;
-    private Session sesion;
 
-    public Login(ControladorUsuario controladorUsuario, Session sesion) {
+    public Login(ControladorUsuario controladorUsuario) {
         this.controladorUsuario = controladorUsuario;
-        this.sesion = sesion;
     }
 
     @Override
