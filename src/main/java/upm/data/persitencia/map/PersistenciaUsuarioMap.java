@@ -11,8 +11,8 @@ import java.util.Optional;
 import java.util.TreeMap;
 
 public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
-    private final Map<Long, Dueno> persistenciaDueno;
-    private final Map<Long, Cuidador> persistenciaCuidador;
+    private final Map<String, Dueno> persistenciaDueno;
+    private final Map<String, Cuidador> persistenciaCuidador;
     private File file;
 
     public PersistenciaUsuarioMap() {
