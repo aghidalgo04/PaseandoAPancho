@@ -16,9 +16,10 @@ public class CrearMascotaExotica implements Comando {
     public CrearMascotaExotica(ControladorMascota controladorMascota) {
         this.controladorMascota = controladorMascota;
     }
+
     @Override
     public void ejecutar(String[] parametros, Vista vista) {
-        if(parametros.length != NUMERO_PARAMETROS){
+        if (parametros.length != NUMERO_PARAMETROS) {
             throw new RuntimeException("Numero de parametros incorrectos"); // @TODO cambiar por exception personal
         }
         this.controladorMascota.crearMascotaExotica(parametros[0], parametros[1], parametros[2], parametros[4], parametros[5], null, null, null, null, null); // @TODO completar para que funcione con los distintos archivos
@@ -36,6 +37,6 @@ public class CrearMascotaExotica implements Comando {
 
     @Override
     public String ayudaComentario() {
-return AYUDA_COMENTARIO;
+        return AYUDA_COMENTARIO;
     }
 }
