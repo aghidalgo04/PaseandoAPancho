@@ -5,6 +5,7 @@ import upm.data.persitencia.Persistencia;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.TreeMap;
 
 public class PersistenciaMap<T> implements Persistencia<T> {
@@ -22,7 +23,7 @@ public class PersistenciaMap<T> implements Persistencia<T> {
     }
 
     @Override
-    public T findById(Long id) {
+    public Optional<T> findById(Long id) {
         return null;
     }
 
