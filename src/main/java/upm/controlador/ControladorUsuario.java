@@ -93,17 +93,4 @@ public class ControladorUsuario {
         this.persistenciaUsuario.findCuidador(idCuidador).get().anadirContratoCuidado(this.persistenciaContratoCuidado.findById(this.IDS).get());
         this.IDS += 2;
     }
-
-    public void regsitrarUsuarioComoCuidador(String parametro, String parametro1, String parametro2, String parametro3, Object o, Object o1, Object o2, String parametro4, int i, String parametro5) {
-        // @TODO hacer metodo ¿No es repetido?
-    }
-
-    public void regsitrarUsuarioComoCuidadorConDocs(String parametro, String parametro1, String parametro2, String parametro3, Object o, Object o1, Object o2, String parametro4, int i, String parametro5, Object o3) {
-        // @TODO hacer metodo ¿No es repetido?
-    }
-
-
-    public void regsitrarUsuarioComoDueno(String parametro, String parametro1, String parametro2, String parametro3, Object o, Object o1) {
-        // @TODO hacer metodo ¿No es repetido?
-    }
 }
