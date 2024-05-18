@@ -51,7 +51,7 @@ public class CommandLineInterface {
             exit = true;
         } else {
             if (this.comandos.containsKey(input[0])) {
-                this.comandos.get(input[0]).ejecutar(Arrays.copyOfRange(input, 1, input.length));
+                this.comandos.get(input[0]).ejecutar(Arrays.copyOfRange(input, 1, input.length), this.vista);
             } else {
                 throw new UnsupportedOperationException("Comando '" + input[0] + "' no existe.");
             }
