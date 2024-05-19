@@ -10,4 +10,4 @@ Practica FIS 2023-2024.
   - _prototipos_ ~ contiene prototipos visiales de aplicacion
   - _entrega 1_ ~ contiene documentos pedidos para entrega 1
   - _entrega 1_ ~ contiene documentos pedidos para entrega 2
-  - _dependencies_ - dependencias "locales" de proyecto
+- **dependencies** ~ dependencias "locales" de proyecto
