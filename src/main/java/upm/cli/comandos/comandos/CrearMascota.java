@@ -13,11 +13,9 @@ public class CrearMascota implements Comando {
     private static final byte NUMERO_PARAMETROS = 7;
 
     private final ControladorMascota controladorMascota;
-    private Session session;
 
-    public CrearMascota(ControladorMascota controladorMascota, Session session) {
+    public CrearMascota(ControladorMascota controladorMascota) {
         this.controladorMascota = controladorMascota;
-        this.session = session;
     }
 
     @Override
