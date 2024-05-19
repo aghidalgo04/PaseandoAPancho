@@ -23,6 +23,7 @@ public class CrearMascota implements Comando {
             throw new RuntimeException("Numero de parametros incorrectos"); // @TODO cambiar por exception personal
         }
         this.controladorMascota.crearMascota(parametros[0], parametros[1], parametros[2], parametros[3], parametros[4], null, null); // @TODO completar para que funcione con los distintos archivos
+        // @TODO creo que aqui despues que se crea mascota hay que llamar a metodo anadirMascota
         vista.mostarMensaje("Mascota creada con exito");
     }
 
