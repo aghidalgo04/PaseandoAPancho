@@ -28,7 +28,7 @@ public class ControladorUsuario {
         this.session = session;
     }
 
-    public void regsitrarDueno(String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro) {
+    public void registrarDueno(String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro) {
         String idUsuario = ExternalRRSS.LoginRRSS();
         if (this.persistenciaUsuario.findDueno(idUsuario).isPresent() || this.persistenciaUsuario.findCuidador(idUsuario).isPresent()) {
             throw new RuntimeException("Usuario existe"); // @TODO cambiar por exception personal
@@ -37,7 +37,7 @@ public class ControladorUsuario {
         this.persistenciaUsuario.createDueno(dueno);
     }
 
-    public void regsitrarCuidador(String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN, List<File> documentacion) {
+    public void registrarCuidador(String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN, List<File> documentacion) {
         String idUsuario = ExternalRRSS.LoginRRSS();
         if (this.persistenciaUsuario.findDueno(idUsuario).isPresent() || this.persistenciaUsuario.findCuidador(idUsuario).isPresent()) {
             throw new RuntimeException("Usuario existe"); // @TODO cambiar por exception personal
@@ -54,56 +54,46 @@ public class ControladorUsuario {
             if (!dueno.isPresent()) {
                 throw new RuntimeException("Usuario no existe"); // @TODO cambiar por exception personal
             } else {
-                this.session.setUsuarioLogueado(dueno.get());
+                this.session.setUsuario(dueno.get());
             }
         } else {
-            this.session.setUsuarioLogueado(cuidador.get());
+            this.session.setUsuario(cuidador.get());
         }
-
     }
 
-    public void anadirMascota(Long idMascota, String idDueno) {
-        if (!this.session.getUsuario().getId().equals(idDueno)) {
-            throw new RuntimeException("Dueno no está logueado"); // @TODO cambiar por exception personal
+    public void anadirMascota(Long idMascota) {
+        if (!this.session.estaLogueado()) {
+            throw new RuntimeException("No está logueado"); // @TODO cambiar por exception personal
+        }
+        if (!this.session.esDueno()) {
+            throw new RuntimeException("No tienes acceso a la funcionalidad");
         }
         Optional<Mascota> mascota = this.persistenciaMascota.findById(idMascota);
         if (!mascota.isPresent()) {
             throw new RuntimeException("Mascota no existe"); // @TODO cambiar por exception personal
         }
-        Optional<Dueno> dueno = this.persistenciaUsuario.findDueno(session.getUsuario().getId());
-        if(!dueno.isPresent()){
-            throw new RuntimeException("Dueno no existe");
-        }
-        dueno.get().anadirMascota(mascota.get());
-        this.persistenciaUsuario.updateDueno(dueno.get());
+        Dueno dueno = (Dueno) this.session.getUsuario();
+        dueno.anadirMascota(mascota.get());
+        this.persistenciaUsuario.updateDueno(dueno);
     }
 
-    public void contratarCuidador(Long idMascota, String idDueno, String idCuidador, LocalDateTime fechaInicioCuidado, LocalDateTime fechaFinCuidado) {
-        if (!this.session.getUsuario().getId().equals(idDueno)) {
-            throw new RuntimeException("Dueno no está logueado"); // @TODO cambiar por exception personal
+    public void contratarCuidador(Long idMascota, String idCuidador, LocalDateTime fechaInicioCuidado, LocalDateTime fechaFinCuidado) {
+        if (!this.session.estaLogueado()) {
+            throw new RuntimeException("No está logueado"); // @TODO cambiar por exception personal
+        }
+        if (!this.session.esDueno()) {
+            throw new RuntimeException("No tienes acceso a la funcionalidad");
         }
         if (!this.persistenciaUsuario.findCuidador(idCuidador).isPresent()) {
             throw new RuntimeException("Cuidador no existe"); // @TODO cambiar por exception personal
         }
-        if (this.persistenciaUsuario.findDueno(idDueno).get().buscarMascota(idMascota) == null) {
-            throw new RuntimeException("Mascota no existe o es del dueno"); // @TODO cambiar por exception personal
+        Dueno dueno = (Dueno) this.session.getUsuario();
+        if (dueno.buscarMascota(idMascota) == null) {
+            throw new RuntimeException("Mascota no existe"); // @TODO cambiar por exception personal
         }
         int horas = fechaFinCuidado.getHour() - fechaInicioCuidado.getHour();
         this.persistenciaContratoCuidado.create(new ContratoCuidado(this.IDS, fechaInicioCuidado, fechaFinCuidado, LocalDateTime.now(), this.persistenciaUsuario.findCuidador(idCuidador).get().getPrecio() * horas * 2D, this.persistenciaMascota.findById(idMascota).get(), this.persistenciaUsuario.findCuidador(idCuidador).get(), new Notificacion(this.IDS + 1)));
         this.persistenciaUsuario.findCuidador(idCuidador).get().anadirContratoCuidado(this.persistenciaContratoCuidado.findById(this.IDS).get());
         this.IDS += 2;
-    }
-
-    public void regsitrarUsuarioComoCuidador(String parametro, String parametro1, String parametro2, String parametro3, Object o, Object o1, Object o2, String parametro4, int i, String parametro5) {
-        // @TODO hacer metodo ¿No es repetido?
-    }
-
-    public void regsitrarUsuarioComoCuidadorConDocs(String parametro, String parametro1, String parametro2, String parametro3, Object o, Object o1, Object o2, String parametro4, int i, String parametro5, Object o3) {
-        // @TODO hacer metodo ¿No es repetido?
-    }
-
-
-    public void regsitrarUsuarioComoDueno(String parametro, String parametro1, String parametro2, String parametro3, Object o, Object o1) {
-        // @TODO hacer metodo ¿No es repetido?
     }
 }

@@ -25,9 +25,9 @@ public class CrearCuidador implements Comando {
         }
 
         if (parametros.length == NUMERO_PARAMETROS_MIN) {
-            controladorUsuario.regsitrarUsuarioComoCuidador(parametros[0], parametros[1], parametros[2], parametros[3], null, null, null, parametros[4], 0, parametros[5]); // @TODO completar para que funcione con los distintos archivos
+            controladorUsuario.registrarCuidador(parametros[0], parametros[1], parametros[2], parametros[3], null, null, null, parametros[4], 0, parametros[5], null); // @TODO completar para que funcione con los distintos archivos
         } else {
-            controladorUsuario.regsitrarUsuarioComoCuidadorConDocs(parametros[0], parametros[1], parametros[2], parametros[3], null, null, null, parametros[4], 0, parametros[5], null); // @TODO completar para que funcione con los distintos archivos
+            controladorUsuario.registrarCuidador(parametros[0], parametros[1], parametros[2], parametros[3], null, null, null, parametros[4], 0, parametros[5], null); // @TODO completar para que funcione con los distintos archivos
         }
     }
 
