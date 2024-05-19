@@ -3,9 +3,10 @@ package upm;
 import upm.cli.CommandLineInterface;
 import upm.cli.Vista;
 import upm.cli.VistaConsola;
-import upm.controlador.Session;
+import upm.cli.comandos.comandos.*;
 import upm.controlador.ControladorMascota;
 import upm.controlador.ControladorUsuario;
+import upm.controlador.Session;
 import upm.data.persitencia.PersistenciaContratoCuidado;
 import upm.data.persitencia.PersistenciaMascota;
 import upm.data.persitencia.PersistenciaUsuario;
@@ -42,8 +43,19 @@ public class InyectorDependencias {
 
         this.vista = new VistaConsola();
         this.commandLineInterface = new CommandLineInterface(this.vista);
+        this.inyectarComandos();
 
         this.gestorErrores = new GestorErrores(this.commandLineInterface, this.vista);
+    }
+
+    private void inyectarComandos() {
+        this.commandLineInterface.addComando(new Login(this.controladorUsuario));
+        this.commandLineInterface.addComando(new ListarMascotas(this.controladorMascota));
+        this.commandLineInterface.addComando(new CrearMascotaExotica(this.controladorMascota));
+        this.commandLineInterface.addComando(new CrearMascota(this.controladorMascota));
+        this.commandLineInterface.addComando(new CrearDueno(this.controladorUsuario));
+        this.commandLineInterface.addComando(new CrearCuidador(this.controladorUsuario));
+        this.commandLineInterface.addComando(new ContratarCuidador(this.controladorUsuario));
     }
 
     public static InyectorDependencias getInyectorDependencias() {
