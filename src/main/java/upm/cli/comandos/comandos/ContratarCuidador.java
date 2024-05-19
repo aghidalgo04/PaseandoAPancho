@@ -10,7 +10,7 @@ import java.time.format.DateTimeParseException;
 
 public class ContratarCuidador implements Comando {
     private static final String VALOR = "crear-dueno";
-    private static final String AYUDA_PARAMETROS = "(idMascota, idDueno, idCuidador, fechaInicioCuidado, fechaFinCuidado)";
+    private static final String AYUDA_PARAMETROS = "(idMascota, idCuidador, fechaInicioCuidado, fechaFinCuidado)";
     private static final String AYUDA_COMENTARIO = "Creas un dueno";
 
     private static final byte NUMERO_PARAMETROS = 5;
@@ -34,7 +34,7 @@ public class ContratarCuidador implements Comando {
         } catch (DateTimeParseException e) {
             throw new RuntimeException("Error en el formato de la fecha (dia-mes-año)"); // @TODO cambiar por exception personal
         }
-        this.controladorUsuario.contratarCuidador(Long.valueOf(parametros[0]), parametros[1], parametros[2], fechaInicio, fechaFinal);
+        this.controladorUsuario.contratarCuidador(Long.valueOf(parametros[0]), parametros[1], fechaInicio, fechaFinal);
     }
 
     @Override
