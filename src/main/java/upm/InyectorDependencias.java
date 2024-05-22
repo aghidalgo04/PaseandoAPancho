@@ -31,8 +31,8 @@ public class InyectorDependencias {
     private final GestorErrores gestorErrores;
 
     private InyectorDependencias() {
-        this.persistenciaUsuario = new PersistenciaUsuarioMap();
-        this.persistenciaMascota = new PersistenciaMascotaMap();
+        this.persistenciaUsuario = new PersistenciaUsuarioMap("usuarios");
+        this.persistenciaMascota = new PersistenciaMascotaMap("mascota");
         this.persistenciaContratoCuidado = new PersistenciaContratoCuidadoMap("contratoCuidados");
 
         this.session = new Session();
