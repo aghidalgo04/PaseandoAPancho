@@ -35,6 +35,7 @@ public class ContratarCuidador implements Comando {
             throw new RuntimeException("Error en el formato de la fecha (dia-mes-año)"); // @TODO cambiar por exception personal
         }
         this.controladorUsuario.contratarCuidador(Long.valueOf(parametros[0]), parametros[1], fechaInicio, fechaFinal);
+        vista.mostarMensaje("Contrato creado pero no pagado.");
     }
 
     @Override
