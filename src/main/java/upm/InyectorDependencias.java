@@ -35,8 +35,8 @@ public class InyectorDependencias {
     private final Poblador poblador; //dev
 
     private InyectorDependencias() {
-        this.persistenciaUsuario = new PersistenciaUsuarioMap(//@TODO Añadir nombres de ficheros);
-        this.persistenciaMascota = new PersistenciaMascotaMap(//@TODO Añadir nombres de ficheros);
+        this.persistenciaUsuario = new PersistenciaUsuarioMap("e");
+        this.persistenciaMascota = new PersistenciaMascotaMap("a");
         this.persistenciaContratoCuidado = new PersistenciaContratoCuidadoMap("contratoCuidados");
 
         this.session = new Session();
