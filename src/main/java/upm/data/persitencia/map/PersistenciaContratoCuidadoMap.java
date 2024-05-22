@@ -7,4 +7,9 @@ public class PersistenciaContratoCuidadoMap extends PersistenciaMap<ContratoCuid
     public PersistenciaContratoCuidadoMap(String fileName) {
         super(fileName);
     }
+
+    @Override
+    protected Long getId(ContratoCuidado contratoCuidado) {
+        return contratoCuidado.getId();
+    }
 }
