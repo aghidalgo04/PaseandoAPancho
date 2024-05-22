@@ -3,6 +3,7 @@ package upm.cli.comandos.comandos;
 import upm.cli.Vista;
 import upm.cli.comandos.Comando;
 import upm.controlador.ControladorMascota;
+import upm.controlador.ControladorUsuario;
 import upm.controlador.Session;
 
 public class CrearMascota implements Comando {
@@ -12,11 +13,13 @@ public class CrearMascota implements Comando {
 
     private static final byte NUMERO_PARAMETROS = 7;
 
+    private final ControladorUsuario controladorUsuario;
     private final ControladorMascota controladorMascota;
     private Session session;
 
-    public CrearMascota(ControladorMascota controladorMascota, Session session) {
+    public CrearMascota(ControladorUsuario controladorUsuario,ControladorMascota controladorMascota, Session session) {
         this.controladorMascota = controladorMascota;
+        this.controladorUsuario = controladorUsuario;
         this.session = session;
     }
 
@@ -25,7 +28,7 @@ public class CrearMascota implements Comando {
         if (parametros.length != NUMERO_PARAMETROS) {
             throw new RuntimeException("Numero de parametros incorrectos"); // @TODO cambiar por exception personal
         }
-        this.controladorMascota.crearMascota(parametros[0], parametros[1], parametros[2], parametros[3], parametros[4], null, null); // @TODO completar para que funcione con los distintos archivos
+        this.controladorUsuario.anadirMascota(this.controladorMascota.crearMascota(parametros[0], parametros[1], parametros[2], parametros[3], parametros[4], null, null));// @TODO completar para que funcione con los distintos archivos
     }
 
     @Override
