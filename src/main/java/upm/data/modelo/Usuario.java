@@ -5,8 +5,6 @@ import upm.data.modelo.enums.Plataforma;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 public abstract class Usuario {
     private final String id;

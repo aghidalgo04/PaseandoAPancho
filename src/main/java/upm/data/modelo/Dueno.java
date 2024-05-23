@@ -4,9 +4,7 @@ import upm.data.modelo.enums.Idioma;
 import upm.data.modelo.enums.Plataforma;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Dueno extends Usuario {
     private final List<Cuidador> cuidadoresFavoritos;
