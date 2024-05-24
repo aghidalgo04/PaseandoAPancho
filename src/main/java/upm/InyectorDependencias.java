@@ -10,6 +10,7 @@ import upm.controlador.Session;
 import upm.data.persitencia.PersistenciaContratoCuidado;
 import upm.data.persitencia.PersistenciaMascota;
 import upm.data.persitencia.PersistenciaUsuario;
+import upm.data.persitencia.Poblador;
 import upm.data.persitencia.map.PersistenciaContratoCuidadoMap;
 import upm.data.persitencia.map.PersistenciaMascotaMap;
 import upm.data.persitencia.map.PersistenciaUsuarioMap;
@@ -31,9 +32,11 @@ public class InyectorDependencias {
 
     private final GestorErrores gestorErrores;
 
+    private final Poblador poblador; //dev
+
     private InyectorDependencias() {
-        this.persistenciaUsuario = new PersistenciaUsuarioMap();
-        this.persistenciaMascota = new PersistenciaMascotaMap();
+        this.persistenciaUsuario = new PersistenciaUsuarioMap("e");
+        this.persistenciaMascota = new PersistenciaMascotaMap("a");
         this.persistenciaContratoCuidado = new PersistenciaContratoCuidadoMap("contratoCuidados");
 
         this.session = new Session();
@@ -46,6 +49,9 @@ public class InyectorDependencias {
         this.inyectarComandos();
 
         this.gestorErrores = new GestorErrores(this.commandLineInterface, this.vista);
+
+        this.poblador = new Poblador(this.persistenciaUsuario);
+        this.poblador.seed();
     }
 
     private void inyectarComandos() {

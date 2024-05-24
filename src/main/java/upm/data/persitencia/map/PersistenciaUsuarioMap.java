@@ -33,12 +33,12 @@ public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
 
     @Override
     public Optional<Dueno> findDueno(String id) {
-        return Optional.of(this.persistenciaDueno.get(id));
+        return Optional.ofNullable(this.persistenciaDueno.get(id));
     }
 
     @Override
     public Optional<Cuidador> findCuidador(String id) {
-        return Optional.of(this.persistenciaCuidador.get(id));
+        return Optional.ofNullable(this.persistenciaCuidador.get(id));
     }
 
     @Override
