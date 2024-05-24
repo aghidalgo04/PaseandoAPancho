@@ -15,12 +15,10 @@ public class CrearMascota implements Comando {
 
     private final ControladorUsuario controladorUsuario;
     private final ControladorMascota controladorMascota;
-    private Session session;
 
-    public CrearMascota(ControladorUsuario controladorUsuario,ControladorMascota controladorMascota, Session session) {
+    public CrearMascota(ControladorUsuario controladorUsuario,ControladorMascota controladorMascota) {
         this.controladorMascota = controladorMascota;
         this.controladorUsuario = controladorUsuario;
-        this.session = session;
     }
 
     @Override
