@@ -3,14 +3,12 @@ package upm;
 import upm.cli.CommandLineInterface;
 import upm.cli.Vista;
 import upm.cli.VistaConsola;
-import upm.cli.comandos.comandos.*;
+import upm.controlador.Session;
 import upm.controlador.ControladorMascota;
 import upm.controlador.ControladorUsuario;
-import upm.controlador.Session;
 import upm.data.persitencia.PersistenciaContratoCuidado;
 import upm.data.persitencia.PersistenciaMascota;
 import upm.data.persitencia.PersistenciaUsuario;
-import upm.data.persitencia.Poblador;
 import upm.data.persitencia.map.PersistenciaContratoCuidadoMap;
 import upm.data.persitencia.map.PersistenciaMascotaMap;
 import upm.data.persitencia.map.PersistenciaUsuarioMap;
@@ -32,11 +30,9 @@ public class InyectorDependencias {
 
     private final GestorErrores gestorErrores;
 
-    private final Poblador poblador; //dev
-
     private InyectorDependencias() {
-        this.persistenciaUsuario = new PersistenciaUsuarioMap("e");
-        this.persistenciaMascota = new PersistenciaMascotaMap("a");
+        this.persistenciaUsuario = new PersistenciaUsuarioMap("usuarios");
+        this.persistenciaMascota = new PersistenciaMascotaMap("mascota");
         this.persistenciaContratoCuidado = new PersistenciaContratoCuidadoMap("contratoCuidados");
 
         this.session = new Session();

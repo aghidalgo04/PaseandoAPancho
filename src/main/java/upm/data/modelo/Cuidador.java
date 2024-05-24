@@ -5,9 +5,7 @@ import upm.data.modelo.enums.Plataforma;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Cuidador extends Usuario {
     private File foto;
