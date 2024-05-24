@@ -22,7 +22,8 @@ public class CrearDueno implements Comando {
         if (parametros.length != NUMERO_PARAMETROS) {
             throw new RuntimeException("Numero de parametros incorrectos"); // @TODO cambiar por exception personal
         }
-        controladorUsuario.registrarDueno(parametros[0], parametros[1], parametros[2], parametros[3], null, null); // @TODO completar para que funcione con los distintos archivos
+        this.controladorUsuario.registrarDueno(parametros[0], parametros[1], parametros[2], parametros[3], null, null); // @TODO completar para que funcione con los distintos archivos
+        vista.mostarMensaje("Cuenta creada con exito");
     }
 
     @Override
