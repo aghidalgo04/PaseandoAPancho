@@ -42,6 +42,7 @@ public class CommandLineInterface {
 
     private boolean runComando() {
         boolean exit = false;
+        this.vista.mostrarEnterComando();
         String[] input = this.vista.leerComando();
 
         if (HELP_NAME.equals(input[0])) {
