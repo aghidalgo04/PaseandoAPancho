@@ -2,13 +2,13 @@ package upm.cli;
 
 import java.util.Scanner;
 
-// @TODO clase no acabada
+// @TODO habra que eliminar constatntes que no vamos a usar
 public class VistaConsola implements Vista {
     private static final String COMMAND = "gps";
     private static final String DELIMITER_COLON_OR_RETURN = "[:,\\r\\n]";
+    // colores
     private static final String RESETEAR = "\u001B[0m";
     private static final String NEGRO = "\u001B[30m";
-    // colores
     private static final String ROJO = "\u001B[31m";
     private static final String VERDE = "\u001B[32m";
     private static final String AMARILLO = "\u001B[33m";
@@ -85,12 +85,12 @@ public class VistaConsola implements Vista {
 
     @Override
     public void mostrarComando(String valor, String parametros, String comentario) {
-        System.out.println(VistaConsola.MORADO + "  " + VistaConsola.CHECK + " " + VistaConsola.RESETEAR);
+        System.out.println(VistaConsola.VERDE + VistaConsola.ARROW + valor + ": " + VistaConsola.AMARILLO + VistaConsola.VERDE + " --- " + comentario + VistaConsola.RESETEAR);
     }
 
     @Override
     public void mostrarError(String error) {
-        System.out.println(VistaConsola.ROJO + "  " + error + " " + VistaConsola.CROSS + VistaConsola.RESETEAR);
+        System.out.println(VistaConsola.ROJO + VistaConsola.CROSS + "  " + error + VistaConsola.RESETEAR);
     }
 
     @Override
