@@ -73,6 +73,7 @@ public class VistaConsola implements Vista {
         return valores;
     }
 
+    @Override
     public void mostrarEnterComando() {
         System.out.print(COMMAND + "> ");
     }
