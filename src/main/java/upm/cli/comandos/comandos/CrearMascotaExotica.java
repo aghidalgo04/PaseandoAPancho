@@ -3,6 +3,7 @@ package upm.cli.comandos.comandos;
 import upm.cli.Vista;
 import upm.cli.comandos.Comando;
 import upm.controlador.ControladorMascota;
+import upm.controlador.ControladorUsuario;
 
 public class CrearMascotaExotica implements Comando {
     private static final String VALOR = "crear-dueno";
@@ -12,9 +13,11 @@ public class CrearMascotaExotica implements Comando {
     private static final byte NUMERO_PARAMETROS = 10;
 
     private final ControladorMascota controladorMascota;
+    private final ControladorUsuario controladorUsuario;
 
-    public CrearMascotaExotica(ControladorMascota controladorMascota) {
+    public CrearMascotaExotica(ControladorUsuario controladorUsuario,ControladorMascota controladorMascota) {
         this.controladorMascota = controladorMascota;
+        this.controladorUsuario = controladorUsuario;
     }
 
     @Override
@@ -22,9 +25,7 @@ public class CrearMascotaExotica implements Comando {
         if (parametros.length != NUMERO_PARAMETROS) {
             throw new RuntimeException("Numero de parametros incorrectos"); // @TODO cambiar por exception personal
         }
-        this.controladorMascota.crearMascotaExotica(parametros[0], parametros[1], parametros[2], parametros[4], parametros[5], null, null, null, null, null); // @TODO completar para que funcione con los distintos archivos
-        // @TODO creo que aqui despues que se crea mascota hay que llamar a metodo anadirMascota
-        vista.mostarMensaje("Mascota exotica creada");
+        this.controladorUsuario.anadirMascota(this.controladorMascota.crearMascotaExotica(parametros[0], parametros[1], parametros[2], parametros[4], parametros[5], null, null, null, null, null)); // @TODO completar para que funcione con los distintos archivos
     }
 
     @Override
