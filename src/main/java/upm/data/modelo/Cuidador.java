@@ -18,7 +18,6 @@ public class Cuidador extends Usuario {
     private List<ContratoCuidado> contratos;
     private List<Premio> premios;
 
-
     public Cuidador(String id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN) {
         super(id, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro);
         this.foto = foto;
@@ -78,6 +77,10 @@ public class Cuidador extends Usuario {
 
     public void setDocumentacion(List<File> documentacion) {
         this.documentacion = documentacion;
+    }
+
+    public List<ContratoCuidado> getContratos() {
+        return this.contratos;
     }
 
     public void anadirMascotaFavorita(Mascota mascota) {
