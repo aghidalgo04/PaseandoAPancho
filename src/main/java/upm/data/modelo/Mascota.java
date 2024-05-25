@@ -1,5 +1,6 @@
 package upm.data.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Mascota {
@@ -102,5 +103,11 @@ public class Mascota {
 
     public void eliminarAlbum(Long id) {
         this.albums.removeIf(album -> album.getId().equals(id));
+    }
+
+    public List<Long> getIdAlbums() {
+        List<Long> idAlbums = new ArrayList<>();
+        this.albums.forEach(album -> idAlbums.add(album.getId()));
+        return idAlbums;
     }
 }

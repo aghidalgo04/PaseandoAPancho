@@ -3,6 +3,7 @@ package upm.data.persitencia;
 import upm.data.modelo.Cuidador;
 import upm.data.modelo.Dueno;
 import upm.data.modelo.Usuario;
+import upm.data.persitencia.adaptadores.AdaptadorDueno;
 
 import java.util.Optional;
 

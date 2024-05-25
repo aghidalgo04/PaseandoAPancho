@@ -4,32 +4,56 @@ import upm.data.modelo.Cuidador;
 import upm.data.modelo.Dueno;
 import upm.data.modelo.Usuario;
 import upm.data.persitencia.PersistenciaUsuario;
+import upm.data.persitencia.adaptadores.AdaptadorCuidador;
+import upm.data.persitencia.adaptadores.AdaptadorDueno;
 
 import java.io.*;
 import java.util.Map;
 import java.util.Optional;
 import java.util.TreeMap;
 
-public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
-    private Map<String, Dueno> persistenciaDueno;
-    private Map<String, Cuidador> persistenciaCuidador;
-    private File file;
+public class PersistenciaUsuarioMap implements PersistenciaUsuario {
+    private static String FOLDER_NAME = "persistenciaFile";
 
-    public PersistenciaUsuarioMap(String fileName) {
+    private Map<String, AdaptadorDueno> persistenciaDueno;
+    private Map<String, AdaptadorCuidador> persistenciaCuidador;
+    private File fileDueno;
+    private File fileCuidador;
+
+    public PersistenciaUsuarioMap(String fileNameDueno, String fileNameCuidador) {
         this.persistenciaDueno = new TreeMap<>();
         this.persistenciaCuidador = new TreeMap<>();
-        this.file = new File("persistenciaFile/" + fileName);
-        if (!this.file.exists()) {
+
+        File folder = new File(FOLDER_NAME);
+        if (!folder.exists()) {
+            boolean folderCreated = folder.mkdir();
+            if (!folderCreated) {
+                throw new RuntimeException("No se ha podido crear la carpeta");
+            }
+        }
+        this.fileDueno = new File("persistenciaFile/" + fileNameDueno);
+        this.fileCuidador = new File("persistenciaFile/" + fileNameCuidador);
+        if (!this.fileDueno.exists()) {
             try {
-                this.file.createNewFile();
+                this.fileDueno.createNewFile();
             } catch (IOException e) {
-                throw new RuntimeException("Error al crear el fichero");
+                throw new RuntimeException("Error al crear el fichero" + fileNameDueno);
+            }
+        }
+        if (!this.fileCuidador.exists()) {
+            try {
+                this.fileCuidador.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException("Error al crear el fichero" + fileNameCuidador);
             }
         } else {
-            try (FileInputStream fileIn = new FileInputStream(this.file);
-                 ObjectInput objectIn = new ObjectInputStream(fileIn)) {
-                this.persistenciaDueno = (Map<String, Dueno>) objectIn.readObject();
-                this.persistenciaCuidador = (Map<String, Cuidador>) objectIn.readObject();
+            try {
+                FileInputStream fileInDueno = new FileInputStream(this.fileDueno);
+                ObjectInput objectInDueno = new ObjectInputStream(fileInDueno);
+                FileInputStream fileInCuidador = new FileInputStream(this.fileCuidador);
+                ObjectInput objectInCuidador = new ObjectInputStream(fileInCuidador);
+                this.persistenciaDueno = (Map<String, AdaptadorDueno>) objectInDueno.readObject();
+                this.persistenciaCuidador = (Map<String, AdaptadorCuidador>) objectInCuidador.readObject();
             } catch (IOException e) {
                 throw new RuntimeException("Error al abrir el fichero");
             } catch (ClassNotFoundException e) {
@@ -40,35 +64,39 @@ public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
 
     @Override
     public void createDueno(Dueno dueno) {
-        persistenciaDueno.put(dueno.getId(), dueno);
+        AdaptadorDueno aDueno = new AdaptadorDueno(dueno);
+        persistenciaDueno.put(dueno.getId(), aDueno);
         updateFileDueno();
     }
 
     @Override
     public void createCuidador(Cuidador cuidador) {
-        persistenciaCuidador.put(cuidador.getId(), cuidador);
+        AdaptadorCuidador aCuidador = new AdaptadorCuidador(cuidador);
+        persistenciaCuidador.put(cuidador.getId(), aCuidador);
         updateFileCuidador();
     }
 
     @Override
     public Optional<Dueno> findDueno(String id) {
-        return Optional.ofNullable(this.persistenciaDueno.get(id));
+        return Optional.of(this.persistenciaDueno.get(id).getDueno());
     }
 
     @Override
     public Optional<Cuidador> findCuidador(String id) {
-        return Optional.ofNullable(this.persistenciaCuidador.get(id));
+        return Optional.of(this.persistenciaCuidador.get(id).getCuidador());
     }
 
     @Override
     public void updateDueno(Dueno dueno) {
-        this.persistenciaDueno.replace(dueno.getId(), dueno);
+        AdaptadorDueno aDueno = new AdaptadorDueno(dueno);
+        this.persistenciaDueno.replace(dueno.getId(), aDueno);
         updateFileDueno();
     }
 
     @Override
     public void updateCuidador(Cuidador cuidador) {
-        this.persistenciaCuidador.replace(cuidador.getId(), cuidador);
+        AdaptadorCuidador aCuidador = new AdaptadorCuidador(cuidador);
+        this.persistenciaCuidador.replace(cuidador.getId(), aCuidador);
         updateFileCuidador();
     }
 
@@ -86,7 +114,7 @@ public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
     }
 
     private void updateFileDueno() {
-        try (FileOutputStream fileOut = new FileOutputStream(this.file);
+        try (FileOutputStream fileOut = new FileOutputStream(this.fileDueno);
              ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
             objectOut.writeObject(this.persistenciaDueno);
         } catch (IOException e) {
@@ -95,7 +123,7 @@ public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
     }
 
     private void updateFileCuidador() {
-        try (FileOutputStream fileOut = new FileOutputStream(this.file);
+        try (FileOutputStream fileOut = new FileOutputStream(this.fileCuidador);
              ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
             objectOut.writeObject(this.persistenciaCuidador);
         } catch (IOException e) {
