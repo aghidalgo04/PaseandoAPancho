@@ -71,6 +71,9 @@ public class InyectorDependencias {
 
     public void run() {
         this.gestorErrores.run();
+        this.persistenciaUsuario.actualizarFichero();
+        this.persistenciaMascota.actualizarFichero();
+        this.persistenciaContratoCuidado.actualizarFichero();
     }
 
     public PersistenciaUsuario getPersistenciaUsuario() {

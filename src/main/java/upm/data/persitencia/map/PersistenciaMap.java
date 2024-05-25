@@ -71,7 +71,8 @@ abstract public class PersistenciaMap<T> implements Persistencia<T> {
         }
     }
 
-    private void actualizarFichero() {
+    @Override
+    public void actualizarFichero() {
         this.file.delete();
         crearArchivo();
         for (T t : persistencia.values()) {

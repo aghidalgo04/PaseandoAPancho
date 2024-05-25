@@ -21,4 +21,6 @@ public interface PersistenciaUsuario{
     void updateCuidador(Cuidador cuidador);
 
     void delete(Usuario usuario);
+
+    void actualizarFichero();
 }

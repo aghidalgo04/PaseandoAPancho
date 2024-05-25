@@ -114,7 +114,8 @@ public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
         }
     }
 
-    private void actualizarFichero() {
+    @Override
+    public void actualizarFichero() {
         this.fileDueno.delete();
         this.fileCuidador.delete();
         crearArchivos();

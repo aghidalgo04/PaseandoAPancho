@@ -13,4 +13,6 @@ public interface Persistencia<T> {
     void delete(Long id);
 
     List<T> findAll();
+
+    void actualizarFichero();
 }
