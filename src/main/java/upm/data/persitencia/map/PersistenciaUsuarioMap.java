@@ -4,6 +4,8 @@ import upm.data.modelo.Cuidador;
 import upm.data.modelo.Dueno;
 import upm.data.modelo.Usuario;
 import upm.data.persitencia.PersistenciaUsuario;
+import upm.data.persitencia.adaptadores.AdaptadorCuidador;
+import upm.data.persitencia.adaptadores.AdaptadorDueno;
 
 import java.io.*;
 import java.util.Map;
@@ -11,8 +13,8 @@ import java.util.Optional;
 import java.util.TreeMap;
 
 public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
-    private Map<String, Dueno> persistenciaDueno;
-    private Map<String, Cuidador> persistenciaCuidador;
+    private Map<String, AdaptadorDueno> persistenciaDueno;
+    private Map<String, AdaptadorCuidador> persistenciaCuidador;
     private File file;
 
     public PersistenciaUsuarioMap(String fileName) {
@@ -28,8 +30,8 @@ public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
         } else {
             try (FileInputStream fileIn = new FileInputStream(this.file);
                  ObjectInput objectIn = new ObjectInputStream(fileIn)) {
-                this.persistenciaDueno = (Map<String, Dueno>) objectIn.readObject();
-                this.persistenciaCuidador = (Map<String, Cuidador>) objectIn.readObject();
+                this.persistenciaDueno = (Map<String, AdaptadorDueno>) objectIn.readObject();
+                this.persistenciaCuidador = (Map<String, AdaptadorCuidador>) objectIn.readObject();
             } catch (IOException e) {
                 throw new RuntimeException("Error al abrir el fichero");
             } catch (ClassNotFoundException e) {
@@ -40,35 +42,39 @@ public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
 
     @Override
     public void createDueno(Dueno dueno) {
-        persistenciaDueno.put(dueno.getId(), dueno);
+        AdaptadorDueno aDueno = new AdaptadorDueno(dueno);
+        persistenciaDueno.put(dueno.getId(), aDueno);
         updateFileDueno();
     }
 
     @Override
     public void createCuidador(Cuidador cuidador) {
-        persistenciaCuidador.put(cuidador.getId(), cuidador);
+        AdaptadorCuidador aCuidador = new AdaptadorCuidador(cuidador);
+        persistenciaCuidador.put(cuidador.getId(), aCuidador);
         updateFileCuidador();
     }
 
     @Override
     public Optional<Dueno> findDueno(String id) {
-        return Optional.of(this.persistenciaDueno.get(id));
+        return Optional.of(this.persistenciaDueno.get(id).getDueno());
     }
 
     @Override
     public Optional<Cuidador> findCuidador(String id) {
-        return Optional.of(this.persistenciaCuidador.get(id));
+        return Optional.of(this.persistenciaCuidador.get(id).getCuidador());
     }
 
     @Override
     public void updateDueno(Dueno dueno) {
-        this.persistenciaDueno.replace(dueno.getId(), dueno);
+        AdaptadorDueno aDueno = new AdaptadorDueno(dueno);
+        this.persistenciaDueno.replace(dueno.getId(), aDueno);
         updateFileDueno();
     }
 
     @Override
     public void updateCuidador(Cuidador cuidador) {
-        this.persistenciaCuidador.replace(cuidador.getId(), cuidador);
+        AdaptadorCuidador aCuidador = new AdaptadorCuidador(cuidador);
+        this.persistenciaCuidador.replace(cuidador.getId(), aCuidador);
         updateFileCuidador();
     }
 
