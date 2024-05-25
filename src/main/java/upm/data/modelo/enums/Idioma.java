@@ -1,8 +1,6 @@
 package upm.data.modelo.enums;
 
-import java.io.Serializable;
-
-public enum Idioma implements Serializable {
+public enum Idioma {
     Castellano,
     Ingles,
     Catalan,

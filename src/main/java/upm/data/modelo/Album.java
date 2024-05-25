@@ -1,9 +1,8 @@
 package upm.data.modelo;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class Album  implements Serializable {
+public class Album{
     private final Long id;
     private List<Foto> fotos;
     private String titulo;

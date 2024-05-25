@@ -1,8 +1,6 @@
 package upm.data.modelo.enums;
 
-import java.io.Serializable;
-
-public enum Estado implements Serializable {
+public enum Estado{
     Aceptado,
     Rechazado,
     Pendiente

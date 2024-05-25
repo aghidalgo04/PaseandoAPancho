@@ -1,9 +1,8 @@
 package upm.data.modelo;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Notificacion implements Serializable {
+public class Notificacion {
     private final Long id;
     private LocalDateTime fechaLectura;
 

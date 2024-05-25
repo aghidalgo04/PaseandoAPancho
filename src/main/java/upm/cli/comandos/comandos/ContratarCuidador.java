@@ -20,6 +20,7 @@ public class ContratarCuidador implements Comando {
     public ContratarCuidador(ControladorUsuario controladorUsuario) {
         this.controladorUsuario = controladorUsuario;
     }
+
     @Override
     public void ejecutar(String[] parametros, Vista vista) {
         if (parametros.length != NUMERO_PARAMETROS) {

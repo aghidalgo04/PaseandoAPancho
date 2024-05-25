@@ -4,7 +4,6 @@ import upm.data.modelo.enums.Idioma;
 import upm.data.modelo.enums.Plataforma;
 
 import java.io.File;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
