@@ -8,17 +8,19 @@ import upm.controlador.ControladorMascota;
 import upm.controlador.ControladorUsuario;
 import upm.controlador.Session;
 import upm.data.persitencia.PersistenciaContratoCuidado;
+import upm.data.persitencia.PersistenciaCuidador;
+import upm.data.persitencia.PersistenciaDueno;
 import upm.data.persitencia.PersistenciaMascota;
-import upm.data.persitencia.PersistenciaUsuario;
-import upm.data.persitencia.Poblador;
-import upm.data.persitencia.map.PersistenciaContratoCuidadoMap;
-import upm.data.persitencia.map.PersistenciaMascotaMap;
-import upm.data.persitencia.map.PersistenciaUsuarioMap;
+import upm.data.persitencia.file.PersistenciaContratoCuidadoMap;
+import upm.data.persitencia.file.PersistenciaCuidadorFile;
+import upm.data.persitencia.file.PersistenciaDuenoFile;
+import upm.data.persitencia.file.PersistenciaMascotaFile;
 
 public class InyectorDependencias {
     private static final InyectorDependencias inyectorDependencias = new InyectorDependencias();
 
-    private final PersistenciaUsuario persistenciaUsuario;
+    private final PersistenciaDueno persistenciaDueno;
+    private final PersistenciaCuidador persistenciaCuidador;
     private final PersistenciaMascota persistenciaMascota;
     private final PersistenciaContratoCuidado persistenciaContratoCuidado;
 
@@ -32,16 +34,15 @@ public class InyectorDependencias {
 
     private final GestorErrores gestorErrores;
 
-    private final Poblador poblador; // DEV
-
     private InyectorDependencias() {
-        this.persistenciaUsuario = new PersistenciaUsuarioMap("dueno", "cuidador");
-        this.persistenciaMascota = new PersistenciaMascotaMap("mascota");
-        this.persistenciaContratoCuidado = new PersistenciaContratoCuidadoMap("contratoCuidados");
+        this.persistenciaDueno = new PersistenciaDuenoFile("duenos");
+        this.persistenciaCuidador = new PersistenciaCuidadorFile("cuidadores");
+        this.persistenciaMascota = new PersistenciaMascotaFile("mascotas");
+        this.persistenciaContratoCuidado = new PersistenciaContratoCuidadoMap("contratosCuidado");
 
         this.session = new Session();
 
-        this.controladorUsuario = new ControladorUsuario(this.persistenciaUsuario, this.persistenciaMascota, this.persistenciaContratoCuidado, this.session);
+        this.controladorUsuario = new ControladorUsuario(this.persistenciaDueno, this.persistenciaCuidador, this.persistenciaMascota, this.persistenciaContratoCuidado, this.session);
         this.controladorMascota = new ControladorMascota(this.persistenciaMascota, this.session);
 
         this.vista = new VistaConsola();
@@ -49,10 +50,6 @@ public class InyectorDependencias {
         this.inyectarComandos();
 
         this.gestorErrores = new GestorErrores(this.commandLineInterface, this.vista);
-
-        // DEV
-        this.poblador = new Poblador(this.persistenciaUsuario);
-        this.poblador.seed();
     }
 
     private void inyectarComandos() {
@@ -71,13 +68,14 @@ public class InyectorDependencias {
 
     public void run() {
         this.gestorErrores.run();
-        this.persistenciaUsuario.actualizarFichero();
-        this.persistenciaMascota.actualizarFichero();
-        this.persistenciaContratoCuidado.actualizarFichero();
     }
 
-    public PersistenciaUsuario getPersistenciaUsuario() {
-        return this.persistenciaUsuario;
+    public PersistenciaDueno getPersistenciaDueno() {
+        return this.persistenciaDueno;
+    }
+
+    public PersistenciaCuidador getPersistenciaCuidador() {
+        return this.persistenciaCuidador;
     }
 
     public PersistenciaMascota getPersistenciaMascota() {
