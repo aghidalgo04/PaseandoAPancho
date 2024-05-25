@@ -1,10 +1,8 @@
 package upm.data.persitencia.adaptadores;
 
-import upm.data.modelo.Album;
 import upm.data.modelo.Foto;
 import upm.data.modelo.Mascota;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdaptadorMascota {
