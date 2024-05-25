@@ -22,10 +22,10 @@ public class ControladorMascota {
 
     public Long crearMascota(String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums, Foto fotoFavorita) {
         if (!this.session.estaLogueado()) {
-            throw new SecurityAuthorizationException("No estas loguedo"); // @TODO cambiar por excepcion personal
+            throw new SecurityAuthorizationException("No estas loguedo");
         }
         if (!ExternalRIAC.RIAC(codigoRIAC)) {
-            throw new InvalidAttributeException("Codigo RIAC no valido"); // @TODO cambiar por excepcion personal
+            throw new InvalidAttributeException("Codigo RIAC no valido");
         }
         this.persistenciaMascota.create(new Mascota(this.IDS, nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums, fotoFavorita));
         this.IDS++;
@@ -34,10 +34,10 @@ public class ControladorMascota {
 
     public Long crearMascotaExotica(String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums, Foto fotoFavorita, File certificadoLegal, File certificadoSalud, File libreEnfermedadesTransmisibles) {
         if (!this.session.estaLogueado()) {
-            throw new SecurityAuthorizationException("No estas loguedo"); // @TODO cambiar por excepcion personal
+            throw new SecurityAuthorizationException("No estas loguedo");
         }
         if (!ExternalRIAC.RIAC(codigoRIAC)) {
-            throw new InvalidAttributeException("Codigo RIAC no valido"); // @TODO cambiar por excepcion personal
+            throw new InvalidAttributeException("Codigo RIAC no valido");
         }
         this.persistenciaMascota.create(new MascotaExotica(this.IDS, nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums, fotoFavorita, certificadoLegal, certificadoSalud, libreEnfermedadesTransmisibles));
         this.IDS++;
@@ -46,7 +46,7 @@ public class ControladorMascota {
 
     public List<Mascota> listarMascotas() {
         if (!this.session.estaLogueado()) {
-            throw new SecurityAuthorizationException("No estas loguedo"); // @TODO cambiar por excepcion personal
+            throw new SecurityAuthorizationException("No estas loguedo");
         }
         if (this.session.esCuidador()) {
             Cuidador cuidador = (Cuidador) this.session.getUsuario();
