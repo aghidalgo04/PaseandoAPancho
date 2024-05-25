@@ -8,7 +8,7 @@ import upm.data.modelo.enums.Plataforma;
 
 public class Login implements Comando {
     private static final String VALOR = "login";
-    private static final String AYUDA_PARAMETROS = "(plataforma [Facebook, Google, Microsoft, Twitter])"; // @Todo Completar con los parámetros que necesita para iniciar sesión con la plataforma que elija
+    private static final String AYUDA_PARAMETROS = "<plataforma: [Facebook, Google, Microsoft, Twitter]>";
     private static final String AYUDA_COMENTARIO = "Inicia sesión con la plataforma que eliges";
 
     private static final byte NUMERO_PARAMETROS = 1;

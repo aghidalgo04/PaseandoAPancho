@@ -7,7 +7,7 @@ import upm.controlador.ControladorUsuario;
 
 public class CrearDueno implements Comando {
     private static final String VALOR = "crear-dueno";
-    private static final String AYUDA_PARAMETROS = "(nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro)";
+    private static final String AYUDA_PARAMETROS = "<nombre>, <apellidos>, <correoElectronico>, <direccion>, <idioma>, <plataformaRegistro>";
     private static final String AYUDA_COMENTARIO = "Creas un dueno";
 
     private static final byte NUMERO_PARAMETROS = 6;
