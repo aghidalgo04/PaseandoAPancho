@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 // @TODO habra que eliminar constatntes que no vamos a usar
 public class VistaConsola implements Vista {
-    private static final String COMMAND = "gps";
+    private static final String COMMAND = "pap";
     private static final String DELIMITER_COLON_OR_RETURN = "[:,\\r\\n]";
     // colores
     private static final String RESETEAR = "\u001B[0m";
