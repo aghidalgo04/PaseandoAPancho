@@ -12,7 +12,7 @@ public abstract class PersistenciaFile<K, T> {
     private static final String FOLDER = "persistenciaFile";
     private final String FILE_PATH;
     private ObjectMapper objectMapper;
-    private Map<K, T> objetos;
+    protected Map<K, T> objetos;
 
     protected PersistenciaFile(String fileName) {
         this.FILE_PATH = FOLDER + "/" + fileName + ".json";

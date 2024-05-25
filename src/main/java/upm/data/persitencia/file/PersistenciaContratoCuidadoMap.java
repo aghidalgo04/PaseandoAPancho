@@ -14,7 +14,8 @@ public class PersistenciaContratoCuidadoMap extends PersistenciaFile<Long, Contr
 
     @Override
     public void create(ContratoCuidado entidad) {
-
+        this.objetos.put(entidad.getId(), entidad);
+        this.saveToFile();
     }
 
     @Override
@@ -24,7 +25,8 @@ public class PersistenciaContratoCuidadoMap extends PersistenciaFile<Long, Contr
 
     @Override
     public void update(ContratoCuidado entidad) {
-
+        this.objetos.put(entidad.getId(), entidad);
+        this.saveToFile();
     }
 
     @Override
