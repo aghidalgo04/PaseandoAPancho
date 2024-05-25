@@ -7,7 +7,7 @@ import upm.controlador.ControladorUsuario;
 
 public class CrearCuidador implements Comando {
     private static final String VALOR = "crear-cuidador";
-    private static final String AYUDA_PARAMETROS = "(nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro, foto, descripcion, precio, IBAN, documentacion)";
+    private static final String AYUDA_PARAMETROS = "<nombre>, <apellidos>, <correoElectronico>, <direccion>, <idioma>, <plataformaRegistro>, <foto>, <descripcion>, <precio>, <IBAN>, <documentacion>";
     private static final String AYUDA_COMENTARIO = "Creas un cuidador";
 
     private static final byte NUMERO_PARAMETROS_MIN = 10;
