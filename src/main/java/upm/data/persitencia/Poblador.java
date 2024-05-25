@@ -8,7 +8,7 @@ import upm.data.modelo.enums.Plataforma;
 import java.io.File;
 
 public class Poblador {
-    public final PersistenciaUsuario persistenciaUsuario;
+    private final PersistenciaUsuario persistenciaUsuario;
 
     public Poblador(PersistenciaUsuario persistenciaUsuario) {
         this.persistenciaUsuario = persistenciaUsuario;

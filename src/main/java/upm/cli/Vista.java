@@ -6,6 +6,8 @@ public interface Vista {
      */
     String[] leerComando();
 
+    void mostrarEnterComando();
+
     void mostarMensaje(String mensaje);
 
     void mostrarComando(String valor, String parametros, String comentario);
