@@ -1,5 +1,6 @@
 package upm.data.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Album {
@@ -40,4 +41,5 @@ public class Album {
     public void eliminarFoto(Foto foto) {
         this.fotos.remove(foto);
     }
+
 }

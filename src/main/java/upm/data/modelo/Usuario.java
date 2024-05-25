@@ -96,5 +96,17 @@ public abstract class Usuario {
     public Mensaje buscarMensajeRecibidoPorId(Long id) {
         return null;
     }
+
+    public List<Long> getIdRecibe() {
+        List<Long> lista = new ArrayList<>();
+        this.recibe.forEach(mensaje -> lista.add(mensaje.getId()));
+        return lista;
+    }
+
+    public List<Long> getIdEnvia() {
+        List<Long> lista = new ArrayList<>();
+        this.envia.forEach(mensaje -> lista.add(mensaje.getId()));
+        return lista;
+    }
 }
 
