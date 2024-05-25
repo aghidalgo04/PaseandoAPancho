@@ -2,12 +2,16 @@ package upm.cli.comandos.comandos;
 
 import upm.cli.Vista;
 import upm.cli.comandos.Comando;
+import upm.cli.excepciones.UnsupportedAttributesException;
 import upm.controlador.ControladorUsuario;
+import upm.data.modelo.enums.Plataforma;
 
 public class Login implements Comando {
     private static final String VALOR = "login";
-    private static final String AYUDA_PARAMETROS = "()"; // @Todo Completar con los parámetros que necesita para iniciar sesión con la plataforma que elija
+    private static final String AYUDA_PARAMETROS = "(plataforma [Facebook, Google, Microsoft, Twitter])"; // @Todo Completar con los parámetros que necesita para iniciar sesión con la plataforma que elija
     private static final String AYUDA_COMENTARIO = "Inicia sesión con la plataforma que eliges";
+
+    private static final byte NUMERO_PARAMETROS = 1;
 
     private final ControladorUsuario controladorUsuario;
 
@@ -17,7 +21,10 @@ public class Login implements Comando {
 
     @Override
     public void ejecutar(String[] parametros, Vista vista) {
-        this.controladorUsuario.login();
+        if (parametros.length != NUMERO_PARAMETROS) {
+            throw new UnsupportedAttributesException("Numero de parametros incorrectos");
+        }
+        this.controladorUsuario.login(Plataforma.valueOf(parametros[0]));
         vista.mostarMensaje("Login exitoso");
     }
 
