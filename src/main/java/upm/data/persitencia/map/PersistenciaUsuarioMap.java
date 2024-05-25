@@ -21,7 +21,7 @@ public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
     public PersistenciaUsuarioMap(String fileNameDueno, String fileNameCuidador) {
         this.persistenciaDueno = new TreeMap<>();
         this.persistenciaCuidador = new TreeMap<>();
-        this.folder = new File("persistenciaFile");
+        this.folder = new File(FOLDER_NAME);
         this.fileDueno = new File(FOLDER_NAME + "/" + fileNameDueno);
         this.fileCuidador = new File(FOLDER_NAME + "/" + fileNameCuidador);
         crearCarpeta();

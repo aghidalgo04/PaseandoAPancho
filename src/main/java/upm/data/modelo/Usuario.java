@@ -3,10 +3,11 @@ package upm.data.modelo;
 import upm.data.modelo.enums.Idioma;
 import upm.data.modelo.enums.Plataforma;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Usuario {
+public abstract class Usuario implements Serializable {
     private final String id;
     private String nombre;
     private String apellidos;

@@ -7,7 +7,7 @@ import upm.data.persitencia.adaptadores.AdaptadorDueno;
 
 import java.util.Optional;
 
-public interface PersistenciaUsuario{
+public interface PersistenciaUsuario {
     void createDueno(Dueno dueno);
 
     void createCuidador(Cuidador cuidador);

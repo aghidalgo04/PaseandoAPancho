@@ -3,6 +3,7 @@ package upm.data.modelo;
 import upm.data.modelo.enums.Idioma;
 import upm.data.modelo.enums.Plataforma;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
