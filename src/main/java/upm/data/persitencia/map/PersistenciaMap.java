@@ -7,10 +7,18 @@ import java.util.*;
 
 abstract public class PersistenciaMap<T> implements Persistencia<T> {
     private Map<Long, T> persistencia;
+    protected File folder;
     private File file;
 
     public PersistenciaMap(String fileName) {
         this.persistencia = new TreeMap<>();
+        this.folder = new File("persistenciaFile");
+        if (!this.folder.exists()) {
+            boolean folderCreated = this.folder.mkdir();
+            if (!folderCreated) {
+                throw new RuntimeException("No se ha podido crear la carpeta");
+            }
+        }
         this.file = new File("persistenciaFile/" + fileName);
         if (!this.file.exists()) {
             try {

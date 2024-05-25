@@ -15,11 +15,19 @@ import java.util.TreeMap;
 public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
     private Map<String, AdaptadorDueno> persistenciaDueno;
     private Map<String, AdaptadorCuidador> persistenciaCuidador;
+    private File folder;
     private File file;
 
     public PersistenciaUsuarioMap(String fileName) {
         this.persistenciaDueno = new TreeMap<>();
         this.persistenciaCuidador = new TreeMap<>();
+        this.folder = new File("persistenciaFile");
+        if (!this.folder.exists()) {
+            boolean folderCreated = this.folder.mkdir();
+            if (!folderCreated) {
+                throw new RuntimeException("No se ha podido crear la carpeta");
+            }
+        }
         this.file = new File("persistenciaFile/" + fileName);
         if (!this.file.exists()) {
             try {
