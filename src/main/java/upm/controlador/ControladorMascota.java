@@ -1,10 +1,7 @@
 package upm.controlador;
 
 import servidor.ExternalRIAC;
-import upm.data.modelo.Album;
-import upm.data.modelo.Foto;
-import upm.data.modelo.Mascota;
-import upm.data.modelo.MascotaExotica;
+import upm.data.modelo.*;
 import upm.data.persitencia.PersistenciaMascota;
 
 import java.io.File;
@@ -39,16 +36,16 @@ public class ControladorMascota {
         return this.IDS;
     }
 
-    // @TODO Listar mascotas que cuida
     public List<Mascota> listarMascotas() {
         if (!this.session.estaLogueado()) {
             throw new RuntimeException("No estas loguedo"); // @TODO cambiar por excepcion personal
         }
-        if(!this.session.esCuidador()){
-            throw new RuntimeException("No tienes acceso a esta fucnion");
+        if (this.session.esCuidador()) {
+            Cuidador cuidador = (Cuidador) this.session.getUsuario();
+            return cuidador.getContratos().stream().map(ContratoCuidado::getMascotaAsociada).toList();
+        } else {
+            Dueno dueno = (Dueno) this.session.getUsuario();
+            return dueno.getMascotas();
         }
-        return this.persistenciaMascota.findAll();
     }
-
-
 }
