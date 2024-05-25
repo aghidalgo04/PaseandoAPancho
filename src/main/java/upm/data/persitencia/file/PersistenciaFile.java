@@ -28,8 +28,10 @@ public abstract class PersistenciaFile<K, T> {
         try {
             File file = new File(FILE_PATH);
             if (file.exists()) {
-                this.objetos = this.objectMapper.readValue(file, new TypeReference<Map<K, T>>() {
-                });
+                if (file.length() > 0) {
+                    this.objetos = this.objectMapper.readValue(file, new TypeReference<Map<K, T>>() {
+                    });
+                }
             } else {
                 if (!file.createNewFile()) {
                     throw new RuntimeException("No se ha podido crear fichero en ruta " + FILE_PATH);
