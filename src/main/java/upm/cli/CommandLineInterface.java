@@ -56,7 +56,6 @@ public class CommandLineInterface {
                 throw new UnsupportedOperationException("Comando '" + input[0] + "' no existe.");
             }
         }
-
         return exit;
     }
 }

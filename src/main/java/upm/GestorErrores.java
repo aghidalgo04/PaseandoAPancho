@@ -13,6 +13,7 @@ public class GestorErrores {
     }
 
     public void run() {
+        this.vista.mostarBienvenida();
         boolean exit = false;
         while (!exit) {
             try {

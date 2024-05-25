@@ -26,7 +26,7 @@ public class VistaConsola implements Vista {
     private static final String FONDO_CIAN = "\u001B[46m";
     private static final String FONDO_BLANCO = "\u001B[47m";
     // emogi
-    private static final String COPIAR_DERECHA = "\u00A9";
+    private static final String COPIAR_DERECHA_AUTOR = "\u00A9";
     private static final String CHECK = "\u2705";
     private static final String CROSS = "\u274C";
     private static final String ANIMAL = "\uD83D\uDC36";
@@ -41,6 +41,11 @@ public class VistaConsola implements Vista {
 
     public VistaConsola() {
         this.scanner = new Scanner(System.in).useDelimiter(DELIMITER_COLON_OR_RETURN);
+    }
+
+    @Override
+    public void mostarBienvenida() {
+        System.out.println(VistaConsola.AMARILLO + "Bienvenido a Paseado a Pancho" + VistaConsola.COPIAR_DERECHA_AUTOR + ", llama `ayuda` para consultar comandos." + VistaConsola.RESETEAR);
     }
 
     @Override
@@ -75,31 +80,31 @@ public class VistaConsola implements Vista {
 
     @Override
     public void mostrarEnterComando() {
-        System.out.print(COMMAND + "> ");
+        System.out.print(VistaConsola.COMMAND + "> ");
     }
 
     @Override
     public void mostarMensaje(String mensaje) {
-        System.out.println(VistaConsola.MORADO + mensaje + VistaConsola.RESETEAR);
+        System.out.println("    " +  VistaConsola.MORADO + mensaje + VistaConsola.RESETEAR);
     }
 
     @Override
     public void mostrarComando(String valor, String parametros, String comentario) {
-        System.out.println(VistaConsola.VERDE + VistaConsola.ARROW + valor + ": " + VistaConsola.AMARILLO + VistaConsola.VERDE + " --- " + comentario + VistaConsola.RESETEAR);
+        System.out.println("    " + VistaConsola.VERDE + VistaConsola.ARROW + " " + VistaConsola.CIAN + valor + ": " + VistaConsola.AMARILLO + parametros + VistaConsola.VERDE + " --- " + comentario + VistaConsola.RESETEAR);
     }
 
     @Override
     public void mostrarError(String error) {
-        System.out.println(VistaConsola.ROJO + VistaConsola.CROSS + "  " + error + VistaConsola.RESETEAR);
+        System.out.println("    " +  VistaConsola.ROJO + VistaConsola.CROSS + "  " + error + VistaConsola.RESETEAR);
     }
 
     @Override
     public void mostrarUsuario(String id, String nombre, String apellidos, String correoElectronico) {
-        System.out.println(VistaConsola.AZUL + "  " + VistaConsola.USUARIO + " id:" + id + " nombre: " + nombre + apellidos + " correo: " + correoElectronico + VistaConsola.RESETEAR);
+        System.out.println("    " +  VistaConsola.AZUL + "  " + VistaConsola.USUARIO + " id:" + id + " nombre: " + nombre + apellidos + " correo: " + correoElectronico + VistaConsola.RESETEAR);
     }
 
     @Override
     public void mostrarMascota(Long id, String nombre, String direccion, String descripcion) {
-        System.out.println(VistaConsola.AMARILLO + "  " + VistaConsola.ANIMAL + " id:" + id + " nombre: " + nombre + " dirección: " + direccion + " descripción: " + descripcion + VistaConsola.RESETEAR);
+        System.out.println("    " +  VistaConsola.AMARILLO + "  " + VistaConsola.ANIMAL + " id:" + id + " nombre: " + nombre + " dirección: " + direccion + " descripción: " + descripcion + VistaConsola.RESETEAR);
     }
 }
