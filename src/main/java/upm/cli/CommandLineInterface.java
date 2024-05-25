@@ -1,13 +1,14 @@
 package upm.cli;
 
 import upm.cli.comandos.Comando;
+import upm.cli.excepciones.UnsupportedCommandException;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CommandLineInterface {
-    private static final String EXIT_NAME = "exit";
+    private static final String EXIT_NAME = "salir";
     private static final String EXIT_HELP = "termina la ejecución.";
     private static final String HELP_NAME = "ayuda";
     private static final String HELP_HELP = "muestra la ayuda.";
@@ -22,14 +23,6 @@ public class CommandLineInterface {
 
     public void addComando(Comando comando) {
         this.comandos.put(comando.valor(), comando);
-    }
-
-    public void ayuda() {
-        this.vista.mostrarComando(EXIT_NAME, "", EXIT_HELP);
-        this.vista.mostrarComando(HELP_NAME, "", HELP_HELP);
-        for (Comando comando : this.comandos.values()) {
-            this.vista.mostrarComando(comando.valor(), comando.ayudaParametros(), comando.ayudaComentario());
-        }
     }
 
     public boolean runComandos() {
@@ -53,10 +46,17 @@ public class CommandLineInterface {
             if (this.comandos.containsKey(input[0])) {
                 this.comandos.get(input[0]).ejecutar(Arrays.copyOfRange(input, 1, input.length), this.vista);
             } else {
-                throw new UnsupportedOperationException("Comando '" + input[0] + "' no existe.");
+                throw new UnsupportedCommandException("Comando '" + input[0] + "' no existe.");
             }
         }
-
         return exit;
+    }
+
+    private void ayuda() {
+        this.vista.mostrarComando(EXIT_NAME, "", EXIT_HELP);
+        this.vista.mostrarComando(HELP_NAME, "", HELP_HELP);
+        for (Comando comando : this.comandos.values()) {
+            this.vista.mostrarComando(comando.valor(), comando.ayudaParametros(), comando.ayudaComentario());
+        }
     }
 }

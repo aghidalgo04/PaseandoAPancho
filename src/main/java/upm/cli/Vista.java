@@ -4,6 +4,8 @@ public interface Vista {
     /**
      * @return [0] ~ comando , [i>=1] - parametros (si hay)
      */
+    void mostarBienvenida();
+
     String[] leerComando();
 
     void mostrarEnterComando();

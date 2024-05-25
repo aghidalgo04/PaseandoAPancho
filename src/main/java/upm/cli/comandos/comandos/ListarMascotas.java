@@ -10,7 +10,7 @@ import java.util.List;
 public class ListarMascotas implements Comando {
     private static final String VALOR = "listar-mascotas";
     private static final String AYUDA_PARAMETROS = "";
-    private static final String AYUDA_COMENTARIO = "Muestras todas las mascotas disponibles";
+    private static final String AYUDA_COMENTARIO = "Muestras todas las mascotas de dueno o que cuida el cuidador depende de rol";
 
     private final ControladorMascota controladorMascota;
 

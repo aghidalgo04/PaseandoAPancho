@@ -42,7 +42,7 @@ public class InyectorDependencias {
         this.session = new Session();
 
         this.controladorUsuario = new ControladorUsuario(this.persistenciaUsuario, this.persistenciaMascota, this.persistenciaContratoCuidado, this.session);
-        this.controladorMascota = new ControladorMascota(this.persistenciaMascota);
+        this.controladorMascota = new ControladorMascota(this.persistenciaMascota, this.session);
 
         this.vista = new VistaConsola();
         this.commandLineInterface = new CommandLineInterface(this.vista);

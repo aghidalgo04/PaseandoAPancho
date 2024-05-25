@@ -1,10 +1,9 @@
 package upm.controlador;
 
 import servidor.ExternalRIAC;
-import upm.data.modelo.Album;
-import upm.data.modelo.Foto;
-import upm.data.modelo.Mascota;
-import upm.data.modelo.MascotaExotica;
+import upm.controlador.excepciones.SecurityAuthorizationException;
+import upm.data.modelo.*;
+import upm.data.modelo.excepciones.InvalidAttributeException;
 import upm.data.persitencia.PersistenciaMascota;
 
 import java.io.File;
@@ -22,8 +21,11 @@ public class ControladorMascota {
     }
 
     public Long crearMascota(String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums, Foto fotoFavorita) {
+        if (!this.session.estaLogueado()) {
+            throw new SecurityAuthorizationException("No estas loguedo");
+        }
         if (!ExternalRIAC.RIAC(codigoRIAC)) {
-            throw new RuntimeException("Codigo RIAC no valido"); // @TODO cambiar por excepcion personal
+            throw new InvalidAttributeException("Codigo RIAC no valido");
         }
         this.persistenciaMascota.create(new Mascota(this.IDS, nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums, fotoFavorita));
         this.IDS++;
@@ -31,24 +33,27 @@ public class ControladorMascota {
     }
 
     public Long crearMascotaExotica(String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums, Foto fotoFavorita, File certificadoLegal, File certificadoSalud, File libreEnfermedadesTransmisibles) {
+        if (!this.session.estaLogueado()) {
+            throw new SecurityAuthorizationException("No estas loguedo");
+        }
         if (!ExternalRIAC.RIAC(codigoRIAC)) {
-            throw new RuntimeException("Codigo RIAC no valido"); // @TODO cambiar por excepcion personal
+            throw new InvalidAttributeException("Codigo RIAC no valido");
         }
         this.persistenciaMascota.create(new MascotaExotica(this.IDS, nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums, fotoFavorita, certificadoLegal, certificadoSalud, libreEnfermedadesTransmisibles));
         this.IDS++;
         return this.IDS;
     }
 
-    // @TODO Listar mascotas que cuida
     public List<Mascota> listarMascotas() {
         if (!this.session.estaLogueado()) {
-            throw new RuntimeException("No estas loguedo"); // @TODO cambiar por excepcion personal
+            throw new SecurityAuthorizationException("No estas loguedo");
         }
-        if(!this.session.esCuidador()){
-            throw new RuntimeException("No tienes acceso a esta fucnion");
+        if (this.session.esCuidador()) {
+            Cuidador cuidador = (Cuidador) this.session.getUsuario();
+            return cuidador.getContratos().stream().map(ContratoCuidado::getMascotaAsociada).toList();
+        } else {
+            Dueno dueno = (Dueno) this.session.getUsuario();
+            return dueno.getMascotas();
         }
-        return this.persistenciaMascota.findAll();
     }
-
-
 }

@@ -15,7 +15,7 @@ public class ContratoCuidado {
     private MensajePeticion mensajePeticion;
     private Notificacion notificacion;
 
-    public ContratoCuidado(Long id, LocalDateTime fechaInicioDeCuidado, LocalDateTime fechaFinDeCuidado, LocalDateTime fechaFirma, Double coste, Mascota mascotaAsociada, Cuidador cuidador, MensajePeticion mensajePeticion, Notificacion notificacion) {
+    public ContratoCuidado(Long id, LocalDateTime fechaInicioDeCuidado, LocalDateTime fechaFinDeCuidado, LocalDateTime fechaFirma, Double coste, Mascota mascotaAsociada, Cuidador cuidador) {
         this.id = id;
         this.fechaInicioDeCuidado = fechaInicioDeCuidado;
         this.fechaFinDeCuidado = fechaFinDeCuidado;
@@ -25,21 +25,12 @@ public class ContratoCuidado {
         this.coste = coste;
         this.mascotaAsociada = mascotaAsociada;
         this.cuidador = cuidador;
-        this.mensajePeticion = mensajePeticion;
         this.notificacion = new Notificacion(id);
     }
 
-    public ContratoCuidado(Long id, LocalDateTime fechaInicioDeCuidado, LocalDateTime fechaFinDeCuidado, LocalDateTime fechaFirma, Double coste, Mascota mascotaAsociada, Cuidador cuidador, Notificacion notificacion) {
-        this.id = id;
-        this.fechaInicioDeCuidado = fechaInicioDeCuidado;
-        this.fechaFinDeCuidado = fechaFinDeCuidado;
-        this.fechaFirma = fechaFirma;
-        this.panchoPuntosCuidado = calcularPanchoPuntosCuidado();
-        this.rescindido = false;
-        this.coste = coste;
-        this.mascotaAsociada = mascotaAsociada;
-        this.cuidador = cuidador;
-        this.notificacion = new Notificacion(id);
+    public ContratoCuidado(Long id, LocalDateTime fechaInicioDeCuidado, LocalDateTime fechaFinDeCuidado, LocalDateTime fechaFirma, Double coste, Mascota mascotaAsociada, Cuidador cuidador, MensajePeticion mensajePeticion) {
+        this(id, fechaInicioDeCuidado, fechaFinDeCuidado, fechaFirma, coste, mascotaAsociada, cuidador);
+        this.mensajePeticion = mensajePeticion;
     }
 
     public Long getId() {
