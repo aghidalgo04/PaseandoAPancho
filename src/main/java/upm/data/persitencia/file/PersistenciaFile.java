@@ -19,15 +19,21 @@ public abstract class PersistenciaFile<K, T> {
         this.objectMapper = new ObjectMapper();
         this.objetos = new TreeMap<>();
 
-        this.loadFromFile();
-    }
-
-    protected void loadFromFile() {
+        File folder = new File(FOLDER);
+        if (!folder.exists()) {
+            if (!folder.mkdirs()) {
+                throw new RuntimeException("No se ha podido crear carpeta " + FOLDER);
+            }
+        }
         try {
             File file = new File(FILE_PATH);
             if (file.exists()) {
                 this.objetos = this.objectMapper.readValue(file, new TypeReference<Map<K, T>>() {
                 });
+            } else {
+                if (!file.createNewFile()) {
+                    throw new RuntimeException("No se ha podido crear fichero en ruta " + FILE_PATH);
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
