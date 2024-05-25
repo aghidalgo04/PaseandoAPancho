@@ -1,9 +1,6 @@
 package upm.data.persitencia.adaptadores;
 
-import upm.data.modelo.ContratoCuidado;
 import upm.data.modelo.Cuidador;
-import upm.data.modelo.Mascota;
-import upm.data.modelo.Premio;
 
 import java.io.File;
 import java.util.List;

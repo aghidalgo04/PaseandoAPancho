@@ -1,11 +1,8 @@
 package upm.data.persitencia.map;
 
-import upm.data.modelo.Dueno;
 import upm.data.modelo.Mascota;
 import upm.data.persitencia.PersistenciaMascota;
 
-import java.io.File;
-import java.util.Map;
 import java.util.Optional;
 
 public class PersistenciaMascotaMap extends PersistenciaMap<Mascota> implements PersistenciaMascota {

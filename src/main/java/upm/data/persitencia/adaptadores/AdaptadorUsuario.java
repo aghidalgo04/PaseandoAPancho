@@ -1,11 +1,9 @@
 package upm.data.persitencia.adaptadores;
 
-import upm.data.modelo.Mensaje;
 import upm.data.modelo.Usuario;
 import upm.data.modelo.enums.Idioma;
 import upm.data.modelo.enums.Plataforma;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AdaptadorUsuario {

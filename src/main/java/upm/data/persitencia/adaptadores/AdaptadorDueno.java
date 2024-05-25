@@ -1,11 +1,6 @@
 package upm.data.persitencia.adaptadores;
 
-import upm.data.modelo.Cuidador;
 import upm.data.modelo.Dueno;
-import upm.data.modelo.Mascota;
-import upm.data.modelo.Usuario;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdaptadorDueno extends AdaptadorUsuario{
