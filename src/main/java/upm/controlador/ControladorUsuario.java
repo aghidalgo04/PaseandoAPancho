@@ -96,8 +96,8 @@ public class ControladorUsuario {
             throw new NotFoundException("Mascota no existe");
         }
         int horas = fechaFinCuidado.getHour() - fechaInicioCuidado.getHour();
-        this.persistenciaContratoCuidado.create(new ContratoCuidado(this.IDS, fechaInicioCuidado, fechaFinCuidado, LocalDateTime.now(), this.persistenciaUsuario.findCuidador(idCuidador).get().getPrecio() * horas * 2D, this.persistenciaMascota.findById(idMascota).get(), this.persistenciaUsuario.findCuidador(idCuidador).get(), new Notificacion(this.IDS + 1)));
+        this.persistenciaContratoCuidado.create(new ContratoCuidado(this.IDS, fechaInicioCuidado, fechaFinCuidado, LocalDateTime.now(), this.persistenciaUsuario.findCuidador(idCuidador).get().getPrecio() * horas * 2D, this.persistenciaMascota.findById(idMascota).get(), this.persistenciaUsuario.findCuidador(idCuidador).get()));
         this.persistenciaUsuario.findCuidador(idCuidador).get().anadirContratoCuidado(this.persistenciaContratoCuidado.findById(this.IDS).get());
-        this.IDS += 2;
+        this.IDS++;
     }
 }
