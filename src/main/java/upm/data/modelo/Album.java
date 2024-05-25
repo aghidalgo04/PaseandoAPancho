@@ -1,6 +1,5 @@
 package upm.data.modelo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Album {
