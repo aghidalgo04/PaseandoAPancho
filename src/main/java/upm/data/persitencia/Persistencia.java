@@ -3,14 +3,14 @@ package upm.data.persitencia;
 import java.util.List;
 import java.util.Optional;
 
-public interface Persistencia<T> {
+public interface Persistencia<K, T> {
     void create(T entidad);
 
-    Optional<T> findById(Long id);
+    Optional<T> findById(K id);
 
     void update(T entidad);
 
-    void delete(Long id);
+    void delete(K id);
 
     List<T> findAll();
 }

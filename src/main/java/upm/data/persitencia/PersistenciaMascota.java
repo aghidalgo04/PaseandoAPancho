@@ -4,5 +4,5 @@ import upm.data.modelo.Mascota;
 
 import java.util.Optional;
 
-public interface PersistenciaMascota extends Persistencia<Mascota> {
+public interface PersistenciaMascota extends Persistencia<Long, Mascota> {
 }
