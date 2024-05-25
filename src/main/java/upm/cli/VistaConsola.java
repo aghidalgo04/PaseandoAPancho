@@ -8,34 +8,18 @@ public class VistaConsola implements Vista {
     private static final String DELIMITER_COLON_OR_RETURN = "[:,\\r\\n]";
     // colores
     private static final String RESETEAR = "\u001B[0m";
-    private static final String NEGRO = "\u001B[30m";
     private static final String ROJO = "\u001B[31m";
     private static final String VERDE = "\u001B[32m";
     private static final String AMARILLO = "\u001B[33m";
     private static final String AZUL = "\u001B[34m";
     private static final String MORADO = "\u001B[35m";
     private static final String CIAN = "\u001B[36m";
-    private static final String BLANCO = "\u001B[37m";
-    // fondos
-    private static final String FONDO_NEGRO = "\u001B[40m";
-    private static final String FONDO_ROJO = "\u001B[41m";
-    private static final String FONDO_VERDE = "\u001B[42m";
-    private static final String FONDO_AMARILLO = "\u001B[43m";
-    private static final String FONDO_AZUL = "\u001B[44m";
-    private static final String FONDO_MORADO = "\u001B[45m";
-    private static final String FONDO_CIAN = "\u001B[46m";
-    private static final String FONDO_BLANCO = "\u001B[47m";
-    // emogi
+    // emoji
     private static final String COPIAR_DERECHA_AUTOR = "\u00A9";
-    private static final String CHECK = "\u2705";
     private static final String CROSS = "\u274C";
     private static final String ANIMAL = "\uD83D\uDC36";
     private static final String USUARIO = "\uD83D\uDC64";
-    private static final String IMPORTANT = "\u2757";
     private static final String ARROW = "\u27A4";
-    private static final String ARROW2 = "\u279E";
-    // other
-    private static final String RETURN = "\r";
 
     private final Scanner scanner;
 
