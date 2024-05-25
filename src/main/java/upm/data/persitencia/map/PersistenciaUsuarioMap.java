@@ -11,6 +11,7 @@ import java.util.Optional;
 import java.util.TreeMap;
 
 public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
+    private static String FOLDER_NAME = "persistenciaFile";
     private Map<String, Dueno> persistenciaDueno;
     private Map<String, Cuidador> persistenciaCuidador;
     private File folder;
@@ -21,8 +22,8 @@ public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
         this.persistenciaDueno = new TreeMap<>();
         this.persistenciaCuidador = new TreeMap<>();
         this.folder = new File("persistenciaFile");
-        this.fileDueno = new File("persistenciaFile/" + fileNameDueno);
-        this.fileCuidador = new File("persistenciaFile/" + fileNameCuidador);
+        this.fileDueno = new File(FOLDER_NAME + "/" + fileNameDueno);
+        this.fileCuidador = new File(FOLDER_NAME + "/" + fileNameCuidador);
         crearCarpeta();
         crearArchivos();
         leerYActualizarPersistenciaDueno();
@@ -71,7 +72,6 @@ public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("Clase no encontrada");
         }
-
     }
 
     private void leerYActualizarPersistenciaCuidador() {
