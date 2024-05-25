@@ -32,11 +32,11 @@ public class InyectorDependencias {
 
     private final GestorErrores gestorErrores;
 
-    private final Poblador poblador; //dev
+    private final Poblador poblador; // DEV
 
     private InyectorDependencias() {
-        this.persistenciaUsuario = new PersistenciaUsuarioMap("e");
-        this.persistenciaMascota = new PersistenciaMascotaMap("a");
+        this.persistenciaUsuario = new PersistenciaUsuarioMap("dueno", "cuidador");
+        this.persistenciaMascota = new PersistenciaMascotaMap("mascota");
         this.persistenciaContratoCuidado = new PersistenciaContratoCuidadoMap("contratoCuidados");
 
         this.session = new Session();
@@ -50,6 +50,7 @@ public class InyectorDependencias {
 
         this.gestorErrores = new GestorErrores(this.commandLineInterface, this.vista);
 
+        // DEV
         this.poblador = new Poblador(this.persistenciaUsuario);
         this.poblador.seed();
     }
@@ -57,8 +58,8 @@ public class InyectorDependencias {
     private void inyectarComandos() {
         this.commandLineInterface.addComando(new Login(this.controladorUsuario));
         this.commandLineInterface.addComando(new ListarMascotas(this.controladorMascota));
-        this.commandLineInterface.addComando(new CrearMascotaExotica(this.controladorMascota));
-        this.commandLineInterface.addComando(new CrearMascota(this.controladorMascota));
+        this.commandLineInterface.addComando(new CrearMascotaExotica(this.controladorUsuario, this.controladorMascota));
+        this.commandLineInterface.addComando(new CrearMascota(this.controladorUsuario, this.controladorMascota));
         this.commandLineInterface.addComando(new CrearDueno(this.controladorUsuario));
         this.commandLineInterface.addComando(new CrearCuidador(this.controladorUsuario));
         this.commandLineInterface.addComando(new ContratarCuidador(this.controladorUsuario));

@@ -4,9 +4,7 @@ import upm.data.modelo.enums.Idioma;
 import upm.data.modelo.enums.Plataforma;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Dueno extends Usuario {
     private final List<Cuidador> cuidadoresFavoritos;
@@ -40,5 +38,18 @@ public class Dueno extends Usuario {
 
     public void eliminarCuidadorFavorito(Cuidador cuidadorFavorito) {
         this.cuidadoresFavoritos.remove(cuidadorFavorito);
+    }
+
+    public List<String> getIdCuidadoresFavoritos() {
+        List<String> idCuidadoresFavoritos = new ArrayList<>();
+        this.cuidadoresFavoritos.forEach(cuidador -> idCuidadoresFavoritos.add(cuidador.getId()));
+        return idCuidadoresFavoritos;
+    }
+
+    public List<Long> getIdMascotas() {
+        List<Long> idMascotas = new ArrayList<>();
+        this.mascotas.forEach(mascota -> idMascotas.add(mascota.getId()));
+        return idMascotas;
+
     }
 }

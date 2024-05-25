@@ -12,38 +12,43 @@ import java.util.List;
 
 public class ControladorMascota {
     private Long IDS;
-    private PersistenciaMascota persistenciaMascota;
+    private final PersistenciaMascota persistenciaMascota;
+    private final Session session;
 
-    public ControladorMascota(PersistenciaMascota persistenciaMascota) {
+    public ControladorMascota(PersistenciaMascota persistenciaMascota, Session session) {
         this.IDS = 1L;
         this.persistenciaMascota = persistenciaMascota;
+        this.session = session;
     }
 
-    public void crearMascota(String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums, Foto fotoFavorita) {
-        comprabarAtributosExistentes(codigoRIAC, polizaSeguro);
+    public Long crearMascota(String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums, Foto fotoFavorita) {
+        if (!ExternalRIAC.RIAC(codigoRIAC)) {
+            throw new RuntimeException("Codigo RIAC no valido"); // @TODO cambiar por excepcion personal
+        }
         this.persistenciaMascota.create(new Mascota(this.IDS, nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums, fotoFavorita));
         this.IDS++;
+        return this.IDS;
     }
 
-    public void crearMascotaExotica(String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums, Foto fotoFavorita, File certificadoLegal, File certificadoSalud, File libreEnfermedadesTransmisibles) {
-        comprabarAtributosExistentes(codigoRIAC, polizaSeguro);
+    public Long crearMascotaExotica(String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums, Foto fotoFavorita, File certificadoLegal, File certificadoSalud, File libreEnfermedadesTransmisibles) {
+        if (!ExternalRIAC.RIAC(codigoRIAC)) {
+            throw new RuntimeException("Codigo RIAC no valido"); // @TODO cambiar por excepcion personal
+        }
         this.persistenciaMascota.create(new MascotaExotica(this.IDS, nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums, fotoFavorita, certificadoLegal, certificadoSalud, libreEnfermedadesTransmisibles));
         this.IDS++;
+        return this.IDS;
     }
 
-    private void comprabarAtributosExistentes(String codigoRIAC, String polizaSeguro) {
-        if (!ExternalRIAC.RIAC(codigoRIAC)) {
-            throw new RuntimeException("Codigo RIAC no valido");    // @TODO habra que cambiar por excepciones personales
-        }
-        if (this.persistenciaMascota.findByCodigoRIAC(codigoRIAC).isPresent()) {
-            throw new RuntimeException("Codigo RIAC ya existe");    // @TODO habra que cambiar por excepciones personales
-        }
-        if (this.persistenciaMascota.findByPolizaSeguro(polizaSeguro).isPresent()) {
-            throw new RuntimeException("Poliza Seguro ya existe");    // @TODO habra que cambiar por excepciones personales
-        }
-    }
-
+    // @TODO Listar mascotas que cuida
     public List<Mascota> listarMascotas() {
+        if (!this.session.estaLogueado()) {
+            throw new RuntimeException("No estas loguedo"); // @TODO cambiar por excepcion personal
+        }
+        if(!this.session.esCuidador()){
+            throw new RuntimeException("No tienes acceso a esta fucnion");
+        }
         return this.persistenciaMascota.findAll();
     }
+
+
 }
