@@ -1,9 +1,10 @@
 package upm.data.modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Mascota {
+public class Mascota  implements Serializable {
     private final Long id;
     private String nombre;
     private String direccion;

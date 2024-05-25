@@ -1,8 +1,9 @@
 package upm.data.modelo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Mensaje {
+public class Mensaje  implements Serializable {
     private final Long id;
     private String cuerpo;
     private LocalDateTime fechaEnvio;

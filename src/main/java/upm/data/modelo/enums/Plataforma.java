@@ -1,6 +1,8 @@
 package upm.data.modelo.enums;
 
-public enum Plataforma {
+import java.io.Serializable;
+
+public enum Plataforma implements Serializable {
     Twitter,
     Google,
     Facebook,

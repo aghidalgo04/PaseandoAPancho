@@ -1,8 +1,9 @@
 package upm.data.modelo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public abstract class Premio {
+public abstract class Premio  implements Serializable {
     private final Long id;
     private Integer precio;
     private LocalDateTime fechaCompra;

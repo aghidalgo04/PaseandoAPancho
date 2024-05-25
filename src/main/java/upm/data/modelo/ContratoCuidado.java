@@ -1,8 +1,9 @@
 package upm.data.modelo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class ContratoCuidado {
+public class ContratoCuidado  implements Serializable {
     private final Long id;
     private LocalDateTime fechaInicioDeCuidado;
     private LocalDateTime fechaFinDeCuidado;
