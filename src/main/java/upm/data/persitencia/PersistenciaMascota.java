@@ -4,7 +4,5 @@ import upm.data.modelo.Mascota;
 
 import java.util.Optional;
 
-public interface PersistenciaMascota extends Persistencia<Mascota> {
-    Optional<Mascota> findByCodigoRIAC(String codigoRIAC);
-    Optional<Mascota> findByPolizaSeguro(String polizaSeguro);
+public interface PersistenciaMascota extends Persistencia<Long, Mascota> {
 }

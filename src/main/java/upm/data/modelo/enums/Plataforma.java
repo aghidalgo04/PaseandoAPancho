@@ -1,6 +1,6 @@
 package upm.data.modelo.enums;
 
-public enum Plataforma {
+public enum Plataforma{
     Twitter,
     Google,
     Facebook,

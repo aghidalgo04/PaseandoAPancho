@@ -1,6 +1,6 @@
 package upm.data.modelo.enums;
 
-public enum Estado {
+public enum Estado{
     Aceptado,
     Rechazado,
     Pendiente

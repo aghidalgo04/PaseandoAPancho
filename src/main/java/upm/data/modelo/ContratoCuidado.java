@@ -2,7 +2,7 @@ package upm.data.modelo;
 
 import java.time.LocalDateTime;
 
-public class ContratoCuidado {
+public class ContratoCuidado{
     private final Long id;
     private LocalDateTime fechaInicioDeCuidado;
     private LocalDateTime fechaFinDeCuidado;
