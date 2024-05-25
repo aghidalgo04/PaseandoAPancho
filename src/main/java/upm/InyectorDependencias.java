@@ -11,7 +11,7 @@ import upm.data.persitencia.PersistenciaContratoCuidado;
 import upm.data.persitencia.PersistenciaCuidador;
 import upm.data.persitencia.PersistenciaDueno;
 import upm.data.persitencia.PersistenciaMascota;
-import upm.data.persitencia.file.PersistenciaContratoCuidadoMap;
+import upm.data.persitencia.file.PersistenciaContratoCuidadoFile;
 import upm.data.persitencia.file.PersistenciaCuidadorFile;
 import upm.data.persitencia.file.PersistenciaDuenoFile;
 import upm.data.persitencia.file.PersistenciaMascotaFile;
@@ -38,7 +38,7 @@ public class InyectorDependencias {
         this.persistenciaDueno = new PersistenciaDuenoFile("duenos");
         this.persistenciaCuidador = new PersistenciaCuidadorFile("cuidadores");
         this.persistenciaMascota = new PersistenciaMascotaFile("mascotas");
-        this.persistenciaContratoCuidado = new PersistenciaContratoCuidadoMap("contratosCuidado");
+        this.persistenciaContratoCuidado = new PersistenciaContratoCuidadoFile("contratosCuidado");
 
         this.session = new Session();
 

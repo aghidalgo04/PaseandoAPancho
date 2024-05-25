@@ -3,12 +3,13 @@ package upm.data.persitencia.file;
 import upm.data.modelo.ContratoCuidado;
 import upm.data.persitencia.PersistenciaContratoCuidado;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-public class PersistenciaContratoCuidadoMap extends PersistenciaFile<Long, ContratoCuidado> implements PersistenciaContratoCuidado {
+public class PersistenciaContratoCuidadoFile extends PersistenciaFile<Long, ContratoCuidado> implements PersistenciaContratoCuidado {
 
-    public PersistenciaContratoCuidadoMap(String fileName) {
+    public PersistenciaContratoCuidadoFile(String fileName) {
         super(fileName);
     }
 
@@ -31,11 +32,12 @@ public class PersistenciaContratoCuidadoMap extends PersistenciaFile<Long, Contr
 
     @Override
     public void delete(Long id) {
-
+        this.objetos.remove(id);
+        this.saveToFile();
     }
 
     @Override
     public List<ContratoCuidado> findAll() {
-        return List.of();
+        return new LinkedList<>(this.objetos.values());
     }
 }
