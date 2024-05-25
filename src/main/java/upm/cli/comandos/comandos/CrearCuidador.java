@@ -4,10 +4,14 @@ import upm.cli.Vista;
 import upm.cli.comandos.Comando;
 import upm.cli.excepciones.UnsupportedAttributesException;
 import upm.controlador.ControladorUsuario;
+import upm.data.modelo.enums.Idioma;
+import upm.data.modelo.enums.Plataforma;
+
+import java.io.File;
 
 public class CrearCuidador implements Comando {
     private static final String VALOR = "crear-cuidador";
-    private static final String AYUDA_PARAMETROS = "<nombre>, <apellidos>, <correoElectronico>, <direccion>, <idioma>, <plataformaRegistro>, <foto>, <descripcion>, <precio>, <IBAN>, <documentacion>";
+    private static final String AYUDA_PARAMETROS = "<nombre>, <apellidos>, <correoElectronico>, <direccion>, <idioma: [Castellano, Ingles, Catalan, Valenciano, Euskera, Gallego]>, <plataformaRegistro: [Facebook, Google, Microsoft, Twitter]>, <foto>, <descripcion>, <precio>, <IBAN>, <documentacion>";
     private static final String AYUDA_COMENTARIO = "Creas un cuidador";
 
     private static final byte NUMERO_PARAMETROS_MIN = 10;
@@ -26,9 +30,9 @@ public class CrearCuidador implements Comando {
         }
 
         if (parametros.length == NUMERO_PARAMETROS_MIN) {
-            controladorUsuario.registrarCuidador(parametros[0], parametros[1], parametros[2], parametros[3], null, null, null, parametros[4], 0, parametros[5], null); // @TODO completar para que funcione con los distintos archivos
+            this.controladorUsuario.registrarCuidador(parametros[0], parametros[1], parametros[2], parametros[3], Idioma.valueOf(parametros[4]), Plataforma.valueOf(parametros[5]), new File(parametros[6]), parametros[7], Integer.parseInt(parametros[8]), parametros[9], null); // caso que no aparta documentacion
         } else {
-            controladorUsuario.registrarCuidador(parametros[0], parametros[1], parametros[2], parametros[3], null, null, null, parametros[4], 0, parametros[5], null); // @TODO completar para que funcione con los distintos archivos
+            this.controladorUsuario.registrarCuidador(parametros[0], parametros[1], parametros[2], parametros[3], Idioma.valueOf(parametros[4]), Plataforma.valueOf(parametros[5]), new File(parametros[6]), parametros[7], Integer.parseInt(parametros[8]), parametros[9], null);
         }
         vista.mostarMensaje("Cuenta creada con exito");
     }
