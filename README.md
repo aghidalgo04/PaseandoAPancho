@@ -11,3 +11,4 @@ Practica FIS 2023-2024.
   - _entrega 1_ ~ contiene documentos pedidos para entrega 1
   - _entrega 1_ ~ contiene documentos pedidos para entrega 2
 - **dependencies** ~ dependencias "locales" de proyecto
+- **ejemplos** ~ contiene ejemplos que se puede ejecutar en consola
