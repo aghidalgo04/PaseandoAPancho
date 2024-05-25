@@ -2,6 +2,7 @@ package upm.cli.comandos.comandos;
 
 import upm.cli.Vista;
 import upm.cli.comandos.Comando;
+import upm.cli.excepciones.UnsupportedAttributesException;
 import upm.controlador.ControladorUsuario;
 
 public class CrearCuidador implements Comando {
@@ -21,7 +22,7 @@ public class CrearCuidador implements Comando {
     @Override
     public void ejecutar(String[] parametros, Vista vista) {
         if (parametros.length != NUMERO_PARAMETROS_MIN && parametros.length != NUMERO_PARAMETROS_MAX) {
-            throw new RuntimeException("Numero de parametros incorrectos"); // @TODO cambiar por exception personal
+            throw new UnsupportedAttributesException("Numero de parametros incorrectos"); // @TODO cambiar por exception personal
         }
 
         if (parametros.length == NUMERO_PARAMETROS_MIN) {

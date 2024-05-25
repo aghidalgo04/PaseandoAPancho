@@ -2,6 +2,7 @@ package upm.cli.comandos.comandos;
 
 import upm.cli.Vista;
 import upm.cli.comandos.Comando;
+import upm.cli.excepciones.UnsupportedAttributesException;
 import upm.controlador.ControladorUsuario;
 
 public class CrearDueno implements Comando {
@@ -20,7 +21,7 @@ public class CrearDueno implements Comando {
     @Override
     public void ejecutar(String[] parametros, Vista vista) {
         if (parametros.length != NUMERO_PARAMETROS) {
-            throw new RuntimeException("Numero de parametros incorrectos"); // @TODO cambiar por exception personal
+            throw new UnsupportedAttributesException("Numero de parametros incorrectos"); // @TODO cambiar por exception personal
         }
         this.controladorUsuario.registrarDueno(parametros[0], parametros[1], parametros[2], parametros[3], null, null); // @TODO completar para que funcione con los distintos archivos
         vista.mostarMensaje("Cuenta creada con exito");
