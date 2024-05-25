@@ -16,9 +16,10 @@ public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
     private Map<String, AdaptadorDueno> persistenciaDueno;
     private Map<String, AdaptadorCuidador> persistenciaCuidador;
     private File folder;
-    private File file;
+    private File fileDueno;
+    private File fileCuidador;
 
-    public PersistenciaUsuarioMap(String fileName) {
+    public PersistenciaUsuarioMap(String fileNameDueno, String fileNameCuidador) {
         this.persistenciaDueno = new TreeMap<>();
         this.persistenciaCuidador = new TreeMap<>();
         this.folder = new File("persistenciaFile");
@@ -28,23 +29,40 @@ public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
                 throw new RuntimeException("No se ha podido crear la carpeta");
             }
         }
-        this.file = new File("persistenciaFile/" + fileName);
-        if (!this.file.exists()) {
+        this.folder = new File("persistenciaFile");
+        if (!this.folder.exists()) {
+            boolean folderCreated = this.folder.mkdir();
+            if (!folderCreated) {
+                throw new RuntimeException("No se ha podido crear la carpeta");
+            }
+        }
+        this.fileDueno = new File("persistenciaFile/" + fileNameDueno);
+        this.fileCuidador = new File("persistenciaFile/" + fileNameCuidador);
+        if (!this.fileDueno.exists()) {
             try {
-                this.file.createNewFile();
+                this.fileDueno.createNewFile();
             } catch (IOException e) {
                 throw new RuntimeException("Error al crear el fichero");
             }
-        } else {
-            try (FileInputStream fileIn = new FileInputStream(this.file);
-                 ObjectInput objectIn = new ObjectInputStream(fileIn)) {
-                this.persistenciaDueno = (Map<String, AdaptadorDueno>) objectIn.readObject();
-                this.persistenciaCuidador = (Map<String, AdaptadorCuidador>) objectIn.readObject();
+        }
+        if (!this.fileCuidador.exists()) {
+            try {
+                this.fileCuidador.createNewFile();
             } catch (IOException e) {
-                throw new RuntimeException("Error al abrir el fichero");
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
+                throw new RuntimeException("Error al crear el fichero");
             }
+        }
+        try {
+            FileInputStream fileInDueno = new FileInputStream(this.fileDueno);
+            ObjectInput objectInDueno = new ObjectInputStream(fileInDueno);
+            FileInputStream fileInCuidador = new FileInputStream(this.fileCuidador);
+            ObjectInput objectInCuidador = new ObjectInputStream(fileInCuidador);
+            this.persistenciaDueno = (Map<String, AdaptadorDueno>) objectInDueno.readObject();
+            this.persistenciaCuidador = (Map<String, AdaptadorCuidador>) objectInCuidador.readObject();
+        } catch (IOException e) {
+            throw new RuntimeException("Error al abrir el fichero");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -100,7 +118,7 @@ public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
     }
 
     private void updateFileDueno() {
-        try (FileOutputStream fileOut = new FileOutputStream(this.file);
+        try (FileOutputStream fileOut = new FileOutputStream(this.fileDueno);
              ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
             objectOut.writeObject(this.persistenciaDueno);
         } catch (IOException e) {
@@ -109,7 +127,7 @@ public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
     }
 
     private void updateFileCuidador() {
-        try (FileOutputStream fileOut = new FileOutputStream(this.file);
+        try (FileOutputStream fileOut = new FileOutputStream(this.fileCuidador);
              ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
             objectOut.writeObject(this.persistenciaCuidador);
         } catch (IOException e) {
