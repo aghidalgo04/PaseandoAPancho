@@ -16,6 +16,10 @@ public class Dueno extends Usuario {
         this.mascotas = new ArrayList<>();
     }
 
+    public List<Mascota> getMascotas() {
+        return this.mascotas;
+    }
+
     public void anadirMascota(Mascota mascota) {
         this.mascotas.add(mascota);
     }
