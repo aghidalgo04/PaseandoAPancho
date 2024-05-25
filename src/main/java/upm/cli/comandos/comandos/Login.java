@@ -22,7 +22,7 @@ public class Login implements Comando {
     @Override
     public void ejecutar(String[] parametros, Vista vista) {
         if (parametros.length != NUMERO_PARAMETROS) {
-            throw new UnsupportedAttributesException("Numero de parametros incorrectos");
+            throw new UnsupportedAttributesException(this.ayudaParametros());
         }
         this.controladorUsuario.login(Plataforma.valueOf(parametros[0]));
         vista.mostarMensaje("Login exitoso");

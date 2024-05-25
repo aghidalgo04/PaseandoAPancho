@@ -22,7 +22,7 @@ public class CrearCuidador implements Comando {
     @Override
     public void ejecutar(String[] parametros, Vista vista) {
         if (parametros.length != NUMERO_PARAMETROS_MIN && parametros.length != NUMERO_PARAMETROS_MAX) {
-            throw new UnsupportedAttributesException("Numero de parametros incorrectos"); // @TODO cambiar por exception personal
+            throw new UnsupportedAttributesException(this.ayudaParametros());
         }
 
         if (parametros.length == NUMERO_PARAMETROS_MIN) {
