@@ -8,6 +8,7 @@ import upm.data.persitencia.PersistenciaMascota;
 
 import java.io.File;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ControladorMascota {
     private Long IDS;
@@ -50,7 +51,7 @@ public class ControladorMascota {
         }
         if (this.session.esCuidador()) {
             Cuidador cuidador = (Cuidador) this.session.getUsuario();
-            return cuidador.getContratos().stream().map(ContratoCuidado::getMascotaAsociada).toList();
+            return cuidador.getContratos().stream().map(ContratoCuidado::getMascotaAsociada).collect(Collectors.toList());
         } else {
             Dueno dueno = (Dueno) this.session.getUsuario();
             return dueno.getMascotas();

@@ -53,9 +53,9 @@ public class ControladorUsuario {
     public void login(Plataforma plataforma) {
         String idUsuario = ExternalRRSS.LoginRRSS();
         Optional<Cuidador> cuidador = this.persistenciaUsuario.findCuidador(idUsuario);
-        if (cuidador.isEmpty()) {
+        if (!cuidador.isPresent()) {
             Optional<Dueno> dueno = this.persistenciaUsuario.findDueno(idUsuario);
-            if (dueno.isEmpty()) {
+            if (!dueno.isPresent()) {
                 throw new SecurityAuthorizationException("Usuario no existe");
             } else {
                 this.session.setUsuario(dueno.get());
@@ -73,7 +73,7 @@ public class ControladorUsuario {
             throw new SecurityProhibitionException("No tienes acceso a la funcionalidad");
         }
         Optional<Mascota> mascota = this.persistenciaMascota.findById(idMascota);
-        if (mascota.isEmpty()) {
+        if (!mascota.isPresent()) {
             throw new NotFoundException("Mascota no existe");
         }
         Dueno dueno = (Dueno) this.session.getUsuario();
@@ -88,7 +88,7 @@ public class ControladorUsuario {
         if (!this.session.esDueno()) {
             throw new SecurityProhibitionException("No tienes acceso a la funcionalidad");
         }
-        if (this.persistenciaUsuario.findCuidador(idCuidador).isEmpty()) {
+        if (!this.persistenciaUsuario.findCuidador(idCuidador).isPresent()) {
             throw new NotFoundException("Cuidador no existe");
         }
         Dueno dueno = (Dueno) this.session.getUsuario();

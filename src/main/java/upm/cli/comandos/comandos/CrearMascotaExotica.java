@@ -8,7 +8,7 @@ import upm.controlador.ControladorUsuario;
 
 public class CrearMascotaExotica implements Comando {
     private static final String VALOR = "crear-dueno";
-    private static final String AYUDA_PARAMETROS = "(nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums, fotoFavorita, certificadoLegal, certificadoSalud, libreEnfermedadesTransmisibles)";
+    private static final String AYUDA_PARAMETROS = "<nombre>, <direccion>, <descripcion>, <codigoRIAC>, <polizaSeguro>, <albums>, <fotoFavorita>, <certificadoLegal>, <certificadoSalud>, <libreEnfermedadesTransmisibles>";
     private static final String AYUDA_COMENTARIO = "Creas un dueno";
 
     private static final byte NUMERO_PARAMETROS = 10;
