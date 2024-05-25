@@ -5,12 +5,16 @@ import upm.controlador.excepciones.DuplicateException;
 import upm.controlador.excepciones.NotFoundException;
 import upm.controlador.excepciones.SecurityAuthorizationException;
 import upm.controlador.excepciones.SecurityProhibitionException;
-import upm.data.modelo.*;
+import upm.data.modelo.ContratoCuidado;
+import upm.data.modelo.Cuidador;
+import upm.data.modelo.Dueno;
+import upm.data.modelo.Mascota;
 import upm.data.modelo.enums.Idioma;
 import upm.data.modelo.enums.Plataforma;
 import upm.data.persitencia.PersistenciaContratoCuidado;
+import upm.data.persitencia.PersistenciaCuidador;
+import upm.data.persitencia.PersistenciaDueno;
 import upm.data.persitencia.PersistenciaMascota;
-import upm.data.persitencia.PersistenciaUsuario;
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -19,14 +23,16 @@ import java.util.Optional;
 
 public class ControladorUsuario {
     private Long IDS;
-    private PersistenciaUsuario persistenciaUsuario;
+    private final PersistenciaDueno persistenciaDueno;
+    private final PersistenciaCuidador persistenciaCuidador;
     private PersistenciaMascota persistenciaMascota;
     private PersistenciaContratoCuidado persistenciaContratoCuidado;
     private Session session;
 
-    public ControladorUsuario(PersistenciaUsuario persistenciaUsuario, PersistenciaMascota persistenciaMascota, PersistenciaContratoCuidado persistenciaContratoCuidado, Session session) {
+    public ControladorUsuario(PersistenciaDueno persistenciaDueno, PersistenciaCuidador persistenciaCuidador, PersistenciaMascota persistenciaMascota, PersistenciaContratoCuidado persistenciaContratoCuidado, Session session) {
         this.IDS = 0L;
-        this.persistenciaUsuario = persistenciaUsuario;
+        this.persistenciaDueno = persistenciaDueno;
+        this.persistenciaCuidador = persistenciaCuidador;
         this.persistenciaMascota = persistenciaMascota;
         this.persistenciaContratoCuidado = persistenciaContratoCuidado;
         this.session = session;
@@ -34,27 +40,27 @@ public class ControladorUsuario {
 
     public void registrarDueno(String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro) {
         String idUsuario = ExternalRRSS.LoginRRSS();
-        if (this.persistenciaUsuario.findDueno(idUsuario).isPresent() || this.persistenciaUsuario.findCuidador(idUsuario).isPresent()) {
+        if (this.persistenciaDueno.findById(idUsuario).isPresent() || this.persistenciaCuidador.findById(idUsuario).isPresent()) {
             throw new DuplicateException("Usuario existe");
         }
         Dueno dueno = new Dueno(idUsuario, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro);
-        this.persistenciaUsuario.createDueno(dueno);
+        this.persistenciaDueno.create(dueno);
     }
 
     public void registrarCuidador(String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN, List<File> documentacion) {
         String idUsuario = ExternalRRSS.LoginRRSS();
-        if (this.persistenciaUsuario.findDueno(idUsuario).isPresent() || this.persistenciaUsuario.findCuidador(idUsuario).isPresent()) {
+        if (this.persistenciaDueno.findById(idUsuario).isPresent() || this.persistenciaCuidador.findById(idUsuario).isPresent()) {
             throw new DuplicateException("Usuario existe");
         }
         Cuidador cuidador = new Cuidador(idUsuario, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro, foto, descripcion, precio, IBAN, documentacion);
-        this.persistenciaUsuario.createCuidador(cuidador);
+        this.persistenciaCuidador.create(cuidador);
     }
 
     public void login(Plataforma plataforma) {
         String idUsuario = ExternalRRSS.LoginRRSS();
-        Optional<Cuidador> cuidador = this.persistenciaUsuario.findCuidador(idUsuario);
+        Optional<Cuidador> cuidador = this.persistenciaCuidador.findById(idUsuario);
         if (!cuidador.isPresent()) {
-            Optional<Dueno> dueno = this.persistenciaUsuario.findDueno(idUsuario);
+            Optional<Dueno> dueno = this.persistenciaDueno.findById(idUsuario);
             if (!dueno.isPresent()) {
                 throw new SecurityAuthorizationException("Usuario no existe");
             } else {
@@ -78,7 +84,7 @@ public class ControladorUsuario {
         }
         Dueno dueno = (Dueno) this.session.getUsuario();
         dueno.anadirMascota(mascota.get());
-        this.persistenciaUsuario.updateDueno(dueno);
+        this.persistenciaDueno.update(dueno);
     }
 
     public void contratarCuidador(Long idMascota, String idCuidador, LocalDateTime fechaInicioCuidado, LocalDateTime fechaFinCuidado) {
@@ -88,16 +94,17 @@ public class ControladorUsuario {
         if (!this.session.esDueno()) {
             throw new SecurityProhibitionException("No tienes acceso a la funcionalidad");
         }
-        if (!this.persistenciaUsuario.findCuidador(idCuidador).isPresent()) {
+        Optional<Cuidador> cuidador = this.persistenciaCuidador.findById(idCuidador);
+        if (!cuidador.isPresent()) {
             throw new NotFoundException("Cuidador no existe");
         }
         Dueno dueno = (Dueno) this.session.getUsuario();
         if (dueno.buscarMascota(idMascota) == null) {
             throw new NotFoundException("Mascota no existe");
         }
-        int horas = fechaFinCuidado.getHour() - fechaInicioCuidado.getHour();
-        this.persistenciaContratoCuidado.create(new ContratoCuidado(this.IDS, fechaInicioCuidado, fechaFinCuidado, LocalDateTime.now(), this.persistenciaUsuario.findCuidador(idCuidador).get().getPrecio() * horas * 2D, this.persistenciaMascota.findById(idMascota).get(), this.persistenciaUsuario.findCuidador(idCuidador).get()));
-        this.persistenciaUsuario.findCuidador(idCuidador).get().anadirContratoCuidado(this.persistenciaContratoCuidado.findById(this.IDS).get());
-        this.IDS++;
+        ContratoCuidado contratoCuidado = new ContratoCuidado(++this.IDS, fechaInicioCuidado, fechaFinCuidado, LocalDateTime.now(), cuidador.get().getPrecio() * (fechaFinCuidado.getHour() - fechaInicioCuidado.getHour()) * 2D, dueno.buscarMascota(idMascota), cuidador.get());
+        cuidador.get().anadirContratoCuidado(contratoCuidado);
+        this.persistenciaContratoCuidado.create(contratoCuidado);
+        this.persistenciaCuidador.update(cuidador.get());
     }
 }

@@ -1,8 +1,9 @@
 package upm.data.modelo;
 
 import java.io.File;
+import java.io.Serializable;
 
-public class Foto {
+public class Foto implements Serializable {
     private final Long id;
     private File foto;
 

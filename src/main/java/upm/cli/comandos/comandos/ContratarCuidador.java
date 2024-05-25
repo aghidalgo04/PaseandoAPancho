@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 
 public class ContratarCuidador implements Comando {
     private static final String VALOR = "contratar-cuidador";
-    private static final String AYUDA_PARAMETROS = "<idMascota>, <idCuidador>, <fechaInicioCuidado>, <fechaFinCuidado>";
+    private static final String AYUDA_PARAMETROS = "<idMascota>; <idCuidador>; <fechaInicioCuidado: [dd-MM-yyyy]>; <fechaFinCuidado: [dd-MM-yyyy]>";
     private static final String AYUDA_COMENTARIO = "Contratar cuidador para mascota de dueno";
 
     private static final byte NUMERO_PARAMETROS = 5;
@@ -20,6 +20,7 @@ public class ContratarCuidador implements Comando {
     public ContratarCuidador(ControladorUsuario controladorUsuario) {
         this.controladorUsuario = controladorUsuario;
     }
+
     @Override
     public void ejecutar(String[] parametros, Vista vista) {
         if (parametros.length != NUMERO_PARAMETROS) {

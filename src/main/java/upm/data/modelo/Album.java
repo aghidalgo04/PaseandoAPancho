@@ -2,7 +2,7 @@ package upm.data.modelo;
 
 import java.util.List;
 
-public class Album {
+public class Album{
     private final Long id;
     private List<Foto> fotos;
     private String titulo;
