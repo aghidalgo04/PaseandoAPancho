@@ -46,7 +46,7 @@ public class ControladorUsuario {
         this.persistenciaUsuario.createCuidador(cuidador);
     }
 
-    public void login() {
+    public void login(Plataforma plataforma) {
         String idUsuario = ExternalRRSS.LoginRRSS();
         Optional<Cuidador> cuidador = this.persistenciaUsuario.findCuidador(idUsuario);
         if (!cuidador.isPresent()) {
