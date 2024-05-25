@@ -9,7 +9,7 @@ import upm.data.modelo.enums.Plataforma;
 
 public class CrearDueno implements Comando {
     private static final String VALOR = "crear-dueno";
-    private static final String AYUDA_PARAMETROS = "<nombre>, <apellidos>, <correoElectronico>, <direccion>, <idioma: [Castellano, Ingles, Catalan, Valenciano, Euskera, Gallego]>, <plataformaRegistro: [Facebook, Google, Microsoft, Twitter]>";
+    private static final String AYUDA_PARAMETROS = "<nombre>; <apellidos>; <correoElectronico>; <direccion>; <idioma: [Castellano, Ingles, Catalan, Valenciano, Euskera, Gallego]>; <plataformaRegistro: [Facebook, Google, Microsoft, Twitter]>";
     private static final String AYUDA_COMENTARIO = "Creas un dueno";
 
     private static final byte NUMERO_PARAMETROS = 6;

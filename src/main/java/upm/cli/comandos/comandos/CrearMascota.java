@@ -9,7 +9,7 @@ import upm.controlador.Session;
 
 public class CrearMascota implements Comando {
     private static final String VALOR = "crear-mascota";
-    private static final String AYUDA_PARAMETROS = "<nombre>, <direccion>, <descripcion>, <codigoRIAC>, <polizaSeguro>, <albums>, <fotoFavorita>";
+    private static final String AYUDA_PARAMETROS = "<nombre>; <direccion>; <descripcion>; <codigoRIAC>; <polizaSeguro>; <albums>; <fotoFavorita>";
     private static final String AYUDA_COMENTARIO = "Creas una mascota";
 
     private static final byte NUMERO_PARAMETROS = 7;
