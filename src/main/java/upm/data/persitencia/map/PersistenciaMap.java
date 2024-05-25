@@ -6,20 +6,21 @@ import java.io.*;
 import java.util.*;
 
 abstract public class PersistenciaMap<T> implements Persistencia<T> {
+    private static String FOLDER_NAME = "persistenciaFile";
+
     private Map<Long, T> persistencia;
-    protected File folder;
     private File file;
 
     public PersistenciaMap(String fileName) {
         this.persistencia = new TreeMap<>();
-        this.folder = new File("persistenciaFile");
-        if (!this.folder.exists()) {
-            boolean folderCreated = this.folder.mkdir();
+        File folder = new File(FOLDER_NAME);
+        if (!folder.exists()) {
+            boolean folderCreated = folder.mkdir();
             if (!folderCreated) {
                 throw new RuntimeException("No se ha podido crear la carpeta");
             }
         }
-        this.file = new File("persistenciaFile/" + fileName);
+        this.file = new File(FOLDER_NAME + "/" + fileName);
         if (!this.file.exists()) {
             try {
                 this.file.createNewFile();

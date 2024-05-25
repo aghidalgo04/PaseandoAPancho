@@ -12,26 +12,21 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.TreeMap;
 
-public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
+public class PersistenciaUsuarioMap implements PersistenciaUsuario {
+    private static String FOLDER_NAME = "persistenciaFile";
+
     private Map<String, AdaptadorDueno> persistenciaDueno;
     private Map<String, AdaptadorCuidador> persistenciaCuidador;
-    private File folder;
     private File fileDueno;
     private File fileCuidador;
 
     public PersistenciaUsuarioMap(String fileNameDueno, String fileNameCuidador) {
         this.persistenciaDueno = new TreeMap<>();
         this.persistenciaCuidador = new TreeMap<>();
-        this.folder = new File("persistenciaFile");
-        if (!this.folder.exists()) {
-            boolean folderCreated = this.folder.mkdir();
-            if (!folderCreated) {
-                throw new RuntimeException("No se ha podido crear la carpeta");
-            }
-        }
-        this.folder = new File("persistenciaFile");
-        if (!this.folder.exists()) {
-            boolean folderCreated = this.folder.mkdir();
+
+        File folder = new File(FOLDER_NAME);
+        if (!folder.exists()) {
+            boolean folderCreated = folder.mkdir();
             if (!folderCreated) {
                 throw new RuntimeException("No se ha podido crear la carpeta");
             }
@@ -42,27 +37,28 @@ public class PersistenciaUsuarioMap  implements PersistenciaUsuario {
             try {
                 this.fileDueno.createNewFile();
             } catch (IOException e) {
-                throw new RuntimeException("Error al crear el fichero");
+                throw new RuntimeException("Error al crear el fichero" + fileNameDueno);
             }
         }
         if (!this.fileCuidador.exists()) {
             try {
                 this.fileCuidador.createNewFile();
             } catch (IOException e) {
-                throw new RuntimeException("Error al crear el fichero");
+                throw new RuntimeException("Error al crear el fichero" + fileNameCuidador);
             }
-        }
-        try {
-            FileInputStream fileInDueno = new FileInputStream(this.fileDueno);
-            ObjectInput objectInDueno = new ObjectInputStream(fileInDueno);
-            FileInputStream fileInCuidador = new FileInputStream(this.fileCuidador);
-            ObjectInput objectInCuidador = new ObjectInputStream(fileInCuidador);
-            this.persistenciaDueno = (Map<String, AdaptadorDueno>) objectInDueno.readObject();
-            this.persistenciaCuidador = (Map<String, AdaptadorCuidador>) objectInCuidador.readObject();
-        } catch (IOException e) {
-            throw new RuntimeException("Error al abrir el fichero");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+        } else {
+            try {
+                FileInputStream fileInDueno = new FileInputStream(this.fileDueno);
+                ObjectInput objectInDueno = new ObjectInputStream(fileInDueno);
+                FileInputStream fileInCuidador = new FileInputStream(this.fileCuidador);
+                ObjectInput objectInCuidador = new ObjectInputStream(fileInCuidador);
+                this.persistenciaDueno = (Map<String, AdaptadorDueno>) objectInDueno.readObject();
+                this.persistenciaCuidador = (Map<String, AdaptadorCuidador>) objectInCuidador.readObject();
+            } catch (IOException e) {
+                throw new RuntimeException("Error al abrir el fichero");
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
