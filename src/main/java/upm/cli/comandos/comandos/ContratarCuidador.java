@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 
 public class ContratarCuidador implements Comando {
     private static final String VALOR = "contratar-cuidador";
-    private static final String AYUDA_PARAMETROS = "<idMascota>; <idCuidador>; <fechaInicioCuidado: [dd-MM-yyyy]>; <fechaFinCuidado: [dd-MM-yyyy]>";
+    private static final String AYUDA_PARAMETROS = "<idMascota>; <idCuidador>; <fechaInicioCuidado: [dd-MM-yyyy HH.mm]>; <fechaFinCuidado: [dd-MM-yyyy HH.mm]>";
     private static final String AYUDA_COMENTARIO = "Contratar cuidador para mascota de dueno";
 
     private static final byte NUMERO_PARAMETROS = 4;
@@ -26,7 +26,7 @@ public class ContratarCuidador implements Comando {
         if (parametros.length != NUMERO_PARAMETROS) {
             throw new UnsupportedAttributesException(this.ayudaParametros());
         }
-        DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd-MM-yyyy HH.mm");
         this.controladorUsuario.contratarCuidador(Long.valueOf(parametros[0]), parametros[1], LocalDateTime.parse(parametros[2], dateTimeFormatter), LocalDateTime.parse(parametros[3], dateTimeFormatter));
         vista.mostarMensaje("Contrato creado pero no pagado");
     }
