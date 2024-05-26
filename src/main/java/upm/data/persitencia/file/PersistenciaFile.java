@@ -1,6 +1,7 @@
 package upm.data.persitencia.file;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
@@ -16,7 +17,7 @@ public abstract class PersistenciaFile<K, T> {
 
     protected PersistenciaFile(String fileName, TypeReference<Map<K, T>> typeRef) {
         this.FILE_PATH = FOLDER + "/" + fileName + ".json";
-        this.objectMapper = new ObjectMapper();
+        this.objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         this.objetos = new TreeMap<>();
 
         File folder = new File(FOLDER);
