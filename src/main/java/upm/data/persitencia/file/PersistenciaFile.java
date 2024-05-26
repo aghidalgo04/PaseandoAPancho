@@ -1,6 +1,7 @@
 package upm.data.persitencia.file;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
@@ -11,23 +12,30 @@ import java.util.TreeMap;
 public abstract class PersistenciaFile<K, T> {
     private static final String FOLDER = "persistenciaFile";
     private final String FILE_PATH;
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
     protected Map<K, T> objetos;
 
-    protected PersistenciaFile(String fileName) {
+    protected PersistenciaFile(String fileName, TypeReference<Map<K, T>> typeRef) {
         this.FILE_PATH = FOLDER + "/" + fileName + ".json";
-        this.objectMapper = new ObjectMapper();
+        this.objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         this.objetos = new TreeMap<>();
 
-        this.loadFromFile();
-    }
-
-    protected void loadFromFile() {
+        File folder = new File(FOLDER);
+        if (!folder.exists()) {
+            if (!folder.mkdirs()) {
+                throw new RuntimeException("No se ha podido crear carpeta " + FOLDER);
+            }
+        }
         try {
             File file = new File(FILE_PATH);
             if (file.exists()) {
-                this.objetos = this.objectMapper.readValue(file, new TypeReference<Map<K, T>>() {
-                });
+                if (file.length() > 0) {
+                    this.objetos = this.objectMapper.readValue(file, typeRef);
+                }
+            } else {
+                if (!file.createNewFile()) {
+                    throw new RuntimeException("No se ha podido crear fichero en ruta " + FILE_PATH);
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());

@@ -11,15 +11,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ControladorMascota {
-    private Long IDS;
+    private Long idsMascota;
     private final PersistenciaMascota persistenciaMascota;
     private final Session session;
 
     public ControladorMascota(PersistenciaMascota persistenciaMascota, Session session) {
-        this.IDS = 1L;
         this.persistenciaMascota = persistenciaMascota;
         this.session = session;
+
+        this.idsMascota = (long) persistenciaMascota.findAll().size();
     }
+
 
     public Long crearMascota(String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums, Foto fotoFavorita) {
         if (!this.session.estaLogueado()) {
@@ -28,9 +30,28 @@ public class ControladorMascota {
         if (!ExternalRIAC.RIAC(codigoRIAC)) {
             throw new InvalidAttributeException("Codigo RIAC no valido");
         }
-        this.persistenciaMascota.create(new Mascota(this.IDS, nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums, fotoFavorita));
-        this.IDS++;
-        return this.IDS;
+
+        Mascota.Builder builder = new Mascota.Builder()
+                .id(++this.idsMascota)
+                .nombre(nombre)
+                .direccion(direccion)
+                .descripcion(descripcion)
+                .codigoRIAC(codigoRIAC);
+
+        if (!polizaSeguro.isEmpty()) {
+            builder.polizaSeguro(polizaSeguro);
+        }
+
+        if (albums != null) {
+            builder.albums(albums);
+        }
+
+        if (fotoFavorita != null) {
+            builder.fotoFavorita(fotoFavorita);
+        }
+
+        this.persistenciaMascota.create(builder.build());
+        return this.idsMascota;
     }
 
     public Long crearMascotaExotica(String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums, Foto fotoFavorita, File certificadoLegal, File certificadoSalud, File libreEnfermedadesTransmisibles) {
@@ -40,9 +61,31 @@ public class ControladorMascota {
         if (!ExternalRIAC.RIAC(codigoRIAC)) {
             throw new InvalidAttributeException("Codigo RIAC no valido");
         }
-        this.persistenciaMascota.create(new MascotaExotica(this.IDS, nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums, fotoFavorita, certificadoLegal, certificadoSalud, libreEnfermedadesTransmisibles));
-        this.IDS++;
-        return this.IDS;
+
+        MascotaExotica.Builder builder = (MascotaExotica.Builder) new MascotaExotica.Builder()
+                .certificadoLegal(certificadoLegal)
+                .libreEnfermedadesTransmisibles(libreEnfermedadesTransmisibles)
+                .certificadoSalud(certificadoSalud)
+                .id(++this.idsMascota)
+                .nombre(nombre)
+                .direccion(direccion)
+                .descripcion(descripcion)
+                .codigoRIAC(codigoRIAC);
+
+        if (!polizaSeguro.isEmpty()) {
+            builder.polizaSeguro(polizaSeguro);
+        }
+
+        if (albums != null && !albums.isEmpty()) {
+            builder.albums(albums);
+        }
+
+        if (fotoFavorita != null) {
+            builder.fotoFavorita(fotoFavorita);
+        }
+
+        this.persistenciaMascota.create(builder.build());
+        return this.idsMascota;
     }
 
     public List<Mascota> listarMascotas() {

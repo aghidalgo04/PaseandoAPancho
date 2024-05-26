@@ -10,6 +10,12 @@ public class Dueno extends Usuario {
     private final List<Cuidador> cuidadoresFavoritos;
     private final List<Mascota> mascotas;
 
+    public Dueno(){
+        super();
+        this.cuidadoresFavoritos = new ArrayList<>();
+        this.mascotas = new ArrayList<>();
+    }
+
     public Dueno(String id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro) {
         super(id, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro);
         this.cuidadoresFavoritos = new ArrayList<>();
@@ -42,18 +48,5 @@ public class Dueno extends Usuario {
 
     public void eliminarCuidadorFavorito(Cuidador cuidadorFavorito) {
         this.cuidadoresFavoritos.remove(cuidadorFavorito);
-    }
-
-    public List<String> getIdCuidadoresFavoritos() {
-        List<String> idCuidadoresFavoritos = new ArrayList<>();
-        this.cuidadoresFavoritos.forEach(cuidador -> idCuidadoresFavoritos.add(cuidador.getId()));
-        return idCuidadoresFavoritos;
-    }
-
-    public List<Long> getIdMascotas() {
-        List<Long> idMascotas = new ArrayList<>();
-        this.mascotas.forEach(mascota -> idMascotas.add(mascota.getId()));
-        return idMascotas;
-
     }
 }

@@ -8,7 +8,7 @@ import upm.controlador.ControladorUsuario;
 
 public class CrearMascotaExotica implements Comando {
     private static final String VALOR = "crear-mascota-exotica";
-    private static final String AYUDA_PARAMETROS = "<nombre>, <direccion>, <descripcion>, <codigoRIAC>, <polizaSeguro>, <albums>, <fotoFavorita>, <certificadoLegal>, <certificadoSalud>, <libreEnfermedadesTransmisibles>";
+    private static final String AYUDA_PARAMETROS = "<nombre>; <direccion>; <descripcion>; <codigoRIAC>; <polizaSeguro>; <albums>; <fotoFavorita>; <certificadoLegal>; <certificadoSalud>; <libreEnfermedadesTransmisibles>";
     private static final String AYUDA_COMENTARIO = "Creas un dueno";
 
     private static final byte NUMERO_PARAMETROS = 10;
@@ -26,7 +26,8 @@ public class CrearMascotaExotica implements Comando {
         if (parametros.length != NUMERO_PARAMETROS) {
             throw new UnsupportedAttributesException(this.ayudaParametros());
         }
-        this.controladorUsuario.anadirMascota(this.controladorMascota.crearMascotaExotica(parametros[0], parametros[1], parametros[2], parametros[4], parametros[5], null, null, null, null, null)); // @TODO completar para que funcione con los distintos archivos
+        this.controladorUsuario.anadirMascota(this.controladorMascota.crearMascotaExotica(parametros[0], parametros[1], parametros[2], parametros[3], parametros[4], null, null, null, null, null));
+        vista.mostarMensaje("Mascota exotica creada con exito");
     }
 
     @Override

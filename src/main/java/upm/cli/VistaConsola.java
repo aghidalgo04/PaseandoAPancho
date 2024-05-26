@@ -28,7 +28,7 @@ public class VistaConsola implements Vista {
 
     @Override
     public void mostarBienvenida() {
-        System.out.println(VistaConsola.AMARILLO + "Bienvenido a Paseado a Pancho" + VistaConsola.COPIAR_DERECHA_AUTOR + ", llama `ayuda` para consultar comandos." + VistaConsola.RESETEAR);
+        System.out.println(VistaConsola.AMARILLO + "Bienvenido a Paseando a Pancho" + VistaConsola.COPIAR_DERECHA_AUTOR + ", llama `ayuda` para consultar comandos." + VistaConsola.RESETEAR);
     }
 
     @Override

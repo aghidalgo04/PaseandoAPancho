@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Mascota {
-    private final Long id;
+    private Long id;
     private String nombre;
     private String direccion;
     private String descripcion;
@@ -13,32 +13,19 @@ public class Mascota {
     private List<Album> albums;
     private Foto fotoFavorita;
 
-    public Mascota(Long id, String nombre, String direccion, String descripcion, String codigoRIAC) {
-        this.id = id;
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.descripcion = descripcion;
-        this.codigoRIAC = codigoRIAC;
+    public Mascota() {
+        this.albums = new ArrayList<>();
     }
 
-    public Mascota(Long id, String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro) {
-        this(id, nombre, direccion, descripcion, codigoRIAC);
-        this.polizaSeguro = polizaSeguro;
-    }
-
-    public Mascota(Long id, String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, Foto fotoFavorita) {
-        this(id, nombre, direccion, descripcion, codigoRIAC, polizaSeguro);
-        this.fotoFavorita = fotoFavorita;
-    }
-
-    public Mascota(Long id, String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums) {
-        this(id, nombre, direccion, descripcion, codigoRIAC, polizaSeguro);
-        this.albums = albums;
-    }
-
-    public Mascota(Long id, String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums, Foto fotoFavorita) {
-        this(id, nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums);
-        this.fotoFavorita = fotoFavorita;
+    protected Mascota(Builder builder) {
+        this.id = builder.id;
+        this.nombre = builder.nombre;
+        this.direccion = builder.direccion;
+        this.descripcion = builder.descripcion;
+        this.codigoRIAC = builder.codigoRIAC;
+        this.polizaSeguro = builder.polizaSeguro;
+        this.albums = builder.albums;
+        this.fotoFavorita = builder.fotoFavorita;
     }
 
     public Long getId() {
@@ -97,17 +84,65 @@ public class Mascota {
         this.albums.add(album);
     }
 
-    public Album buscarAlbumPorId(Long id) {
-        return this.albums.stream().filter(album -> album.getId().equals(id)).findFirst().orElse(null);
-    }
-
     public void eliminarAlbum(Long id) {
         this.albums.removeIf(album -> album.getId().equals(id));
     }
 
-    public List<Long> getIdAlbums() {
-        List<Long> idAlbums = new ArrayList<>();
-        this.albums.forEach(album -> idAlbums.add(album.getId()));
-        return idAlbums;
+    public static class Builder {
+        private Long id;
+        private String nombre;
+        private String direccion;
+        private String descripcion;
+        private String codigoRIAC;
+        private String polizaSeguro;
+        private List<Album> albums = new ArrayList<>();
+        private Foto fotoFavorita;
+
+        public Builder() {
+        }
+
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder nombre(String nombre) {
+            this.nombre = nombre;
+            return this;
+        }
+
+        public Builder direccion(String direccion) {
+            this.direccion = direccion;
+            return this;
+        }
+
+        public Builder descripcion(String descripcion) {
+            this.descripcion = descripcion;
+            return this;
+        }
+
+        public Builder codigoRIAC(String codigoRIAC) {
+            this.codigoRIAC = codigoRIAC;
+            return this;
+        }
+
+        public Builder polizaSeguro(String polizaSeguro) {
+            this.polizaSeguro = polizaSeguro;
+            return this;
+        }
+
+        public Builder albums(List<Album> albums) {
+            this.albums = albums;
+            return this;
+        }
+
+        public Builder fotoFavorita(Foto fotoFavorita) {
+            this.fotoFavorita = fotoFavorita;
+            return this;
+        }
+
+        public Mascota build() {
+            return new Mascota(this);
+        }
     }
 }
