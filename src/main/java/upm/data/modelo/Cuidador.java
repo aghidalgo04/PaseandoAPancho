@@ -18,6 +18,10 @@ public class Cuidador extends Usuario {
     private List<ContratoCuidado> contratos;
     private List<Premio> premios;
 
+    public Cuidador() {
+        super();
+    }
+
     public Cuidador(String id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN) {
         super(id, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro);
         this.foto = foto;
@@ -87,7 +91,9 @@ public class Cuidador extends Usuario {
         this.mascotasFavoritas.add(mascota);
     }
 
-    public Mascota buscarMascotaFavoritaPorId(Long id) { return null; }
+    public Mascota buscarMascotaFavoritaPorId(Long id) {
+        return null;
+    }
 
     public void eliminarMascotaFavorita(Mascota mascotaFavorita) {
         this.mascotasFavoritas.remove(mascotaFavorita);
@@ -109,21 +115,27 @@ public class Cuidador extends Usuario {
         return null;
     }
 
-    public List<Long> getIdMascotasFavoritas(){
+    public List<Long> getIdMascotasFavoritas() {
         List<Long> idMascotasFavoritas = new ArrayList<>();
-        this.mascotasFavoritas.forEach(mascotaFavorita -> {idMascotasFavoritas.add(mascotaFavorita.getId());});
+        this.mascotasFavoritas.forEach(mascotaFavorita -> {
+            idMascotasFavoritas.add(mascotaFavorita.getId());
+        });
         return idMascotasFavoritas;
     }
 
-    public List<Long> getIdContratos(){
+    public List<Long> getIdContratos() {
         List<Long> idContratos = new ArrayList<>();
-        this.contratos.forEach(contrato -> {idContratos.add(contrato.getId());});
+        this.contratos.forEach(contrato -> {
+            idContratos.add(contrato.getId());
+        });
         return idContratos;
     }
 
-    public List<Long> getIdPremios(){
+    public List<Long> getIdPremios() {
         List<Long> idPremios = new ArrayList<>();
-        this.premios.forEach(mascotaFavorita -> {idPremios.add(mascotaFavorita.getId());});
+        this.premios.forEach(mascotaFavorita -> {
+            idPremios.add(mascotaFavorita.getId());
+        });
         return idPremios;
     }
 }

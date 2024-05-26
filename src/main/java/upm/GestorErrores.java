@@ -19,7 +19,7 @@ public class GestorErrores {
             try {
                 exit = this.commandLineInterface.runComandos();
             } catch (Exception e) {
-                vista.mostrarError(e.getMessage());
+                this.vista.mostrarError(e.getMessage());
             }
         }
     }

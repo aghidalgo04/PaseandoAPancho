@@ -3,17 +3,20 @@ package upm.data.modelo;
 import java.time.LocalDateTime;
 
 public class ContratoCuidado{
-    private final Long id;
+    private Long id;
     private LocalDateTime fechaInicioDeCuidado;
     private LocalDateTime fechaFinDeCuidado;
     private LocalDateTime fechaFirma;
-    private final Integer panchoPuntosCuidado;
+    private Integer panchoPuntosCuidado;
     private Boolean rescindido;
     private Double coste;
     private Mascota mascotaAsociada;
     private Cuidador cuidador;
     private MensajePeticion mensajePeticion;
     private Notificacion notificacion;
+
+    public ContratoCuidado(){
+    }
 
     public ContratoCuidado(Long id, LocalDateTime fechaInicioDeCuidado, LocalDateTime fechaFinDeCuidado, LocalDateTime fechaFirma, Double coste, Mascota mascotaAsociada, Cuidador cuidador) {
         this.id = id;

@@ -7,8 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Dueno extends Usuario {
-    private final List<Cuidador> cuidadoresFavoritos;
-    private final List<Mascota> mascotas;
+    private List<Cuidador> cuidadoresFavoritos;
+    private List<Mascota> mascotas;
+
+    public Dueno(){
+        super();
+        this.cuidadoresFavoritos = new ArrayList<>();
+        this.mascotas = new ArrayList<>();
+    }
 
     public Dueno(String id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro) {
         super(id, nombre, apellidos, correoElectronico, direccion, idioma, plataformaRegistro);

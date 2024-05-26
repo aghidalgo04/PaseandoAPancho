@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Mascota {
-    private final Long id;
+    private Long id;
     private String nombre;
     private String direccion;
     private String descripcion;
@@ -12,6 +12,10 @@ public class Mascota {
     private String polizaSeguro;
     private List<Album> albums;
     private Foto fotoFavorita;
+
+    public Mascota() {
+        this.albums = new ArrayList<>();
+    }
 
     public Mascota(Long id, String nombre, String direccion, String descripcion, String codigoRIAC) {
         this.id = id;

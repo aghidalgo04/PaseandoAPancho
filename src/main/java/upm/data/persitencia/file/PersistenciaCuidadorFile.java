@@ -1,16 +1,19 @@
 package upm.data.persitencia.file;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import upm.data.modelo.Cuidador;
 import upm.data.persitencia.PersistenciaCuidador;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class PersistenciaCuidadorFile extends PersistenciaFile<String, Cuidador> implements PersistenciaCuidador {
 
     public PersistenciaCuidadorFile(String fileName) {
-        super(fileName);
+        super(fileName, new TypeReference<Map<String, Cuidador>>() {
+        });
     }
 
     @Override
