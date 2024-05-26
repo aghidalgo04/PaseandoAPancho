@@ -43,7 +43,7 @@ public class Dueno extends Usuario {
         this.cuidadoresFavoritos.add(cuidador);
     }
 
-    public Cuidador buscarCuidadorFavorito(Long id) {
+    public Cuidador buscarCuidadorFavorito(String id) {
         return null;
     }
 
