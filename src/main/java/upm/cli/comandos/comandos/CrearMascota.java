@@ -27,6 +27,7 @@ public class CrearMascota implements Comando {
             throw new UnsupportedAttributesException(this.ayudaParametros());
         }
         this.controladorUsuario.anadirMascota(this.controladorMascota.crearMascota(parametros[0], parametros[1], parametros[2], parametros[3], parametros[4], null, null));
+        vista.mostarMensaje("Mascota creada con exito");
     }
 
     @Override

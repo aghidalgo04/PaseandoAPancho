@@ -27,6 +27,7 @@ public class CrearMascotaExotica implements Comando {
             throw new UnsupportedAttributesException(this.ayudaParametros());
         }
         this.controladorUsuario.anadirMascota(this.controladorMascota.crearMascotaExotica(parametros[0], parametros[1], parametros[2], parametros[3], parametros[4], null, null, null, null, null));
+        vista.mostarMensaje("Mascota exotica creada con exito");
     }
 
     @Override
