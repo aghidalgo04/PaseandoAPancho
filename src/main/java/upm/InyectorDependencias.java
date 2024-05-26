@@ -78,6 +78,8 @@ public class InyectorDependencias {
         return this.persistenciaMascota;
     }
 
+    public PersistenciaMascotaExotica getPersistenciaMascotaExotica() {return this.persistenciaMascotaExotica;}
+
     public PersistenciaContratoCuidado getPersistenciaContratoCuidado() {
         return this.persistenciaContratoCuidado;
     }
