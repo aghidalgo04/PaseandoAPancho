@@ -12,6 +12,7 @@ import upm.data.persitencia.*;
 
 import java.io.File;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -94,7 +95,7 @@ public class ControladorUsuario {
         this.persistenciaDueno.update(dueno);
     }
 
-    public void contratarCuidador(Long idMascota, String idCuidador, LocalDateTime fechaInicioCuidado, LocalDateTime fechaFinCuidado) {
+    public void contratarCuidador(Long idMascota, String idCuidador, String fechaInicioCuidado, String fechaFinCuidado) {
         if (!this.session.estaLogueado()) {
             throw new SecurityAuthorizationException("No estás logueado");
         }
@@ -109,7 +110,10 @@ public class ControladorUsuario {
         if (dueno.buscarMascota(idMascota) == null) {
             throw new NotFoundException("Mascota no existe");
         }
-        ContratoCuidado contratoCuidado = new ContratoCuidado(++this.idsContratoCuidado, fechaInicioCuidado, fechaFinCuidado, LocalDateTime.now(), cuidador.get().getPrecio() * (fechaFinCuidado.getHour() - fechaInicioCuidado.getHour()) * 2D, dueno.buscarMascota(idMascota), cuidador.get());
+        DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd-MM-yyyy HH.mm");
+        LocalDateTime fechaFin = LocalDateTime.parse(fechaFinCuidado, dateTimeFormatter);
+        LocalDateTime fechaIn = LocalDateTime.parse(fechaInicioCuidado, dateTimeFormatter);
+        ContratoCuidado contratoCuidado = new ContratoCuidado(++this.idsContratoCuidado, fechaInicioCuidado, fechaFinCuidado, LocalDateTime.now().format(dateTimeFormatter), cuidador.get().getPrecio() * (fechaFin.getHour() - fechaIn.getHour()) * 2D, dueno.buscarMascota(idMascota));
         cuidador.get().anadirContratoCuidado(contratoCuidado);
         this.persistenciaContratoCuidado.create(contratoCuidado);
         this.persistenciaCuidador.update(cuidador.get());

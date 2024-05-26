@@ -1,24 +1,24 @@
 package upm.data.modelo;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ContratoCuidado{
     private Long id;
-    private LocalDateTime fechaInicioDeCuidado;
-    private LocalDateTime fechaFinDeCuidado;
-    private LocalDateTime fechaFirma;
+    private String fechaInicioDeCuidado;
+    private String fechaFinDeCuidado;
+    private String fechaFirma;
     private Integer panchoPuntosCuidado;
     private Boolean rescindido;
     private Double coste;
     private Mascota mascotaAsociada;
-    private Cuidador cuidador;
     private MensajePeticion mensajePeticion;
     private Notificacion notificacion;
 
     public ContratoCuidado(){
     }
 
-    public ContratoCuidado(Long id, LocalDateTime fechaInicioDeCuidado, LocalDateTime fechaFinDeCuidado, LocalDateTime fechaFirma, Double coste, Mascota mascotaAsociada, Cuidador cuidador) {
+    public ContratoCuidado(Long id, String fechaInicioDeCuidado, String fechaFinDeCuidado, String fechaFirma, Double coste, Mascota mascotaAsociada) {
         this.id = id;
         this.fechaInicioDeCuidado = fechaInicioDeCuidado;
         this.fechaFinDeCuidado = fechaFinDeCuidado;
@@ -27,12 +27,11 @@ public class ContratoCuidado{
         this.rescindido = false;
         this.coste = coste;
         this.mascotaAsociada = mascotaAsociada;
-        this.cuidador = cuidador;
         this.notificacion = new Notificacion(id);
     }
 
-    public ContratoCuidado(Long id, LocalDateTime fechaInicioDeCuidado, LocalDateTime fechaFinDeCuidado, LocalDateTime fechaFirma, Double coste, Mascota mascotaAsociada, Cuidador cuidador, MensajePeticion mensajePeticion) {
-        this(id, fechaInicioDeCuidado, fechaFinDeCuidado, fechaFirma, coste, mascotaAsociada, cuidador);
+    public ContratoCuidado(Long id, String fechaInicioDeCuidado, String fechaFinDeCuidado, String fechaFirma, Double coste, Mascota mascotaAsociada, Cuidador cuidador, MensajePeticion mensajePeticion) {
+        this(id, fechaInicioDeCuidado, fechaFinDeCuidado, fechaFirma, coste, mascotaAsociada);
         this.mensajePeticion = mensajePeticion;
     }
 
@@ -40,19 +39,19 @@ public class ContratoCuidado{
         return this.id;
     }
 
-    public LocalDateTime getFechaInicioDeCuidado() {
+    public String getFechaInicioDeCuidado() {
         return this.fechaInicioDeCuidado;
     }
 
-    public LocalDateTime getFechaFinDeCuidado() {
+    public String getFechaFinDeCuidado() {
         return this.fechaFinDeCuidado;
     }
 
-    public void setFechaFinDeCuidado(LocalDateTime fechaFinDeCuidado) {
+    public void setFechaFinDeCuidado(String fechaFinDeCuidado) {
         this.fechaFinDeCuidado = fechaFinDeCuidado;
     }
 
-    public LocalDateTime getFechaFirma() {
+    public String getFechaFirma() {
         return this.fechaFirma;
     }
 
@@ -72,10 +71,6 @@ public class ContratoCuidado{
         return this.mascotaAsociada;
     }
 
-    public Cuidador getCuidador() {
-        return this.cuidador;
-    }
-
     public MensajePeticion getMensajePeticion() {
         return this.mensajePeticion;
     }
@@ -89,8 +84,11 @@ public class ContratoCuidado{
     }
 
     public Double calcularCoste() {
-        int dias = fechaFinDeCuidado.getDayOfMonth() - fechaInicioDeCuidado.getDayOfMonth();
-        int horas = fechaFinDeCuidado.getHour() - fechaInicioDeCuidado.getHour();
+        DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd-MM-yyyy HH.mm");
+        LocalDateTime fechaFin = LocalDateTime.parse(fechaFinDeCuidado, dateTimeFormatter);
+        LocalDateTime fechaIn = LocalDateTime.parse(fechaInicioDeCuidado, dateTimeFormatter);
+        int dias = fechaFin.getDayOfMonth() - fechaIn.getDayOfMonth();
+        int horas = fechaFin.getHour() - fechaIn.getHour();
         return (dias * coste) + (horas * coste);
     }
 

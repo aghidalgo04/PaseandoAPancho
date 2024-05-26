@@ -27,7 +27,7 @@ public class ContratarCuidador implements Comando {
             throw new UnsupportedAttributesException(this.ayudaParametros());
         }
         DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd-MM-yyyy HH.mm");
-        this.controladorUsuario.contratarCuidador(Long.valueOf(parametros[0]), parametros[1], LocalDateTime.parse(parametros[2], dateTimeFormatter), LocalDateTime.parse(parametros[3], dateTimeFormatter));
+        this.controladorUsuario.contratarCuidador(Long.valueOf(parametros[0]), parametros[1], parametros[2], parametros[3]);
         vista.mostarMensaje("Contrato creado pero no pagado");
     }
 
