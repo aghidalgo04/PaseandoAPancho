@@ -69,10 +69,16 @@ public class ControladorUsuario {
             Optional<Dueno> dueno = this.persistenciaDueno.findById(idUsuario);
             if (!dueno.isPresent()) {
                 throw new SecurityAuthorizationException("Usuario no existe");
-            } else {
-                this.session.setUsuario(dueno.get());
             }
+            if (!dueno.get().getPlataformaRegistro().equals(plataforma)) {
+                throw new SecurityAuthorizationException("Plataforma incorrecta");
+            }
+            this.session.setUsuario(dueno.get());
+
         } else {
+            if (!cuidador.get().getPlataformaRegistro().equals(plataforma)) {
+                throw new SecurityAuthorizationException("Plataforma incorrecta");
+            }
             this.session.setUsuario(cuidador.get());
         }
     }
