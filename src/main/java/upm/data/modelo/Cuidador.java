@@ -20,6 +20,9 @@ public class Cuidador extends Usuario {
 
     public Cuidador() {
         super();
+        this.mascotasFavoritas = new ArrayList<>();
+        this.premios = new ArrayList<>();
+        this.contratos = new ArrayList<>();
     }
 
     public Cuidador(String id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN) {

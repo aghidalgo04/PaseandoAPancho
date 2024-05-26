@@ -9,5 +9,6 @@ crear-mascota: Gav; Madrid; Buen animal; 1234567890; 232451522152; null; null
 crear-mascota-exotica: Loli-ex; Madrid; Buen animal; 1234567890; 232451522152; null; null; null; null; null
 crear-mascota-exotica: Pepe-ex; Madrid; Buen animal; 1234567890; 232451522152; null; null; null; null; null
 listar-mascotas
+crear-cuidador: Stefan; Test; test@upm.es; Madrid; Castellano; Facebook; /foto; jeje; 12; 12345; /documentacion
 
 
