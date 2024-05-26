@@ -5,16 +5,10 @@ import upm.controlador.excepciones.DuplicateException;
 import upm.controlador.excepciones.NotFoundException;
 import upm.controlador.excepciones.SecurityAuthorizationException;
 import upm.controlador.excepciones.SecurityProhibitionException;
-import upm.data.modelo.ContratoCuidado;
-import upm.data.modelo.Cuidador;
-import upm.data.modelo.Dueno;
-import upm.data.modelo.Mascota;
+import upm.data.modelo.*;
 import upm.data.modelo.enums.Idioma;
 import upm.data.modelo.enums.Plataforma;
-import upm.data.persitencia.PersistenciaContratoCuidado;
-import upm.data.persitencia.PersistenciaCuidador;
-import upm.data.persitencia.PersistenciaDueno;
-import upm.data.persitencia.PersistenciaMascota;
+import upm.data.persitencia.*;
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -25,14 +19,16 @@ public class ControladorUsuario {
     private Long idsContratoCuidado;
     private final PersistenciaDueno persistenciaDueno;
     private final PersistenciaCuidador persistenciaCuidador;
-    private PersistenciaMascota persistenciaMascota;
-    private PersistenciaContratoCuidado persistenciaContratoCuidado;
+    private final PersistenciaMascota persistenciaMascota;
+    private final PersistenciaMascotaExotica persistenciaMascotaExotica;
+    private final PersistenciaContratoCuidado persistenciaContratoCuidado;
     private Session session;
 
-    public ControladorUsuario(PersistenciaDueno persistenciaDueno, PersistenciaCuidador persistenciaCuidador, PersistenciaMascota persistenciaMascota, PersistenciaContratoCuidado persistenciaContratoCuidado, Session session) {
+    public ControladorUsuario(PersistenciaDueno persistenciaDueno, PersistenciaCuidador persistenciaCuidador, PersistenciaMascota persistenciaMascota, PersistenciaMascotaExotica persistenciaMascotaExotica, PersistenciaContratoCuidado persistenciaContratoCuidado, Session session) {
         this.persistenciaDueno = persistenciaDueno;
         this.persistenciaCuidador = persistenciaCuidador;
         this.persistenciaMascota = persistenciaMascota;
+        this.persistenciaMascotaExotica = persistenciaMascotaExotica;
         this.persistenciaContratoCuidado = persistenciaContratoCuidado;
         this.session = session;
 
@@ -86,11 +82,15 @@ public class ControladorUsuario {
             throw new SecurityProhibitionException("No tienes acceso a la funcionalidad");
         }
         Optional<Mascota> mascota = this.persistenciaMascota.findById(idMascota);
+        Optional<MascotaExotica> mascotaExotica = this.persistenciaMascotaExotica.findById(idMascota);
         if (!mascota.isPresent()) {
-            throw new NotFoundException("Mascota no existe");
+            if (!mascotaExotica.isPresent()) {
+                throw new  NotFoundException("Mascota no existe");
+            }
         }
         Dueno dueno = (Dueno) this.session.getUsuario();
-        dueno.anadirMascota(mascota.get());
+        mascota.ifPresent(dueno::anadirMascota);
+        mascotaExotica.ifPresent(dueno::anadirMascota);
         this.persistenciaDueno.update(dueno);
     }
 
