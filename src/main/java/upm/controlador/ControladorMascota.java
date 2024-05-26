@@ -16,7 +16,7 @@ public class ControladorMascota {
     private final Session session;
 
     public ControladorMascota(PersistenciaMascota persistenciaMascota, Session session) {
-        this.IDS = 1L;
+        this.IDS = 0L;
         this.persistenciaMascota = persistenciaMascota;
         this.session = session;
     }
@@ -28,8 +28,27 @@ public class ControladorMascota {
         if (!ExternalRIAC.RIAC(codigoRIAC)) {
             throw new InvalidAttributeException("Codigo RIAC no valido");
         }
-        this.persistenciaMascota.create(new Mascota(this.IDS, nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums, fotoFavorita));
-        this.IDS++;
+
+        Mascota.Builder builder = new Mascota.Builder()
+                .id(++this.IDS)
+                .nombre(nombre)
+                .direccion(direccion)
+                .descripcion(descripcion)
+                .codigoRIAC(codigoRIAC);
+
+        if (!polizaSeguro.isEmpty()) {
+            builder.polizaSeguro(polizaSeguro);
+        }
+
+        if (albums != null) {
+            builder.albums(albums);
+        }
+
+        if (fotoFavorita != null) {
+            builder.fotoFavorita(fotoFavorita);
+        }
+
+        this.persistenciaMascota.create(builder.build());
         return this.IDS;
     }
 
@@ -40,8 +59,30 @@ public class ControladorMascota {
         if (!ExternalRIAC.RIAC(codigoRIAC)) {
             throw new InvalidAttributeException("Codigo RIAC no valido");
         }
-        this.persistenciaMascota.create(new MascotaExotica(this.IDS, nombre, direccion, descripcion, codigoRIAC, polizaSeguro, albums, fotoFavorita, certificadoLegal, certificadoSalud, libreEnfermedadesTransmisibles));
-        this.IDS++;
+
+        MascotaExotica.Builder builder = (MascotaExotica.Builder) new MascotaExotica.Builder()
+                .certificadoLegal(certificadoLegal)
+                .libreEnfermedadesTransmisibles(libreEnfermedadesTransmisibles)
+                .certificadoSalud(certificadoSalud)
+                .id(++this.IDS)
+                .nombre(nombre)
+                .direccion(direccion)
+                .descripcion(descripcion)
+                .codigoRIAC(codigoRIAC);
+
+        if (!polizaSeguro.isEmpty()) {
+            builder.polizaSeguro(polizaSeguro);
+        }
+
+        if (albums != null && !albums.isEmpty()) {
+            builder.albums(albums);
+        }
+
+        if (fotoFavorita != null) {
+            builder.fotoFavorita(fotoFavorita);
+        }
+
+        this.persistenciaMascota.create(builder.build());
         return this.IDS;
     }
 
