@@ -23,6 +23,7 @@ public class Mascota {
         this.direccion = direccion;
         this.descripcion = descripcion;
         this.codigoRIAC = codigoRIAC;
+        this.albums = new ArrayList<>();
     }
 
     public Mascota(Long id, String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro) {
@@ -101,17 +102,7 @@ public class Mascota {
         this.albums.add(album);
     }
 
-    public Album buscarAlbumPorId(Long id) {
-        return this.albums.stream().filter(album -> album.getId().equals(id)).findFirst().orElse(null);
-    }
-
     public void eliminarAlbum(Long id) {
         this.albums.removeIf(album -> album.getId().equals(id));
-    }
-
-    public List<Long> getIdAlbums() {
-        List<Long> idAlbums = new ArrayList<>();
-        this.albums.forEach(album -> idAlbums.add(album.getId()));
-        return idAlbums;
     }
 }
