@@ -4,7 +4,8 @@
 
 crear-dueno: Stefan; Test; test@upm.es; Madrid; Castellano; Facebook
 login: Facebook
-crear-mascota: Pepe; Madrid; Buen animal; 3455343553; 232451522152; null; null
+crear-mascota: Pepe; Madrid; Buen animal; 1234567890; 232451522152; null; null
+crear-mascota-exotica: Pepe; Madrid; Buen animal; 1234567890; 232451522152; null; null; null; null; null
 listar-mascotas
 
 
