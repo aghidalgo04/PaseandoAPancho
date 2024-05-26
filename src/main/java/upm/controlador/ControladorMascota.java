@@ -11,15 +11,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ControladorMascota {
-    private Long IDS;
+    private Long idsMascota;
     private final PersistenciaMascota persistenciaMascota;
     private final Session session;
 
     public ControladorMascota(PersistenciaMascota persistenciaMascota, Session session) {
-        this.IDS = 0L;
         this.persistenciaMascota = persistenciaMascota;
         this.session = session;
+
+        List<Mascota> lista = persistenciaMascota.findAll();
+        if (lista.isEmpty()) {
+            this.idsMascota = 0L;
+        } else {
+            this.idsMascota = lista.getLast().getId();
+        }
     }
+
 
     public Long crearMascota(String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums, Foto fotoFavorita) {
         if (!this.session.estaLogueado()) {
@@ -30,7 +37,7 @@ public class ControladorMascota {
         }
 
         Mascota.Builder builder = new Mascota.Builder()
-                .id(++this.IDS)
+                .id(++this.idsMascota)
                 .nombre(nombre)
                 .direccion(direccion)
                 .descripcion(descripcion)
@@ -49,7 +56,7 @@ public class ControladorMascota {
         }
 
         this.persistenciaMascota.create(builder.build());
-        return this.IDS;
+        return this.idsMascota;
     }
 
     public Long crearMascotaExotica(String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums, Foto fotoFavorita, File certificadoLegal, File certificadoSalud, File libreEnfermedadesTransmisibles) {
@@ -64,7 +71,7 @@ public class ControladorMascota {
                 .certificadoLegal(certificadoLegal)
                 .libreEnfermedadesTransmisibles(libreEnfermedadesTransmisibles)
                 .certificadoSalud(certificadoSalud)
-                .id(++this.IDS)
+                .id(++this.idsMascota)
                 .nombre(nombre)
                 .direccion(direccion)
                 .descripcion(descripcion)
@@ -83,7 +90,7 @@ public class ControladorMascota {
         }
 
         this.persistenciaMascota.create(builder.build());
-        return this.IDS;
+        return this.idsMascota;
     }
 
     public List<Mascota> listarMascotas() {
