@@ -7,14 +7,8 @@ import upm.cli.comandos.comandos.*;
 import upm.controlador.ControladorMascota;
 import upm.controlador.ControladorUsuario;
 import upm.controlador.Session;
-import upm.data.persitencia.PersistenciaContratoCuidado;
-import upm.data.persitencia.PersistenciaCuidador;
-import upm.data.persitencia.PersistenciaDueno;
-import upm.data.persitencia.PersistenciaMascota;
-import upm.data.persitencia.file.PersistenciaContratoCuidadoFile;
-import upm.data.persitencia.file.PersistenciaCuidadorFile;
-import upm.data.persitencia.file.PersistenciaDuenoFile;
-import upm.data.persitencia.file.PersistenciaMascotaFile;
+import upm.data.persitencia.*;
+import upm.data.persitencia.file.*;
 
 public class InyectorDependencias {
     private static final InyectorDependencias inyectorDependencias = new InyectorDependencias();
@@ -22,6 +16,7 @@ public class InyectorDependencias {
     private final PersistenciaDueno persistenciaDueno;
     private final PersistenciaCuidador persistenciaCuidador;
     private final PersistenciaMascota persistenciaMascota;
+    private final PersistenciaMascotaExotica persistenciaMascotaExotica;
     private final PersistenciaContratoCuidado persistenciaContratoCuidado;
 
     private final Session session;
@@ -38,12 +33,13 @@ public class InyectorDependencias {
         this.persistenciaDueno = new PersistenciaDuenoFile("duenos");
         this.persistenciaCuidador = new PersistenciaCuidadorFile("cuidadores");
         this.persistenciaMascota = new PersistenciaMascotaFile("mascotas");
+        this.persistenciaMascotaExotica = new PersistenciaMascotaExoticaFile("mascotasExoticas");
         this.persistenciaContratoCuidado = new PersistenciaContratoCuidadoFile("contratosCuidado");
 
         this.session = new Session();
 
-        this.controladorUsuario = new ControladorUsuario(this.persistenciaDueno, this.persistenciaCuidador, this.persistenciaMascota, this.persistenciaContratoCuidado, this.session);
-        this.controladorMascota = new ControladorMascota(this.persistenciaMascota, this.session);
+        this.controladorUsuario = new ControladorUsuario(this.persistenciaDueno, this.persistenciaCuidador, this.persistenciaMascota, this.persistenciaMascotaExotica,this.persistenciaContratoCuidado, this.session);
+        this.controladorMascota = new ControladorMascota(this.persistenciaMascota, this.persistenciaMascotaExotica, this.session);
 
         this.vista = new VistaConsola();
         this.commandLineInterface = new CommandLineInterface(this.vista);
