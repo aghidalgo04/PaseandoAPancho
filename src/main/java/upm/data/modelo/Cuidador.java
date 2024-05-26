@@ -114,29 +114,5 @@ public class Cuidador extends Usuario {
     public ContratoCuidado buscarContratoCuidado(Long id) {
         return null;
     }
-
-    public List<Long> getIdMascotasFavoritas() {
-        List<Long> idMascotasFavoritas = new ArrayList<>();
-        this.mascotasFavoritas.forEach(mascotaFavorita -> {
-            idMascotasFavoritas.add(mascotaFavorita.getId());
-        });
-        return idMascotasFavoritas;
-    }
-
-    public List<Long> getIdContratos() {
-        List<Long> idContratos = new ArrayList<>();
-        this.contratos.forEach(contrato -> {
-            idContratos.add(contrato.getId());
-        });
-        return idContratos;
-    }
-
-    public List<Long> getIdPremios() {
-        List<Long> idPremios = new ArrayList<>();
-        this.premios.forEach(mascotaFavorita -> {
-            idPremios.add(mascotaFavorita.getId());
-        });
-        return idPremios;
-    }
 }
 

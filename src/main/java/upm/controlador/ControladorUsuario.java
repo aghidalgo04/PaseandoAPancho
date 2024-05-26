@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class ControladorUsuario {
-    private Long IDS;
+    private Long idsContratoCuidado;
     private final PersistenciaDueno persistenciaDueno;
     private final PersistenciaCuidador persistenciaCuidador;
     private PersistenciaMascota persistenciaMascota;
@@ -30,12 +30,13 @@ public class ControladorUsuario {
     private Session session;
 
     public ControladorUsuario(PersistenciaDueno persistenciaDueno, PersistenciaCuidador persistenciaCuidador, PersistenciaMascota persistenciaMascota, PersistenciaContratoCuidado persistenciaContratoCuidado, Session session) {
-        this.IDS = 0L;
         this.persistenciaDueno = persistenciaDueno;
         this.persistenciaCuidador = persistenciaCuidador;
         this.persistenciaMascota = persistenciaMascota;
         this.persistenciaContratoCuidado = persistenciaContratoCuidado;
         this.session = session;
+
+        this.idsContratoCuidado = (long) persistenciaContratoCuidado.findAll().size();
     }
 
     public void registrarDueno(String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro) {
@@ -63,10 +64,16 @@ public class ControladorUsuario {
             Optional<Dueno> dueno = this.persistenciaDueno.findById(idUsuario);
             if (!dueno.isPresent()) {
                 throw new SecurityAuthorizationException("Usuario no existe");
-            } else {
-                this.session.setUsuario(dueno.get());
             }
+            if (!dueno.get().getPlataformaRegistro().equals(plataforma)) {
+                throw new SecurityAuthorizationException("Plataforma incorrecta");
+            }
+            this.session.setUsuario(dueno.get());
+
         } else {
+            if (!cuidador.get().getPlataformaRegistro().equals(plataforma)) {
+                throw new SecurityAuthorizationException("Plataforma incorrecta");
+            }
             this.session.setUsuario(cuidador.get());
         }
     }
@@ -102,7 +109,7 @@ public class ControladorUsuario {
         if (dueno.buscarMascota(idMascota) == null) {
             throw new NotFoundException("Mascota no existe");
         }
-        ContratoCuidado contratoCuidado = new ContratoCuidado(++this.IDS, fechaInicioCuidado, fechaFinCuidado, LocalDateTime.now(), cuidador.get().getPrecio() * (fechaFinCuidado.getHour() - fechaInicioCuidado.getHour()) * 2D, dueno.buscarMascota(idMascota), cuidador.get());
+        ContratoCuidado contratoCuidado = new ContratoCuidado(++this.idsContratoCuidado, fechaInicioCuidado, fechaFinCuidado, LocalDateTime.now(), cuidador.get().getPrecio() * (fechaFinCuidado.getHour() - fechaInicioCuidado.getHour()) * 2D, dueno.buscarMascota(idMascota), cuidador.get());
         cuidador.get().anadirContratoCuidado(contratoCuidado);
         this.persistenciaContratoCuidado.create(contratoCuidado);
         this.persistenciaCuidador.update(cuidador.get());
