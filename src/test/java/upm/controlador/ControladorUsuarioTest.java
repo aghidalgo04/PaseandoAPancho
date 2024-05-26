@@ -40,15 +40,16 @@ public class ControladorUsuarioTest {
 
     @Test
     public void testAniadirMascota(){
-        controladorUsuario.registrarDueno("david","Lopez","a@upm.es","si", Idioma.Castellano, Plataforma.Google);
         controladorUsuario.login(Plataforma.Google);
         controladorMascota.crearMascota("Ely","sierra","Perro blanco", "0123456789","213u84871",null,null);
         assertNotNull(this.persistenciaMascota.findById(2L));
-        //controladorUsuario.anadirMascota(2L);
-        //assertEquals(persistenciaUsuario.findDueno("a8a9aff5f55133002b55c1682730344b").get().buscarMascota(2L),persistenciaMascota.findById(2L));
+        persistenciaDueno.findById("a8a9aff5f55133002b55c1682730344b").get().anadirMascota(persistenciaMascota.findById(2L).get());
+        assertEquals(persistenciaDueno.findById("a8a9aff5f55133002b55c1682730344b").get().buscarMascota(2L),persistenciaMascota.findById(2L));
     }
 
     @Test
-    public void testContratarCuidador(){}
+    public void testContratarCuidador(){
+
+    }
 
 }

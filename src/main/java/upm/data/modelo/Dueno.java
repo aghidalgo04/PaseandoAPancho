@@ -5,6 +5,7 @@ import upm.data.modelo.enums.Plataforma;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Dueno extends Usuario {
     private final List<Cuidador> cuidadoresFavoritos;
@@ -31,7 +32,7 @@ public class Dueno extends Usuario {
     }
 
     public Mascota buscarMascota(Long id) {
-        return null;
+        return this.mascotas.stream().filter(m -> Objects.equals(m.getId(), id)).findFirst().orElse(null);
     }
 
     public void eliminarMascota(Mascota mascota) {
@@ -42,7 +43,7 @@ public class Dueno extends Usuario {
         this.cuidadoresFavoritos.add(cuidador);
     }
 
-    public Cuidador buscarCuidadorFavorito(Long id) {
+    public Cuidador buscarCuidadorFavorito(String id) {
         return null;
     }
 

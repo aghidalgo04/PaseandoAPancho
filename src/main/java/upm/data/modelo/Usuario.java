@@ -86,32 +86,20 @@ public abstract class Usuario {
         this.plataformaRegistro = plataformaRegistro;
     }
 
-    public void anadirMensajeEnviado(Long id, Mensaje mensaje) {
+    public void anadirMensajeEnviado(Mensaje mensaje) {
         this.envia.add(mensaje);
     }
 
-    public Mensaje buscarMensajeEnviadoPorId(Long id) {
+    public Mensaje buscarMensajeEnviadoPorId(String id) {
         return null;
     }
 
-    public void anadirMensajeRecibido(Long id, Mensaje mensaje) {
+    public void anadirMensajeRecibido(Mensaje mensaje) {
         this.recibe.add(mensaje);
     }
 
-    public Mensaje buscarMensajeRecibidoPorId(Long id) {
+    public Mensaje buscarMensajeRecibidoPorId(String id) {
         return null;
-    }
-
-    public List<Long> getIdRecibe() {
-        List<Long> lista = new ArrayList<>();
-        this.recibe.forEach(mensaje -> lista.add(mensaje.getId()));
-        return lista;
-    }
-
-    public List<Long> getIdEnvia() {
-        List<Long> lista = new ArrayList<>();
-        this.envia.forEach(mensaje -> lista.add(mensaje.getId()));
-        return lista;
     }
 }
 
