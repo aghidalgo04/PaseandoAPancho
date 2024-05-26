@@ -11,10 +11,10 @@ import java.util.TreeMap;
 public abstract class PersistenciaFile<K, T> {
     private static final String FOLDER = "persistenciaFile";
     private final String FILE_PATH;
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
     protected Map<K, T> objetos;
 
-    protected PersistenciaFile(String fileName) {
+    protected PersistenciaFile(String fileName, TypeReference<Map<K, T>> typeRef) {
         this.FILE_PATH = FOLDER + "/" + fileName + ".json";
         this.objectMapper = new ObjectMapper();
         this.objetos = new TreeMap<>();
@@ -29,8 +29,7 @@ public abstract class PersistenciaFile<K, T> {
             File file = new File(FILE_PATH);
             if (file.exists()) {
                 if (file.length() > 0) {
-                    this.objetos = this.objectMapper.readValue(file, new TypeReference<Map<K, T>>() {
-                    });
+                    this.objetos = this.objectMapper.readValue(file, typeRef);
                 }
             } else {
                 if (!file.createNewFile()) {

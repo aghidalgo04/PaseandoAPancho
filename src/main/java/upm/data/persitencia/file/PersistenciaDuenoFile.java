@@ -1,16 +1,19 @@
 package upm.data.persitencia.file;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import upm.data.modelo.Dueno;
 import upm.data.persitencia.PersistenciaDueno;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class PersistenciaDuenoFile extends PersistenciaFile<String, Dueno> implements PersistenciaDueno {
 
     public PersistenciaDuenoFile(String fileName) {
-        super(fileName);
+        super(fileName, new TypeReference<Map<String, Dueno>>() {
+        });
     }
 
     @Override

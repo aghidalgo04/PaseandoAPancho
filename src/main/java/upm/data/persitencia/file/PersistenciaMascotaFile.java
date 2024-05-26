@@ -1,16 +1,19 @@
 package upm.data.persitencia.file;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import upm.data.modelo.Mascota;
 import upm.data.persitencia.PersistenciaMascota;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class PersistenciaMascotaFile extends PersistenciaFile<Long, Mascota> implements PersistenciaMascota {
 
     public PersistenciaMascotaFile(String fileName) {
-        super(fileName);
+        super(fileName, new TypeReference<Map<Long, Mascota>>() {
+        });
     }
 
     @Override
