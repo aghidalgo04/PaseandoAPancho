@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Usuario {
-    private final String id;
+    private String id;
     private String nombre;
     private String apellidos;
     private String correoElectronico;
@@ -16,6 +16,11 @@ public abstract class Usuario {
     private Plataforma plataformaRegistro;
     private List<Mensaje> recibe;
     private List<Mensaje> envia;
+
+    public Usuario() {
+        recibe = new ArrayList<>();
+        envia = new ArrayList<>();
+    }
 
     public Usuario(String id, String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro) {
         this.id = id;
