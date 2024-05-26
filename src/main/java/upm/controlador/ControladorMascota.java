@@ -19,12 +19,7 @@ public class ControladorMascota {
         this.persistenciaMascota = persistenciaMascota;
         this.session = session;
 
-        List<Mascota> lista = persistenciaMascota.findAll();
-        if (lista.isEmpty()) {
-            this.idsMascota = 0L;
-        } else {
-            this.idsMascota = lista.getLast().getId();
-        }
+        this.idsMascota = (long) persistenciaMascota.findAll().size();
     }
 
 

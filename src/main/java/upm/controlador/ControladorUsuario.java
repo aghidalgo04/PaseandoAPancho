@@ -36,12 +36,7 @@ public class ControladorUsuario {
         this.persistenciaContratoCuidado = persistenciaContratoCuidado;
         this.session = session;
 
-        List<ContratoCuidado> lista = persistenciaContratoCuidado.findAll();
-        if (lista.isEmpty()) {
-            this.idsContratoCuidado = 0L;
-        } else {
-            this.idsContratoCuidado = lista.getLast().getId();
-        }
+        this.idsContratoCuidado = (long) persistenciaContratoCuidado.findAll().size();
     }
 
     public void registrarDueno(String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro) {
