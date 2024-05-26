@@ -13,6 +13,6 @@ listar-mascotas
 ---- Ejemplo 2 ----
 crear-cuidador: Cabeza; Test; test@upm.es; Madrid; Castellano; Twitter; /foto; Vallecas stile; 12; ES12345;
 crear-cuidador: David; Test; test@upm.es; Madrid; Castellano; Google; /foto; Vallecas stile; 12; ES12345; /documentacion
-contratar-cuidador: 1; 7c55df616746bfc9212c531d189de7ed; 27-05-2024; 29-05-2024
+contratar-cuidador: 1; 7c55df616746bfc9212c531d189de7ed; 27-05-2024 12.00; 29-05-2024 14.00
 
 
