@@ -1,5 +1,6 @@
 package upm.data.persitencia.file;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import upm.data.modelo.Mascota;
 import upm.data.modelo.MascotaExotica;
 import upm.data.persitencia.PersistenciaMascota;
@@ -7,12 +8,13 @@ import upm.data.persitencia.PersistenciaMascotaExotica;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class PersistenciaMascotaExoticaFile extends PersistenciaFile<Long, MascotaExotica> implements PersistenciaMascotaExotica {
 
     public PersistenciaMascotaExoticaFile(String fileName) {
-        super(fileName);
+        super(fileName, new TypeReference<Map<Long, MascotaExotica>>() {});
     }
 
     @Override

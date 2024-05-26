@@ -5,6 +5,7 @@ import upm.controlador.excepciones.SecurityAuthorizationException;
 import upm.data.modelo.*;
 import upm.data.modelo.excepciones.InvalidAttributeException;
 import upm.data.persitencia.PersistenciaMascota;
+import upm.data.persitencia.PersistenciaMascotaExotica;
 
 import java.io.File;
 import java.util.List;
@@ -13,10 +14,12 @@ import java.util.stream.Collectors;
 public class ControladorMascota {
     private Long idsMascota;
     private final PersistenciaMascota persistenciaMascota;
+    private final PersistenciaMascotaExotica persistenciaMascotaExotica;
     private final Session session;
 
-    public ControladorMascota(PersistenciaMascota persistenciaMascota, Session session) {
+    public ControladorMascota(PersistenciaMascota persistenciaMascota, PersistenciaMascotaExotica persistenciaMascotaExotica, Session session) {
         this.persistenciaMascota = persistenciaMascota;
+        this.persistenciaMascotaExotica = persistenciaMascotaExotica;
         this.session = session;
 
         this.idsMascota = (long) persistenciaMascota.findAll().size();
@@ -84,7 +87,7 @@ public class ControladorMascota {
             builder.fotoFavorita(fotoFavorita);
         }
 
-        this.persistenciaMascota.create(builder.build());
+        this.persistenciaMascotaExotica.create(builder.build());
         return this.idsMascota;
     }
 
