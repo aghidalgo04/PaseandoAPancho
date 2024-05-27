@@ -24,7 +24,7 @@ public class ControladorUsuario {
     private final PersistenciaMascota persistenciaMascota;
     private final PersistenciaMascotaExotica persistenciaMascotaExotica;
     private final PersistenciaContratoCuidado persistenciaContratoCuidado;
-    private Session session;
+    private final Session session;
 
     public ControladorUsuario(PersistenciaDueno persistenciaDueno, PersistenciaCuidador persistenciaCuidador, PersistenciaMascota persistenciaMascota, PersistenciaMascotaExotica persistenciaMascotaExotica, PersistenciaContratoCuidado persistenciaContratoCuidado, Session session) {
         this.persistenciaDueno = persistenciaDueno;
@@ -37,6 +37,10 @@ public class ControladorUsuario {
         this.idsContratoCuidado = (long) persistenciaContratoCuidado.findAll().size();
     }
 
+    //#17577 - Darse de alta con Google
+    //#17578 - Darse de alta con Facebook
+    //#17579 - Darse de alta con Twitter
+    //#17576 - Darse de alta con Microsoft
     public void registrarDueno(String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro) {
         String idUsuario = ExternalRRSS.LoginRRSS();
         if (this.persistenciaDueno.findById(idUsuario).isPresent() || this.persistenciaCuidador.findById(idUsuario).isPresent()) {
@@ -46,6 +50,10 @@ public class ControladorUsuario {
         this.persistenciaDueno.create(dueno);
     }
 
+    //#17577 - Darse de alta con Google
+    //#17578 - Darse de alta con Facebook
+    //#17579 - Darse de alta con Twitter
+    //#17576 - Darse de alta con Microsoft
     public void registrarCuidador(String nombre, String apellidos, String correoElectronico, String direccion, Idioma idioma, Plataforma plataformaRegistro, File foto, String descripcion, Integer precio, String IBAN, List<File> documentacion) {
         String idUsuario = ExternalRRSS.LoginRRSS();
         if (this.persistenciaDueno.findById(idUsuario).isPresent() || this.persistenciaCuidador.findById(idUsuario).isPresent()) {
@@ -55,6 +63,7 @@ public class ControladorUsuario {
         this.persistenciaCuidador.create(cuidador);
     }
 
+    //#17718 - Login
     public void login(Plataforma plataforma) {
         String idUsuario = ExternalRRSS.LoginRRSS();
         Optional<Cuidador> cuidador = this.persistenciaCuidador.findById(idUsuario);
@@ -76,6 +85,7 @@ public class ControladorUsuario {
         }
     }
 
+    //#16490 - Agregar mascota
     public void anadirMascota(Long idMascota) {
         if (!this.session.estaLogueado()) {
             throw new SecurityAuthorizationException("No estás logueado");
@@ -96,6 +106,7 @@ public class ControladorUsuario {
         this.persistenciaDueno.update(dueno);
     }
 
+    //#16496 - Contactar cuidador
     public void contratarCuidador(Long idMascota, String idCuidador, String fechaInicioCuidado, String fechaFinCuidado) {
         if (!this.session.estaLogueado()) {
             throw new SecurityAuthorizationException("No estás logueado");
