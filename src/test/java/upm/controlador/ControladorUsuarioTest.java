@@ -34,9 +34,9 @@ public class ControladorUsuarioTest {
     }
     @Test
     public void testLogin(){
-        controladorUsuario.registrarCuidador("david","Lopez","a@upm.es","si", Idioma.Castellano, Plataforma.Google,null,"soy ese",15,"4564145165",null);
+        controladorUsuario.registrarCuidador("stefan","Lopez","a@upm.es","si", Idioma.Castellano, Plataforma.Google,null,"soy ese",15,"4564145165",null);
         controladorUsuario.login(Plataforma.Google);
-        assertEquals(session.getUsuario().getId(),"a8a9aff5f55133002b55c1682730344b");
+        assertEquals(session.getUsuario().getId(),"36a8d9d9685ad33a28d5ef2b86ae38f0");
     }
 
     @Test
