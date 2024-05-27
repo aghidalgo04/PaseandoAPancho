@@ -88,6 +88,10 @@ public class Mascota {
         this.albums.removeIf(album -> album.getId().equals(id));
     }
 
+    public Album buscarAlbum(Long id) {
+        return this.albums.stream().filter(album -> album.getId().equals(id)).findFirst().orElse(null);
+    }
+
     public static class Builder {
         private Long id;
         private String nombre;
