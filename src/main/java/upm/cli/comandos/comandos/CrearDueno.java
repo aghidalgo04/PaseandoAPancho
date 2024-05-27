@@ -27,7 +27,7 @@ public class CrearDueno implements Comando {
         }
         for (int i = 0; i < 4; i++) {
             if (parametros[i].equals("") || parametros[i] == null || parametros[i].equals(" ")) {
-                throw new UnsupportedAttributesException(this.ayudaParametros());
+                throw new UnsupportedAttributesException("El nombre, apellidos, correo o dirección no puede ser nulo o vacío");
             }
         }
         this.controladorUsuario.registrarDueno(parametros[0], parametros[1], parametros[2], parametros[3], Idioma.valueOf(parametros[4]), Plataforma.valueOf(parametros[5]));

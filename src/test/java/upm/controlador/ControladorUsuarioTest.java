@@ -38,8 +38,18 @@ public class ControladorUsuarioTest {
 
     @Test
     public void testRegistrarCuidador(){
-        controladorUsuario.registrarCuidador("alvaro","pintado","a@upm.es","si", Idioma.Castellano, Plataforma.Google,null,"soy ese",15,"4564145165",null);
+        controladorUsuario.registrarCuidador("david","Lopez","a@upm.es","si", Idioma.Castellano, Plataforma.Facebook,null,"soy ese",15,"4564145165",null);
+        assertEquals(persistenciaCuidador.findById("a8a9aff5f55133002b55c1682730344b").get().getId(),"a8a9aff5f55133002b55c1682730344b");
+        controladorUsuario.registrarCuidador("pedro","Guzman","a@upm.es","si", Idioma.Ingles, Plataforma.Google,null,"soy ese",15,"4564145165",null);
+        assertEquals(persistenciaCuidador.findById("b661edb9ab17323b8692ed3bce8aa421").get().getId(),"b661edb9ab17323b8692ed3bce8aa421");
+        controladorUsuario.registrarCuidador("alex","Hidalgo","a@upm.es","si", Idioma.Catalan, Plataforma.Microsoft,null,"soy ese",15,"4564145165",null);
+        assertEquals(persistenciaCuidador.findById("c879e1bd61b2ac3323db7226f0e896ca").get().getId(),"c879e1bd61b2ac3323db7226f0e896ca");
+        controladorUsuario.registrarCuidador("stefan","Ochshypok","a@upm.es","si", Idioma.Valenciano, Plataforma.Twitter,null,"soy ese",15,"4564145165",null);
+        assertEquals(persistenciaCuidador.findById("36a8d9d9685ad33a28d5ef2b86ae38f0").get().getId(),"36a8d9d9685ad33a28d5ef2b86ae38f0");
+        controladorUsuario.registrarCuidador("alvaro","Pintado","a@upm.es","si", Idioma.Euskera, Plataforma.Facebook,null,"soy ese",15,"4564145165",null);
         assertEquals(persistenciaCuidador.findById("0d859f06778101081ce86f285f4f17c8").get().getId(),"0d859f06778101081ce86f285f4f17c8");
+        controladorUsuario.registrarCuidador("dani","McNeilis","a@upm.es","si", Idioma.Gallego, Plataforma.Facebook,null,"soy ese",15,"4564145165",null);
+        assertEquals(persistenciaCuidador.findById("c26d5b61c2f7287f0d785079b6bff5c3").get().getId(),"c26d5b61c2f7287f0d785079b6bff5c3");
 
     }
     @Test
