@@ -70,10 +70,11 @@ public class ControladorUsuarioTest {
 
     @Test
     public void testAniadirMascota(){
-        controladorUsuario.login(Plataforma.Google);
+        controladorUsuario.registrarDueno("a","b","a@upm.es","si", Idioma.Castellano, Plataforma.Facebook);
+        controladorUsuario.login(Plataforma.Facebook);
         Long id = controladorMascota.crearMascota("Ely","sierra","Perro blanco", "0123456789","213u84871",null,null);
         controladorUsuario.anadirMascota(id);
-        assertEquals(persistenciaDueno.findById("a8a9aff5f55133002b55c1682730344b").get().buscarMascota(id),persistenciaMascota.findById(id).get());
+        assertEquals(persistenciaDueno.findById("ad3c97a663a2129e26cd5ee3e2f85fdd").get().buscarMascota(id),persistenciaMascota.findById(id).get());
     }
 
     @Test
