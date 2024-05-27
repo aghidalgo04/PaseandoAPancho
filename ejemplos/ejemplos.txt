@@ -2,30 +2,29 @@
 
 ---- Ejemplo 1 ----
 
-crear-dueno: Stefan; Test; test@upm.es; Madrid; Castellano; Facebook
+registrar-dueno: Stefan; Test; test@upm.es; Madrid; Castellano; Facebook
 login: Facebook
-crear-mascota: Jeri; Madrid; Buen animal; 1234567890; 232451522152; null; null
-crear-mascota: Gav; Madrid; Buen animal; 1234567890; 232451522152; null; null
-crear-mascota-exotica: Loli-ex; Madrid; Buen animal; 1234567890; 232451522152; null; null; null; null; null
-crear-mascota-exotica: Pepe-ex; Madrid; Buen animal; 1234567890; 232451522152; null; null; null; null; null
+aniadir-mascota: Jeri; Madrid; Buen animal; 1234567890; 232451522152; null; null
+aniadir-mascota: Gav; Madrid; Buen animal; 1234567890; 232451522152; null; null
+aniadir-mascota-exotica: Loli-ex; Madrid; Buen animal; 1234567890; algo.txt; algo.txt; algo.txt; 2636384; null; null
 contratar-cuidador: 2; 1; 12-12-2025 12.54; 18-12-2025 12.54
 listar-mascotas
 
 ---- Ejemplo 2 ----
-crear-cuidador: Cabeza; Test; test@upm.es; Madrid; Castellano; Twitter; /foto; Vallecas stile; 12; ES12345678;
-crear-cuidador: David; Test; test@upm.es; Madrid; Castellano; Google; /foto; Vallecas stile; 12; ES12345678; /documentacion
+registrar-cuidador: Cabeza; Test; test@upm.es; Madrid; Castellano; Twitter; /foto; Vallecas stile; 12; ES12345678;
+registrar-cuidador: David; Test; test@upm.es; Madrid; Castellano; Google; /foto; Vallecas stile; 12; ES12345678; /documentacion
 contratar-cuidador: 1; 7c55df616746bfc9212c531d189de7ed; 27-05-2024 12.00; 29-05-2024 14.00
 
 ---- PruebasNoVálidas ----
 
 RegistrarDueno
 
-crear-dueno: ; Test; test@upm.es; Madrid; Castellano; Facebook
-crear-dueno: Prueba; ; test@upm.es; Madrid; Castellano; Facebook
-crear-dueno: Prueba; Test; ; Madrid; Castellano; Facebook
-crear-dueno: Prueba; Test; test@upm.es; ; Castellano; Facebook
-crear-dueno: Prueba; Test; test@upm.es; Madrid; Aleman; Facebook
-crear-dueno: Prueba; Test; test@upm.es; Madrid; Castellano; Meta
+registrar-dueno: ; Test; test@upm.es; Madrid; Castellano; Facebook
+registrar-dueno: Prueba; ; test@upm.es; Madrid; Castellano; Facebook
+registrar-dueno: Prueba; Test; ; Madrid; Castellano; Facebook
+registrar-dueno: Prueba; Test; test@upm.es; ; Castellano; Facebook
+registrar-dueno: Prueba; Test; test@upm.es; Madrid; Aleman; Facebook
+registrar-dueno: Prueba; Test; test@upm.es; Madrid; Castellano; Meta
 
 RegistrarCuidador:
 
