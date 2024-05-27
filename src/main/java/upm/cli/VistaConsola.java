@@ -19,6 +19,7 @@ public class VistaConsola implements Vista {
     private static final String ANIMAL = "\uD83D\uDC36";
     private static final String USUARIO = "\uD83D\uDC64";
     private static final String ARROW = "\u27A4";
+    public static final String ARROW2 = "\u279E";
 
     private final Scanner scanner;
 
@@ -63,7 +64,7 @@ public class VistaConsola implements Vista {
 
     @Override
     public void mostrarEnterComando() {
-        System.out.print(VistaConsola.COMMAND + "> ");
+        System.out.print(VistaConsola.COMMAND + " " + VistaConsola.ARROW + " ");
     }
 
     @Override
@@ -73,7 +74,7 @@ public class VistaConsola implements Vista {
 
     @Override
     public void mostrarComando(String valor, String parametros, String comentario) {
-        System.out.println("    " + VistaConsola.VERDE + VistaConsola.ARROW + " " + VistaConsola.CIAN + valor + ": " + VistaConsola.AMARILLO + parametros + VistaConsola.VERDE + " --- " + comentario + VistaConsola.RESETEAR);
+        System.out.println("    " + VistaConsola.VERDE + VistaConsola.ARROW2 + " " + VistaConsola.CIAN + valor + ": " + VistaConsola.AMARILLO + parametros + VistaConsola.VERDE + " --- " + comentario + VistaConsola.RESETEAR);
     }
 
     @Override
