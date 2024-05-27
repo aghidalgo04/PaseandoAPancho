@@ -26,7 +26,18 @@ public class ContratarCuidador implements Comando {
         if (parametros.length != NUMERO_PARAMETROS) {
             throw new UnsupportedAttributesException(this.ayudaParametros());
         }
+        if (Integer.parseInt(parametros[0]) < 1) {
+            throw new UnsupportedAttributesException("El idMascota no puede cero o negativo");
+        }
+        for (int i = 1; i < parametros.length; i++) {
+            if (parametros[i].equals("") || parametros[i] == null || parametros[i].equals(" ")) {
+                throw new UnsupportedAttributesException("El idCuidador, fechaInicioCuidado y fechaFinCuidado no puede ser nulo o vacío");
+            }
+        }
         DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd-MM-yyyy HH.mm");
+        if (LocalDateTime.parse(parametros[2], dateTimeFormatter).isAfter(LocalDateTime.parse(parametros[3], dateTimeFormatter))) {
+            throw new UnsupportedAttributesException("La fechaInicioCuidado debe ser anterior a la fechaFinCuidado");
+        }
         this.controladorUsuario.contratarCuidador(Long.valueOf(parametros[0]), parametros[1], parametros[2], parametros[3]);
         vista.mostarMensaje("Contrato creado pero no pagado");
     }

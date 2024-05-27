@@ -111,6 +111,9 @@ public class ControladorUsuario {
             throw new NotFoundException("Mascota no existe");
         }
         DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd-MM-yyyy HH.mm");
+        if (LocalDateTime.parse(fechaFinCuidado, dateTimeFormatter).isAfter(LocalDateTime.parse(fechaFinCuidado, dateTimeFormatter))) {
+            throw new SecurityProhibitionException("Fechas erróneas");
+        }
         LocalDateTime fechaFin = LocalDateTime.parse(fechaFinCuidado, dateTimeFormatter);
         LocalDateTime fechaIn = LocalDateTime.parse(fechaInicioCuidado, dateTimeFormatter);
         ContratoCuidado contratoCuidado = new ContratoCuidado(++this.idsContratoCuidado, fechaInicioCuidado, fechaFinCuidado, LocalDateTime.now().format(dateTimeFormatter), cuidador.get().getPrecio() * (fechaFin.getHour() - fechaIn.getHour()) * 2D, dueno.buscarMascota(idMascota));
