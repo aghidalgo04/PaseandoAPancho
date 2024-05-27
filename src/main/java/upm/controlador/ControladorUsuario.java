@@ -1,6 +1,5 @@
 package upm.controlador;
 
-import jdk.vm.ci.meta.Local;
 import servidor.ExternalRRSS;
 import upm.controlador.excepciones.DuplicateException;
 import upm.controlador.excepciones.NotFoundException;
