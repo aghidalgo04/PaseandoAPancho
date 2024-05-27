@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class ContratoCuidado{
+    public static final String FORMATO_FECHA = "dd-MM-yyyy HH.mm";
+
     private Long id;
     private String fechaInicioDeCuidado;
     private String fechaFinDeCuidado;
