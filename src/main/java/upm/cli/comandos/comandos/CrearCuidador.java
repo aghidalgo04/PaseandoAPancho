@@ -10,9 +10,9 @@ import upm.data.modelo.enums.Plataforma;
 import java.io.File;
 
 public class CrearCuidador implements Comando {
-    private static final String VALOR = "crear-cuidador";
+    private static final String VALOR = "registrar-cuidador";
     private static final String AYUDA_PARAMETROS = "<nombre>; <apellidos>; <correoElectronico>; <direccion>; <idioma: [Castellano, Ingles, Catalan, Valenciano, Euskera, Gallego]>; <plataformaRegistro: [Facebook, Google, Microsoft, Twitter]>; <foto>; <descripcion>; <precio>; <IBAN>; <documentacion>";
-    private static final String AYUDA_COMENTARIO = "Creas un cuidador";
+    private static final String AYUDA_COMENTARIO = "Te registras como cuidador";
 
     private static final byte NUMERO_PARAMETROS_MIN = 10;
     private static final byte NUMERO_PARAMETROS_MAX = 11;
