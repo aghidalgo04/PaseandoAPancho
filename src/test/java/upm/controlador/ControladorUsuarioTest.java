@@ -54,9 +54,18 @@ public class ControladorUsuarioTest {
     }
     @Test
     public void testLogin(){
-        controladorUsuario.registrarCuidador("stefan","Lopez","a@upm.es","si", Idioma.Castellano, Plataforma.Google,null,"soy ese",15,"4564145165",null);
+        controladorUsuario.registrarDueno("A","B","a@upm.es","si", Idioma.Castellano, Plataforma.Facebook);
+        controladorUsuario.login(Plataforma.Facebook);
+        assertEquals(session.getUsuario().getId(),"3e7602399afc6d1205fb69b73b3d100c");
+        controladorUsuario.registrarDueno("B","C","a@upm.es","si", Idioma.Castellano, Plataforma.Google);
         controladorUsuario.login(Plataforma.Google);
-        assertEquals(session.getUsuario().getId(),"36a8d9d9685ad33a28d5ef2b86ae38f0");
+        assertEquals(session.getUsuario().getId(),"786c5fe1e193816f63eea4af3314e8f3");
+        controladorUsuario.registrarDueno("C","D","a@upm.es","si", Idioma.Castellano, Plataforma.Microsoft);
+        controladorUsuario.login(Plataforma.Microsoft);
+        assertEquals(session.getUsuario().getId(),"8fd8b3b403761b7fce626b8994a91311");
+        controladorUsuario.registrarDueno("D","E","a@upm.es","si", Idioma.Castellano, Plataforma.Twitter);
+        controladorUsuario.login(Plataforma.Twitter);
+        assertEquals(session.getUsuario().getId(),"b1a37a3ea4c7d23cc480109a14f1864b");
     }
 
     @Test
