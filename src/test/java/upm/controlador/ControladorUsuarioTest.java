@@ -9,8 +9,7 @@ import upm.data.persitencia.PersistenciaCuidador;
 import upm.data.persitencia.PersistenciaMascota;
 import upm.data.persitencia.PersistenciaDueno;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class ControladorUsuarioTest {
     private final ControladorUsuario controladorUsuario = InyectorDependencias.getInyectorDependencias().getControladorUsuario();
@@ -50,14 +49,12 @@ public class ControladorUsuarioTest {
 
     @Test
     public void testContratarCuidador(){
-        /*
         controladorUsuario.login(Plataforma.Google);
         Long id = controladorMascota.crearMascota("Ely","sierra","Perro blanco", "0123456789","213u84871",null,null);
         controladorUsuario.anadirMascota(id);
         controladorUsuario.contratarCuidador(id,"0d859f06778101081ce86f285f4f17c8","01-01-2025 16.20","03-01-2025 17.30");
         Integer id1 = persistenciaContratoCuidado.findAll().size();
-        assertEquals(persistenciaContratoCuidado.findById(id1.longValue()),persistenciaCuidador.findById("0d859f06778101081ce86f285f4f17c8").get().getContratos().get();
-    */
+        assertTrue(persistenciaCuidador.findById("0d859f06778101081ce86f285f4f17c8").get().getContratos().contains(persistenciaContratoCuidado.findById(id1.longValue()).get()));
     }
 
 }

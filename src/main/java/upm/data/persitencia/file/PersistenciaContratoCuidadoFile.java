@@ -24,7 +24,7 @@ public class PersistenciaContratoCuidadoFile extends PersistenciaFile<Long, Cont
 
     @Override
     public Optional<ContratoCuidado> findById(Long id) {
-        return Optional.empty();
+        return Optional.ofNullable(this.objetos.get(id));
     }
 
     @Override
