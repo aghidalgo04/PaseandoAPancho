@@ -22,8 +22,18 @@ public class ControladorUsuarioTest {
 
     @Test
     public void testRegistrarDueno(){
-        controladorUsuario.registrarDueno("david","Lopez","a@upm.es","si", Idioma.Castellano, Plataforma.Google);
-        assertEquals(persistenciaDueno.findById("a8a9aff5f55133002b55c1682730344b").get().getId(),"a8a9aff5f55133002b55c1682730344b");
+        controladorUsuario.registrarDueno("David","Lopez","a@upm.es","si", Idioma.Castellano, Plataforma.Facebook);
+        assertEquals(persistenciaDueno.findById("a96a6a8b49d8d02e9d87d46b3be73232").get().getId(),"a96a6a8b49d8d02e9d87d46b3be73232");
+        controladorUsuario.registrarDueno("Pedro","Guzman","a@upm.es","si", Idioma.Ingles, Plataforma.Google);
+        assertEquals(persistenciaDueno.findById("776954193178dd00819748ddec0251de").get().getId(),"776954193178dd00819748ddec0251de");
+        controladorUsuario.registrarDueno("Alex","Hidalgo","a@upm.es","si", Idioma.Catalan, Plataforma.Microsoft);
+        assertEquals(persistenciaDueno.findById("b6b2c0ff0e2ce3b9f2a4b8822718ff44").get().getId(),"b6b2c0ff0e2ce3b9f2a4b8822718ff44");
+        controladorUsuario.registrarDueno("Stefan","Ochshypok","a@upm.es","si", Idioma.Valenciano, Plataforma.Twitter);
+        assertEquals(persistenciaDueno.findById("ab0206dc7b5b7607c21a256345f28cfd").get().getId(),"ab0206dc7b5b7607c21a256345f28cfd");
+        controladorUsuario.registrarDueno("Alvaro","Pintado","a@upm.es","si", Idioma.Euskera, Plataforma.Facebook);
+        assertEquals(persistenciaDueno.findById("0d14a6ce73b1f87f02535a23ef7dffdc").get().getId(),"0d14a6ce73b1f87f02535a23ef7dffdc");
+        controladorUsuario.registrarDueno("Dani","McNeilis","a@upm.es","si", Idioma.Gallego, Plataforma.Facebook);
+        assertEquals(persistenciaDueno.findById("61b57c5a099eaf4296b7a671dc637c9e").get().getId(),"61b57c5a099eaf4296b7a671dc637c9e");
     }
 
     @Test

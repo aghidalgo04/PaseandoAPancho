@@ -25,6 +25,11 @@ public class CrearDueno implements Comando {
         if (parametros.length != NUMERO_PARAMETROS) {
             throw new UnsupportedAttributesException(this.ayudaParametros());
         }
+        for (int i = 0; i < 4; i++) {
+            if (parametros[i].equals("") || parametros[i] == null || parametros[i].equals(" ")) {
+                throw new UnsupportedAttributesException(this.ayudaParametros());
+            }
+        }
         this.controladorUsuario.registrarDueno(parametros[0], parametros[1], parametros[2], parametros[3], Idioma.valueOf(parametros[4]), Plataforma.valueOf(parametros[5]));
         vista.mostarMensaje("Cuenta creada con exito");
     }
