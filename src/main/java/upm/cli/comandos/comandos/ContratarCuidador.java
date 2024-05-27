@@ -29,8 +29,10 @@ public class ContratarCuidador implements Comando {
         if (Integer.parseInt(parametros[0]) < 1) {
             throw new UnsupportedAttributesException("El idMascota no puede cero o negativo");
         }
-        if (parametros[1].equals("") || parametros[1] == null || parametros[1].equals(" ")) {
-            throw new UnsupportedAttributesException("El idCuidador no puede ser nulo o vacío");
+        for (int i = 1; i < parametros.length; i++) {
+            if (parametros[i].equals("") || parametros[i] == null || parametros[i].equals(" ")) {
+                throw new UnsupportedAttributesException("El idCuidador, fechaInicioCuidado y fechaFinCuidado no puede ser nulo o vacío");
+            }
         }
         DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd-MM-yyyy HH.mm");
         if (LocalDateTime.parse(parametros[2], dateTimeFormatter).isAfter(LocalDateTime.parse(parametros[3], dateTimeFormatter))) {

@@ -33,6 +33,9 @@ public class CrearCuidador implements Comando {
                 throw new UnsupportedAttributesException("El nombre, apellidos, correo o dirección no puede ser nulo o vacío");
             }
         }
+        if (parametros[6].equals("") || parametros[6] == null || parametros[6].equals(" ")) {
+            throw new UnsupportedAttributesException("Necesitas una foto");
+        }
         if (parametros[7].equals("") || parametros[7] == null || parametros[7].equals(" ")) {
             throw new UnsupportedAttributesException("La descripción no puede ser nula o vacía");
         }
@@ -43,7 +46,7 @@ public class CrearCuidador implements Comando {
             throw new UnsupportedAttributesException("El IBAN tiene que tener 10 caracteres");
         }
         if (parametros.length == NUMERO_PARAMETROS_MIN) {
-            this.controladorUsuario.registrarCuidador(parametros[0], parametros[1], parametros[2], parametros[3], Idioma.valueOf(parametros[4]), Plataforma.valueOf(parametros[5]), new File(parametros[6]), parametros[7], Integer.parseInt(parametros[8]), parametros[9], null); // caso que no aparta documentacion
+            this.controladorUsuario.registrarCuidador(parametros[0], parametros[1], parametros[2], parametros[3], Idioma.valueOf(parametros[4]), Plataforma.valueOf(parametros[5]), new File(parametros[6]), parametros[7], Integer.parseInt(parametros[8]), parametros[9], null);
         } else {
             this.controladorUsuario.registrarCuidador(parametros[0], parametros[1], parametros[2], parametros[3], Idioma.valueOf(parametros[4]), Plataforma.valueOf(parametros[5]), new File(parametros[6]), parametros[7], Integer.parseInt(parametros[8]), parametros[9], null);
         }

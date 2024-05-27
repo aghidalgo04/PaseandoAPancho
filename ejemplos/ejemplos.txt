@@ -8,11 +8,56 @@ crear-mascota: Jeri; Madrid; Buen animal; 1234567890; 232451522152; null; null
 crear-mascota: Gav; Madrid; Buen animal; 1234567890; 232451522152; null; null
 crear-mascota-exotica: Loli-ex; Madrid; Buen animal; 1234567890; 232451522152; null; null; null; null; null
 crear-mascota-exotica: Pepe-ex; Madrid; Buen animal; 1234567890; 232451522152; null; null; null; null; null
+contratar-cuidador: 2; 1; 12-12-2025 12.54; 18-12-2025 12.54
 listar-mascotas
 
 ---- Ejemplo 2 ----
 crear-cuidador: Cabeza; Test; test@upm.es; Madrid; Castellano; Twitter; /foto; Vallecas stile; 12; ES12345678;
 crear-cuidador: David; Test; test@upm.es; Madrid; Castellano; Google; /foto; Vallecas stile; 12; ES12345678; /documentacion
 contratar-cuidador: 1; 7c55df616746bfc9212c531d189de7ed; 27-05-2024 12.00; 29-05-2024 14.00
+
+---- PruebasNoVálidas ----
+
+RegistrarDueno
+
+crear-dueno: ; Test; test@upm.es; Madrid; Castellano; Facebook
+crear-dueno: Prueba; ; test@upm.es; Madrid; Castellano; Facebook
+crear-dueno: Prueba; Test; ; Madrid; Castellano; Facebook
+crear-dueno: Prueba; Test; test@upm.es; ; Castellano; Facebook
+crear-dueno: Prueba; Test; test@upm.es; Madrid; Aleman; Facebook
+crear-dueno: Prueba; Test; test@upm.es; Madrid; Castellano; Meta
+
+RegistrarCuidador:
+
+crear-cuidador: ; Test; test@upm.es; Madrid; Castellano; Facebook; /foto; Vallecas stile; 12; ES12345678;
+crear-cuidador: Prueba; ; test@upm.es; Madrid; Castellano; Facebook; /foto; Vallecas stile; 12; ES12345678;
+crear-cuidador: Prueba; Test; ; Madrid; Castellano; Facebook; /foto; Vallecas stile; 12; ES12345678;
+crear-cuidador: Prueba; Test; test@upm.es; ; Castellano; Facebook; /foto; Vallecas stile; 12; ES12345678;
+crear-cuidador: Prueba; Test; test@upm.es; Madrid; Aleman; Facebook; /foto; Vallecas stile; 12; ES12345678;
+crear-cuidador: Prueba; Test; test@upm.es; Madrid; Castellano; Meta; /foto; Vallecas stile; 12; ES12345678;
+crear-cuidador: Prueba; Test; test@upm.es; Madrid; Castellano; Facebook; ; Vallecas stile; 12; ES12345678;
+crear-cuidador: Prueba; Test; test@upm.es; Madrid; Castellano; Facebook; /foto; ; 12; ES12345678;
+crear-cuidador: Prueba; Test; test@upm.es; Madrid; Castellano; Twitter; /foto; Vallecas stile; -12; ES12345678;
+crear-cuidador: Prueba; Test; test@upm.es; Madrid; Castellano; Twitter; /foto; Vallecas stile; 12; ES123;
+crear-cuidador: Prueba; Test; test@upm.es; Madrid; Castellano; Twitter; /foto; Vallecas stile; 12; ES12341414185641566516516;
+
+Login:
+
+login: Meta
+
+ContratarCuidador:
+
+crear-dueno: Prueba; Test; test@upm.es; Madrid; Castellano; Facebook
+crear-cuidador: Prueba2; Test; test@upm.es; Madrid; Castellano; Facebook; /foto; Vallecas stile; 12; ES12345678;
+login: Facebook
+crear-mascota: Jeri; Madrid; Buen animal; 1234567890; 232451522152; null; null
+listar-mascotas
+
+contratar-cuidador: -2; 1; 12-12-2025 12.54; 18-12-2025 12.54
+contratar-cuidador: 1; ; 12-12-2025 12.54; 18-12-2025 12.54
+contratar-cuidador: 1; 489b9b0de76c79363926a4876bf3a7b3; ; 18-12-2025 12.54
+contratar-cuidador: 1; 489b9b0de76c79363926a4876bf3a7b3; 12-12-2025 12.54;
+contratar-cuidador: 1; 489b9b0de76c79363926a4876bf3a7b3; 18-12-2025 12.54; 12-12-2025 12.54
+
 
 
