@@ -79,12 +79,14 @@ public class ControladorUsuarioTest {
 
     @Test
     public void testContratarCuidador(){
-        controladorUsuario.login(Plataforma.Google);
-        Long id = controladorMascota.crearMascota("Ely","sierra","Perro blanco", "0123456789","213u84871",null,null);
+        controladorUsuario.registrarDueno("dueno","mascota","a@upm.es","si", Idioma.Castellano, Plataforma.Facebook);
+        controladorUsuario.registrarCuidador("cuidador","mascota","a@upm.es","si", Idioma.Castellano, Plataforma.Facebook,null,"soy ese",15,"4564145165",null);
+        controladorUsuario.login(Plataforma.Facebook);
+        Long id = controladorMascota.crearMascota("Chester","3c","Perro negro, blanco y marron", "0123456789","213u84871",null,null);
         controladorUsuario.anadirMascota(id);
-        controladorUsuario.contratarCuidador(id,"0d859f06778101081ce86f285f4f17c8","01-01-2025 16.20","03-01-2025 17.30");
+        controladorUsuario.contratarCuidador(id,"f4250c2ecf2f9328ade94a458b2d0c9c","01-01-2025 16.20","03-01-2025 17.30");
         Integer id1 = persistenciaContratoCuidado.findAll().size();
-        assertTrue(persistenciaCuidador.findById("0d859f06778101081ce86f285f4f17c8").get().getContratos().contains(persistenciaContratoCuidado.findById(id1.longValue()).get()));
+        assertTrue(persistenciaCuidador.findById("f4250c2ecf2f9328ade94a458b2d0c9c").get().getContratos().contains(persistenciaContratoCuidado.findById(id1.longValue()).get()));
     }
 
 }
