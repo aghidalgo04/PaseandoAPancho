@@ -7,6 +7,9 @@ import upm.data.modelo.excepciones.InvalidAttributeException;
 import upm.data.persitencia.PersistenciaMascota;
 import upm.data.persitencia.PersistenciaMascotaExotica;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import java.io.File;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,7 +25,7 @@ public class ControladorMascota {
         this.persistenciaMascotaExotica = persistenciaMascotaExotica;
         this.session = session;
 
-        this.idsMascota = (long) persistenciaMascota.findAll().size();
+        this.idsMascota = (long) persistenciaMascota.findAll().size() + (long) persistenciaMascotaExotica.findAll().size();
     }
 
 
@@ -57,7 +60,7 @@ public class ControladorMascota {
         return this.idsMascota;
     }
 
-    public Long crearMascotaExotica(String nombre, String direccion, String descripcion, String codigoRIAC, String polizaSeguro, List<Album> albums, Foto fotoFavorita, File certificadoLegal, File certificadoSalud, File libreEnfermedadesTransmisibles) {
+    public Long crearMascotaExotica(String nombre, String direccion, String descripcion, String codigoRIAC, File certificadoLegal, File certificadoSalud, File libreEnfermedadesTransmisibles, String polizaSeguro, List<Album> albums, Foto fotoFavorita) {
         if (!this.session.estaLogueado()) {
             throw new SecurityAuthorizationException("No estas loguedo");
         }
@@ -97,7 +100,11 @@ public class ControladorMascota {
         }
         if (this.session.esCuidador()) {
             Cuidador cuidador = (Cuidador) this.session.getUsuario();
-            return cuidador.getContratos().stream().map(ContratoCuidado::getMascotaAsociada).collect(Collectors.toList());
+            DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern(ContratoCuidado.FORMATO_FECHA);
+            return cuidador.getContratos().stream()
+                    .filter(contratoCuidado -> LocalDateTime.parse(contratoCuidado.getFechaInicioDeCuidado(),dateTimeFormatter).isBefore(LocalDateTime.now()) && LocalDateTime.parse(contratoCuidado.getFechaFinDeCuidado(),dateTimeFormatter).isAfter(LocalDateTime.now()))
+                    .map(ContratoCuidado::getMascotaAsociada)
+                    .collect(Collectors.toList());
         } else {
             Dueno dueno = (Dueno) this.session.getUsuario();
             return dueno.getMascotas();

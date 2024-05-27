@@ -8,6 +8,7 @@ import upm.controlador.excepciones.SecurityProhibitionException;
 import upm.data.modelo.*;
 import upm.data.modelo.enums.Idioma;
 import upm.data.modelo.enums.Plataforma;
+import upm.data.modelo.excepciones.InvalidAttributeException;
 import upm.data.persitencia.*;
 
 import java.io.File;
@@ -110,9 +111,9 @@ public class ControladorUsuario {
         if (dueno.buscarMascota(idMascota) == null) {
             throw new NotFoundException("Mascota no existe");
         }
-        DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd-MM-yyyy HH.mm");
-        if (LocalDateTime.parse(fechaFinCuidado, dateTimeFormatter).isAfter(LocalDateTime.parse(fechaFinCuidado, dateTimeFormatter))) {
-            throw new SecurityProhibitionException("Fechas erróneas");
+        DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern(ContratoCuidado.FORMATO_FECHA);
+        if (LocalDateTime.parse(fechaFinCuidado, dateTimeFormatter).isAfter(LocalDateTime.parse(fechaFinCuidado, dateTimeFormatter)) && LocalDateTime.parse(fechaFinCuidado, dateTimeFormatter).isAfter(LocalDateTime.now())) {
+            throw new InvalidAttributeException("Fechas erróneas");
         }
         LocalDateTime fechaFin = LocalDateTime.parse(fechaFinCuidado, dateTimeFormatter);
         LocalDateTime fechaIn = LocalDateTime.parse(fechaInicioCuidado, dateTimeFormatter);
